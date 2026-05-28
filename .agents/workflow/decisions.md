@@ -103,3 +103,28 @@ Priority:
 * Success messages
 
 Do not spend too much time on advanced design.
+
+## TD-009: Testing Database
+
+Use MySQL for automated tests.
+
+Testing database:
+
+* `eduquiz_test`
+
+Do not use SQLite for this project.
+
+`phpunit.xml` should set:
+
+* `DB_CONNECTION=mysql`
+* `DB_HOST=127.0.0.1`
+* `DB_PORT=3306`
+* `DB_DATABASE=eduquiz_test`
+
+Keep database credentials in local environment files only.
+
+Do not commit:
+
+* `.env`
+* `.env.testing`
+* `.env.*`

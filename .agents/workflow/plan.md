@@ -264,21 +264,21 @@ Expected view tree:
 
 ```text
 resources/views/
-├── layouts/
-│   ├── app.blade.php
-│   └── admin.blade.php
-├── dashboard.blade.php
-├── admin/
-│   ├── dashboard.blade.php
-│   ├── courses/
-│   ├── quizzes/
-│   ├── questions/
-│   ├── answers/
-│   └── attempts/
-└── student/
-    ├── courses/
-    ├── quizzes/
-    └── attempts/
+|-- layouts/
+|   |-- app.blade.php
+|   `-- admin.blade.php
+|-- dashboard.blade.php
+|-- admin/
+|   |-- dashboard.blade.php
+|   |-- courses/
+|   |-- quizzes/
+|   |-- questions/
+|   |-- answers/
+|   `-- attempts/
+`-- student/
+    |-- courses/
+    |-- quizzes/
+    `-- attempts/
 ```
 
 View groups:
@@ -313,6 +313,12 @@ Checklist:
 * `npm run dev` runs.
 * Register/login/logout work.
 * Dashboard is accessible after login.
+
+Status:
+
+* Completed.
+* Verified with MySQL testing database `eduquiz_test`.
+* `php artisan route:list`, `php artisan migrate --env=testing`, `php artisan test`, and `npm run build` passed.
 
 ### Phase 2: Role admin/student
 
