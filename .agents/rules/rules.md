@@ -379,3 +379,207 @@ Encoding Check:
 ### Final Rule
 
 For reliability, all agent workflow files should be ASCII-safe unless Vietnamese text is absolutely necessary.
+
+## Git Branch, Commit, and Push Rules
+
+### Purpose
+
+Keep the EduQuiz project safe, reviewable, and easy to roll back.
+
+Each completed phase or feature should have its own Git checkpoint.
+
+### Branch Strategy
+
+Use `main` as the stable branch.
+
+Use `develop` as the integration branch if it already exists. If `develop` does not exist, continue from the current working branch and create feature branches from it.
+
+For each phase or feature, create a separate branch using this format:
+
+```text
+feature/phase-XX-short-name
+```
+
+Examples:
+
+```text
+feature/phase-01-project-setup
+feature/phase-02-roles
+feature/phase-03-database-schema
+feature/phase-04-admin-course-crud
+feature/phase-05-admin-quiz-crud
+feature/phase-06-question-answer-crud
+feature/phase-08-quiz-scoring
+```
+
+Use lowercase branch names.
+Use hyphens.
+Do not use spaces.
+Do not use Vietnamese diacritics in branch names.
+
+### Before Starting a Phase
+
+Before coding a phase, run:
+
+```bash
+git status
+git branch --show-current
+```
+
+If the working tree has uncommitted changes from a previous phase, do not start a new phase until those changes are handled.
+
+If the current phase does not have a feature branch yet, create one:
+
+```bash
+git checkout -b feature/phase-XX-short-name
+```
+
+If the branch already exists locally, switch to it:
+
+```bash
+git checkout feature/phase-XX-short-name
+```
+
+### Commit Rules
+
+After completing a phase or meaningful feature unit:
+
+1. Review the changed files.
+2. Run relevant checks/tests.
+3. Ensure there is no blocking issue.
+4. Ensure workflow files are updated.
+5. Commit the changes.
+
+Do not commit if:
+
+* The phase checklist does not pass.
+* `php artisan test` fails due to project code.
+* `npm run build` fails due to project code.
+* A migration is broken.
+* The app has a known fatal error.
+* The change includes secrets or local credentials.
+
+Never commit:
+
+```text
+.env
+.env.*
+node_modules/
+vendor/
+storage/logs/*.log
+```
+
+If these files appear in `git status`, stop and fix `.gitignore` or unstage them before committing.
+
+### Commit Message Format
+
+Use conventional commit style:
+
+```text
+type(scope): short summary
+```
+
+Allowed types:
+
+```text
+chore
+feat
+fix
+docs
+style
+refactor
+test
+```
+
+Examples:
+
+```text
+chore(setup): initialize Laravel Breeze project
+feat(auth): add admin and student roles
+feat(database): add core EduQuiz schema
+feat(admin): implement course management
+feat(admin): implement quiz management
+feat(quiz): implement question and answer management
+feat(student): implement quiz taking and scoring
+feat(results): add attempt history and admin review
+docs(readme): add setup and demo instructions
+fix(auth): protect admin routes with middleware
+```
+
+### Push Rules
+
+After a successful commit, push the branch:
+
+```bash
+git push -u origin feature/phase-XX-short-name
+```
+
+If the remote `origin` is not configured, do not fail the phase. Record this in:
+
+```text
+.agents/workflow/progress.md
+.agents/workflow/test-log.md
+```
+
+Use this note:
+
+```md
+Git Push:
+- Skipped because remote origin is not configured.
+```
+
+If push fails due to authentication or network issues, do not retry indefinitely. Record the error and continue only if the local commit succeeded.
+
+### Merge Rules
+
+Do not automatically merge feature branches into `main`.
+
+Do not force push.
+
+Do not rebase shared branches unless explicitly instructed.
+
+After pushing a feature branch, report that it is ready for user review or PR.
+
+The user will decide when to merge.
+
+### Workflow File Updates
+
+After each commit/push, update:
+
+```text
+.agents/workflow/progress.md
+.agents/workflow/test-log.md
+```
+
+Progress entry must include:
+
+```md
+Git:
+- Branch: ...
+- Commit: ...
+- Push: Passed / Failed / Skipped
+```
+
+Test log entry must include:
+
+```md
+Git Check:
+- git status: ...
+- branch: ...
+- commit: ...
+- push: ...
+```
+
+### Auto-Continue Rule
+
+After committing and pushing a completed phase branch, the agent may continue to the next unfinished phase only if:
+
+* There is no blocking issue.
+* The working tree is clean or only contains intentional workflow log updates.
+* The next phase branch is created before coding the next phase.
+
+### Final Rule
+
+A feature branch should represent one completed phase or one meaningful feature unit.
+
+Keep commits small enough to review but large enough to represent completed work.

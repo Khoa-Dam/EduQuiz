@@ -3,6 +3,7 @@
 .env
 .env.backup
 .env.production
+.env.testing
 .phpactor.json
 .phpunit.result.cache
 /.codex
@@ -12,6 +13,8 @@
 /.phpunit.cache
 /.vscode
 /.zed
+/CONTRIBUTING.md
+/.vite/
 /auth.json
 /node_modules
 /public/build
