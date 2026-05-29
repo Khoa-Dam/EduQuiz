@@ -667,6 +667,7 @@ Status:
 * Added an EduQuiz landing page with branding, demo actions, feature cards, and admin/student flow.
 * Improved shared layout, navigation, buttons, forms, tables, alerts, empty states, dashboards, quiz pages, and result/history pages.
 * Added small dashboard stat queries for demo clarity without changing business behavior.
+* Auth UI polish was completed after frontend polish to align Breeze login, register, password reset, password confirmation, and email verification pages with the EduQuiz visual style.
 * Used Blade, Tailwind/simple styling, and Laravel Breeze only.
 * Verified with `php artisan route:list`, `php artisan migrate --env=testing`, `php artisan test`, and `npm run build`.
 

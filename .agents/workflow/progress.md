@@ -5,7 +5,7 @@ This file is the main source for tracking completed phases, current work, blocke
 ## Current Status
 
 Current Phase:
-- Final sync after Phase 14.5 UI Polish
+- Auth UI polish follow-up after Phase 14.5
 
 Overall Status:
 - Complete
@@ -14,7 +14,7 @@ Blocking:
 - No
 
 Next Task:
-- Record the final video demo using the updated script, then submit the GitHub repository link and video link.
+- Record the final video demo using the updated polished UI, then submit the GitHub repository link and video link.
 
 ## Phase Progress
 
@@ -349,6 +349,70 @@ Result:
 
 Next:
 - Commit documentation sync, push the branch, then record the final video demo.
+
+### Run: Auth UI polish follow-up
+
+Current Phase:
+- Auth UI polish follow-up after Phase 14.5
+
+Skills Considered:
+- redesign-existing-projects
+- design-taste-frontend
+- gpt-taste
+- frontend-ui-engineering
+- git-workflow-and-versioning
+
+Skills Used:
+- redesign-existing-projects
+
+Reason:
+- The task was a targeted redesign of existing Laravel Breeze Blade auth screens while preserving auth behavior.
+
+Audit Summary:
+- Guest auth layout still looked like stock Laravel Breeze.
+- Login page did not clearly promote account creation inside the auth card.
+- Register and password pages had weak visual hierarchy and did not match the polished EduQuiz UI.
+
+Completed:
+- Created the branch `feature/auth-ui-polish`.
+- Reworked the guest auth layout with EduQuiz branding, a responsive auth shell, and admin/student flow context.
+- Improved login, register, forgot password, reset password, confirm password, and email verification pages.
+- Added clear login/register navigation inside the auth card.
+- Kept Breeze routes, controllers, CSRF directives, validation error components, and form behavior unchanged.
+
+Files Changed:
+- `resources/views/layouts/guest.blade.php`
+- `resources/views/auth/login.blade.php`
+- `resources/views/auth/register.blade.php`
+- `resources/views/auth/forgot-password.blade.php`
+- `resources/views/auth/reset-password.blade.php`
+- `resources/views/auth/confirm-password.blade.php`
+- `resources/views/auth/verify-email.blade.php`
+- `.agents/workflow/plan.md`
+- `.agents/workflow/progress.md`
+- `.agents/workflow/test-log.md`
+
+Checks Run:
+- `php artisan route:list` - passed, 61 routes
+- `php artisan migrate --env=testing` - passed
+- `php artisan test` - passed, 66 tests and 254 assertions
+- `npm run build` - passed
+
+Git:
+- Branch: `feature/auth-ui-polish`
+- Commit: `style(auth): polish Breeze authentication screens`
+- Push: Passed
+
+Encoding Check:
+- Found mojibake: No
+- Files affected: None
+- Fixed: No
+
+Result:
+- Passed
+
+Next:
+- Record the final video demo using the updated polished UI.
 
 ### Run: Phase 1 project setup
 
