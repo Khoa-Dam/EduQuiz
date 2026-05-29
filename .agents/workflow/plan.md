@@ -642,6 +642,34 @@ Status:
 * Documented the project description, tech stack, features, install guide, run guide, MySQL setup, demo accounts, main routes, testing commands, and demo flow.
 * Verified with `php artisan route:list`, `php artisan migrate --env=testing`, `php artisan test`, and `npm run build`.
 
+### Phase 14.5: Frontend UI Polish
+
+Goal:
+
+* Replace the default Laravel welcome page with an EduQuiz landing page.
+* Improve admin dashboard visual hierarchy.
+* Improve student dashboard visual hierarchy.
+* Improve navigation and branding.
+* Improve tables, forms, buttons, alerts, and empty states.
+* Improve quiz-taking and result/history pages for demo clarity.
+* Keep UI simple, polished, and Blade-based.
+
+Audit summary:
+
+* Landing page was still the default Laravel welcome screen.
+* Shared layout and navigation were still close to Laravel Breeze defaults.
+* Admin and student dashboards had minimal hierarchy and weak demo framing.
+* Tables, forms, buttons, empty states, quiz pages, and result pages were functional but visually plain.
+
+Status:
+
+* Completed.
+* Added an EduQuiz landing page with branding, demo actions, feature cards, and admin/student flow.
+* Improved shared layout, navigation, buttons, forms, tables, alerts, empty states, dashboards, quiz pages, and result/history pages.
+* Added small dashboard stat queries for demo clarity without changing business behavior.
+* Used Blade, Tailwind/simple styling, and Laravel Breeze only.
+* Verified with `php artisan route:list`, `php artisan migrate --env=testing`, `php artisan test`, and `npm run build`.
+
 ### Phase 15: Demo video
 
 Demo script:
@@ -658,7 +686,7 @@ Demo script:
 
 Status:
 
-* Completed.
+* Paused until Phase 14.5 UI polish is merged or used for the final recording.
 * Added `docs/video-demo-script.md` with a 3-5 minute recording goal, demo accounts, recording checklist, full demo flow, suggested narration, backup plan, and final submission checklist.
 * Verified with `php artisan route:list`, `php artisan migrate --env=testing`, `php artisan test`, and `npm run build`.
 

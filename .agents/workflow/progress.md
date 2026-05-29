@@ -5,7 +5,7 @@ This file is the main source for tracking completed phases, current work, blocke
 ## Current Status
 
 Current Phase:
-- Phase 15: Demo video
+- Phase 14.5: Frontend UI Polish
 
 Overall Status:
 - Complete
@@ -14,7 +14,7 @@ Blocking:
 - No
 
 Next Task:
-- Record the demo video and submit the GitHub repository link with the video link.
+- Continue to Phase 15: Video demo using the polished UI.
 
 ## Phase Progress
 
@@ -32,7 +32,8 @@ Next Task:
 - [x] Phase 12: Demo seed data
 - [x] Phase 13: Manual testing
 - [x] Phase 14: README and GitHub
-- [x] Phase 15: Demo video
+- [x] Phase 14.5: Frontend UI Polish
+- [ ] Phase 15: Demo video
 
 ## Run Log
 
@@ -212,6 +213,92 @@ Result:
 
 Next:
 - Open a PR, record the demo video, and submit the GitHub repository link with the video link.
+
+### Run: Phase 14.5 frontend UI polish
+
+Current Phase:
+- Phase 14.5: Frontend UI Polish
+
+Skills Considered:
+- redesign-existing-projects
+- design-taste-frontend
+- gpt-taste
+- frontend-ui-engineering
+- git-workflow-and-versioning
+
+Skills Used:
+- redesign-existing-projects
+
+Reason:
+- The task was an existing Laravel Blade UI redesign for demo readiness. The preferred Taste Skill matched the requested audit-first targeted polish workflow.
+
+Audit Summary:
+- Landing page was still the default Laravel welcome page.
+- Shared layout and navigation were close to Breeze defaults and did not clearly brand EduQuiz.
+- Admin dashboard and student dashboard were functional but plain.
+- Tables, forms, empty states, quiz-taking pages, and result/history pages needed stronger spacing, hierarchy, and consistent actions.
+
+Completed:
+- Replaced the default landing page with an EduQuiz product landing page.
+- Improved shared app shell, navigation branding, active states, buttons, forms, table styling, alerts, empty states, and page surfaces.
+- Improved admin dashboard with a stronger header, stats cards, and quick action cards.
+- Improved student dashboard with welcome content, stats, and quick links.
+- Improved student course, quiz-taking, quiz detail, attempt history, and result pages.
+- Improved admin attempt review pages.
+- Added small dashboard stat queries only for demo clarity.
+- Kept the stack as Laravel, MySQL, Blade, Breeze, and Tailwind/simple styling.
+
+Files Changed:
+- `app/Http/Controllers/Admin/DashboardController.php`
+- `app/Http/Controllers/DashboardController.php`
+- `resources/css/app.css`
+- `resources/views/welcome.blade.php`
+- `resources/views/layouts/app.blade.php`
+- `resources/views/layouts/navigation.blade.php`
+- `resources/views/dashboard.blade.php`
+- `resources/views/admin/dashboard.blade.php`
+- `resources/views/admin/courses/_form.blade.php`
+- `resources/views/admin/quizzes/_form.blade.php`
+- `resources/views/admin/questions/_form.blade.php`
+- `resources/views/admin/answers/_form.blade.php`
+- `resources/views/student/courses/index.blade.php`
+- `resources/views/student/courses/show.blade.php`
+- `resources/views/student/quizzes/show.blade.php`
+- `resources/views/student/quizzes/start.blade.php`
+- `resources/views/student/attempts/index.blade.php`
+- `resources/views/student/attempts/show.blade.php`
+- `resources/views/admin/attempts/index.blade.php`
+- `resources/views/admin/attempts/show.blade.php`
+- `.agents/workflow/plan.md`
+- `.agents/workflow/progress.md`
+- `.agents/workflow/test-log.md`
+- `.agents/workflow/decisions.md`
+- `.agents/skills/redesign-existing-projects/SKILL.md`
+- `.agents/skills/design-taste-frontend/SKILL.md`
+- `.agents/skills/gpt-taste/SKILL.md`
+- `skills-lock.json`
+
+Checks Run:
+- `npm run build` - passed
+- `php artisan route:list` - passed, 61 routes
+- `php artisan migrate --env=testing` - passed
+- `php artisan test` - passed, 66 tests and 254 assertions
+
+Git:
+- Branch: `feature/phase-14-5-frontend-ui-polish`
+- Commit: Pending
+- Push: Pending
+
+Encoding Check:
+- Found mojibake: No
+- Files affected: None
+- Fixed: No
+
+Result:
+- Passed
+
+Next:
+- Run final encoding scan, commit, and push the Phase 14.5 branch.
 
 ### Run: Phase 1 project setup
 

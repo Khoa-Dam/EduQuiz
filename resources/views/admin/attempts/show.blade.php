@@ -5,30 +5,30 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6">
-                    <p class="text-sm font-medium text-gray-600">{{ $attempt->quiz->course->title }}</p>
-                    <h3 class="mt-2 text-lg font-semibold text-gray-900">{{ $attempt->quiz->title }}</h3>
-                    <p class="mt-1 text-sm text-gray-600">Student: {{ $attempt->user->name }} ({{ $attempt->user->email }})</p>
+    <div class="eq-page">
+        <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+            <div class="eq-panel">
+                <div class="eq-panel-body">
+                    <p class="eq-badge">{{ $attempt->quiz->course->title }}</p>
+                    <h3 class="mt-4 text-3xl font-black tracking-tight text-slate-950">{{ $attempt->quiz->title }}</h3>
+                    <p class="mt-2 text-sm text-slate-600">Student: {{ $attempt->user->name }} ({{ $attempt->user->email }})</p>
 
                     <dl class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
-                        <div class="rounded-md bg-gray-50 p-4">
-                            <dt class="text-xs font-semibold uppercase text-gray-500">Score</dt>
-                            <dd class="mt-1 text-xl font-semibold text-gray-900">{{ $attempt->score }}</dd>
+                        <div class="eq-stat-card">
+                            <dt class="text-sm font-semibold text-slate-500">Score</dt>
+                            <dd class="mt-2 text-3xl font-black tabular-nums text-slate-950">{{ $attempt->score }}</dd>
                         </div>
-                        <div class="rounded-md bg-gray-50 p-4">
-                            <dt class="text-xs font-semibold uppercase text-gray-500">Correct</dt>
-                            <dd class="mt-1 text-xl font-semibold text-gray-900">{{ $attempt->correct_answers }} / {{ $attempt->total_questions }}</dd>
+                        <div class="eq-stat-card">
+                            <dt class="text-sm font-semibold text-slate-500">Correct</dt>
+                            <dd class="mt-2 text-3xl font-black tabular-nums text-slate-950">{{ $attempt->correct_answers }} / {{ $attempt->total_questions }}</dd>
                         </div>
-                        <div class="rounded-md bg-gray-50 p-4">
-                            <dt class="text-xs font-semibold uppercase text-gray-500">Submitted</dt>
-                            <dd class="mt-1 text-sm font-medium text-gray-900">{{ $attempt->submitted_at?->format('Y-m-d H:i') }}</dd>
+                        <div class="eq-stat-card">
+                            <dt class="text-sm font-semibold text-slate-500">Submitted</dt>
+                            <dd class="mt-2 text-sm font-bold text-slate-950">{{ $attempt->submitted_at?->format('Y-m-d H:i') }}</dd>
                         </div>
                     </dl>
 
-                    <div class="mt-8 divide-y divide-gray-100 rounded-md border border-gray-200">
+                    <div class="mt-8 divide-y divide-slate-100 rounded-2xl border border-slate-200">
                         @foreach ($attempt->attemptAnswers as $attemptAnswer)
                             <div class="p-4">
                                 <p class="font-medium text-gray-900">{{ $attemptAnswer->question->question_text }}</p>
@@ -40,8 +40,8 @@
                         @endforeach
                     </div>
 
-                    <div class="mt-6 border-t border-gray-100 pt-4">
-                        <a href="{{ route('admin.attempts.index') }}" class="text-sm font-medium text-gray-600 hover:text-gray-900">
+                    <div class="mt-6 border-t border-slate-100 pt-4">
+                        <a href="{{ route('admin.attempts.index') }}" class="eq-link">
                             Back to attempts
                         </a>
                     </div>

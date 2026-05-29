@@ -177,3 +177,43 @@ Reason:
 * Missing answers should be corrected before scoring.
 
 If partial submissions are needed later, change `quiz_attempt_answers.answer_id` to nullable and update scoring rules.
+
+## TD-013: Taste Skill Frontend Design Skills
+
+Installed project-local Taste Skill frontend design skills from:
+
+```text
+https://github.com/Leonxlnx/taste-skill
+```
+
+Installed skills:
+
+* `.agents/skills/redesign-existing-projects`
+* `.agents/skills/design-taste-frontend`
+* `.agents/skills/gpt-taste`
+
+Purpose:
+
+* `redesign-existing-projects`: audit and improve the existing Laravel Blade UI.
+* `design-taste-frontend`: general frontend design taste rules.
+* `gpt-taste`: stricter Codex/GPT-oriented frontend polish rules.
+
+These skills are available for future UI redesign work. Installation did not include Laravel app code changes.
+
+## TD-014: Frontend UI Stack
+
+Frontend UI polish must use:
+
+* Laravel Blade
+* Laravel Breeze layouts/components
+* Tailwind/simple styling
+
+Do not use:
+
+* React
+* Vue
+* Inertia
+* SPA architecture
+* Spatie Permission
+
+Small controller changes are allowed only when they provide display data for existing pages, such as dashboard stats, and do not change business behavior.

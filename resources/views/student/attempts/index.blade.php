@@ -1,16 +1,21 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            My Attempts
-        </h2>
+        <div>
+            <p class="text-sm font-semibold text-emerald-700">Result history</p>
+            <h2 class="mt-1 text-2xl font-black tracking-tight text-slate-950">My Attempts</h2>
+        </div>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6">
+    <div class="eq-page">
+        <div class="eq-container">
+            <div class="eq-panel">
+                <div class="eq-panel-body">
+                    <div class="mb-6">
+                        <h3 class="eq-section-title">Submitted quiz results</h3>
+                        <p class="mt-2 eq-muted">Review scores, submitted times, and detailed answer feedback.</p>
+                    </div>
                     @if ($attempts->isEmpty())
-                        <div class="rounded-md border border-dashed border-gray-300 p-8 text-center">
+                        <div class="eq-empty">
                             <p class="text-sm font-medium text-gray-900">No attempts yet.</p>
                             <p class="mt-1 text-sm text-gray-600">Take a quiz to see your results here.</p>
                         </div>
