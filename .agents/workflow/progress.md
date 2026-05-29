@@ -199,8 +199,8 @@ Checks Run:
 
 Git:
 - Branch: `feature/phase-15-video-demo`
-- Commit: Pending
-- Push: Pending
+- Commit: `0590135d docs(demo): add video demo script and final checklist`
+- Push: Passed
 
 Encoding Check:
 - Found mojibake: No
@@ -211,7 +211,7 @@ Result:
 - Passed
 
 Next:
-- Commit and push `feature/phase-15-video-demo`.
+- Open a PR, record the demo video, and submit the GitHub repository link with the video link.
 
 ### Run: Phase 1 project setup
 
