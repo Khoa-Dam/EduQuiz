@@ -385,6 +385,15 @@ Checklist:
 * Course deletion works.
 * Course list displays correctly.
 
+Status:
+
+* Completed.
+* Added admin-only Course resource routes and controller.
+* Added course list, create, edit, show, and delete Blade UI.
+* Added validation for course title, description, and status.
+* Added feature tests for admin Course CRUD and student access denial.
+* `php artisan migrate --env=testing`, `php artisan route:list`, `php artisan test`, and `npm run build` passed.
+
 ### Phase 5: Admin Quiz CRUD
 
 Goal:

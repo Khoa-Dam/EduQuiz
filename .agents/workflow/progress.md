@@ -5,7 +5,7 @@ This file is the main source for tracking completed phases, current work, blocke
 ## Current Status
 
 Current Phase:
-- Phase 4: Admin Course CRUD
+- Phase 5: Admin Quiz CRUD
 
 Overall Status:
 - In progress
@@ -14,14 +14,14 @@ Blocking:
 - No
 
 Next Task:
-- Start Phase 4 from `.agents/workflow/plan.md`
+- Start Phase 5 from `.agents/workflow/plan.md`
 
 ## Phase Progress
 
 - [x] Phase 1: Project setup
 - [x] Phase 2: Role admin/student
 - [x] Phase 3: Core database schema
-- [ ] Phase 4: Admin Course CRUD
+- [x] Phase 4: Admin Course CRUD
 - [ ] Phase 5: Admin Quiz CRUD
 - [ ] Phase 6: Admin Question & Answer CRUD
 - [ ] Phase 7: Student course/quiz browsing
@@ -250,3 +250,64 @@ Result:
 
 Next:
 - Continue to Phase 4: Admin Course CRUD
+
+### Run: Phase 4 admin course CRUD
+
+Current Phase:
+- Phase 4: Admin Course CRUD
+
+Skills Considered:
+- backend-api-engineering
+- frontend-ui-engineering
+- code-review-and-quality
+- git-workflow-and-versioning
+
+Skills Used:
+- backend-api-engineering
+- frontend-ui-engineering
+- code-review-and-quality
+- git-workflow-and-versioning
+
+Completed:
+- Added admin Course resource routes.
+- Added CourseController with index, create, store, show, edit, update, and destroy.
+- Added admin Course Blade pages for listing, creating, editing, viewing, and deleting courses.
+- Added admin navigation to course management.
+- Added feature tests for admin course list/create/update/delete, validation, and student denial.
+
+Files Changed:
+- `app/Http/Controllers/Admin/CourseController.php`
+- `routes/web.php`
+- `resources/views/admin/dashboard.blade.php`
+- `resources/views/layouts/navigation.blade.php`
+- `resources/views/admin/courses/_form.blade.php`
+- `resources/views/admin/courses/index.blade.php`
+- `resources/views/admin/courses/create.blade.php`
+- `resources/views/admin/courses/edit.blade.php`
+- `resources/views/admin/courses/show.blade.php`
+- `tests/Feature/AdminCourseCrudTest.php`
+- `.agents/workflow/plan.md`
+- `.agents/workflow/progress.md`
+- `.agents/workflow/test-log.md`
+
+Checks Run:
+- `php artisan migrate --env=testing` - passed
+- `php artisan route:list` - passed
+- `php artisan test` - passed, 38 tests and 103 assertions
+- `npm run build` - passed
+
+Git:
+- Branch: `feature/phase-04-admin-course-crud`
+- Commit: `feat(admin): implement course management`
+- Push: Passed
+
+Encoding Check:
+- Found mojibake: No
+- Files affected: None
+- Fixed: No
+
+Result:
+- Passed
+
+Next:
+- Continue to Phase 5: Admin Quiz CRUD

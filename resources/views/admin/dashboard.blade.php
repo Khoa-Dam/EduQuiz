@@ -13,6 +13,11 @@
                     <p class="mt-2 text-sm text-gray-600">
                         Manage EduQuiz courses, quizzes, questions, and student attempts from here.
                     </p>
+                    <div class="mt-6">
+                        <a href="{{ route('admin.courses.index') }}" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                            Manage Courses
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
