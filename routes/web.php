@@ -3,6 +3,8 @@
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\CourseController as AdminCourseController;
 use App\Http\Controllers\Admin\QuizController as AdminQuizController;
+use App\Http\Controllers\Admin\QuestionController as AdminQuestionController;
+use App\Http\Controllers\Admin\AnswerController as AdminAnswerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +24,8 @@ Route::middleware(['auth', 'admin'])
         Route::get('/dashboard', AdminDashboardController::class)->name('dashboard');
         Route::resource('courses', AdminCourseController::class);
         Route::resource('quizzes', AdminQuizController::class);
+        Route::resource('questions', AdminQuestionController::class);
+        Route::resource('answers', AdminAnswerController::class);
     });
 
 Route::middleware('auth')->group(function () {

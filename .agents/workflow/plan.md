@@ -433,6 +433,16 @@ Checklist:
 * Correct answer marking works.
 * Questions display by quiz.
 
+Status:
+
+* Completed.
+* Added admin-only Question and Answer resource routes and controllers.
+* Added question list, create, edit, show, and delete Blade UI.
+* Added answer list, create, edit, show, and delete Blade UI.
+* Added validation so each question with answers keeps at least one correct answer.
+* Added feature tests for question CRUD, answer CRUD, correct-answer marking, validation, and student access denial.
+* `php artisan migrate --env=testing`, `php artisan route:list`, `php artisan test`, and `npm run build` passed.
+
 ### Phase 7: Student course/quiz browsing
 
 Goal:

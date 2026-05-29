@@ -151,3 +151,17 @@ Use cascade deletes from parent learning content to child records:
 Use one selected answer per question per attempt:
 
 * Unique key on `quiz_attempt_id` and `question_id`.
+
+## TD-011: Question Correct Answer Rule
+
+Questions may be created before answers are added.
+
+After a question has answers, it must keep at least one correct answer.
+
+Answer CRUD must prevent:
+
+* Creating the first answer as incorrect.
+* Updating the only correct answer to incorrect.
+* Deleting the only correct answer when other answers remain.
+
+Deleting the only answer for a question is allowed because the question returns to having no answers.

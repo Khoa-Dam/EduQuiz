@@ -5,7 +5,7 @@ This file is the main source for tracking completed phases, current work, blocke
 ## Current Status
 
 Current Phase:
-- Phase 6: Admin Question & Answer CRUD
+- Phase 7: Student course/quiz browsing
 
 Overall Status:
 - In progress
@@ -14,7 +14,7 @@ Blocking:
 - No
 
 Next Task:
-- Start Phase 6 from `.agents/workflow/plan.md`
+- Start Phase 7 from `.agents/workflow/plan.md`
 
 ## Phase Progress
 
@@ -23,7 +23,7 @@ Next Task:
 - [x] Phase 3: Core database schema
 - [x] Phase 4: Admin Course CRUD
 - [x] Phase 5: Admin Quiz CRUD
-- [ ] Phase 6: Admin Question & Answer CRUD
+- [x] Phase 6: Admin Question & Answer CRUD
 - [ ] Phase 7: Student course/quiz browsing
 - [ ] Phase 8: Quiz taking and scoring
 - [ ] Phase 9: Student result history
@@ -373,3 +373,75 @@ Result:
 
 Next:
 - Continue to Phase 6: Admin Question & Answer CRUD
+
+### Run: Phase 6 admin question and answer CRUD
+
+Current Phase:
+- Phase 6: Admin Question & Answer CRUD
+
+Skills Considered:
+- backend-api-engineering
+- database-data-modeling
+- frontend-ui-engineering
+- security-and-hardening
+- git-workflow-and-versioning
+
+Skills Used:
+- backend-api-engineering
+- database-data-modeling
+- frontend-ui-engineering
+- security-and-hardening
+- code-review-and-quality
+- git-workflow-and-versioning
+
+Completed:
+- Added admin Question resource routes and CRUD controller.
+- Added admin Answer resource routes and CRUD controller.
+- Added question list, form, detail, edit, and delete UI.
+- Added answer list, form, detail, edit, and delete UI.
+- Added validation that prevents a question with answers from losing its only correct answer.
+- Added feature tests for question CRUD, answer CRUD, correct answer marking, validation, and student denial.
+
+Files Changed:
+- `app/Http/Controllers/Admin/QuestionController.php`
+- `app/Http/Controllers/Admin/AnswerController.php`
+- `routes/web.php`
+- `resources/views/admin/dashboard.blade.php`
+- `resources/views/layouts/navigation.blade.php`
+- `resources/views/admin/questions/_form.blade.php`
+- `resources/views/admin/questions/index.blade.php`
+- `resources/views/admin/questions/create.blade.php`
+- `resources/views/admin/questions/edit.blade.php`
+- `resources/views/admin/questions/show.blade.php`
+- `resources/views/admin/answers/_form.blade.php`
+- `resources/views/admin/answers/index.blade.php`
+- `resources/views/admin/answers/create.blade.php`
+- `resources/views/admin/answers/edit.blade.php`
+- `resources/views/admin/answers/show.blade.php`
+- `tests/Feature/AdminQuestionAnswerCrudTest.php`
+- `.agents/workflow/plan.md`
+- `.agents/workflow/progress.md`
+- `.agents/workflow/test-log.md`
+- `.agents/workflow/decisions.md`
+
+Checks Run:
+- `php artisan migrate --env=testing` - passed
+- `php artisan route:list` - passed
+- `php artisan test` - passed, 50 tests and 143 assertions
+- `npm run build` - passed
+
+Git:
+- Branch: `feature/phase-06-question-answer-crud`
+- Commit: `feat(quiz): implement question and answer management`
+- Push: Passed
+
+Encoding Check:
+- Found mojibake: No
+- Files affected: None
+- Fixed: No
+
+Result:
+- Passed
+
+Next:
+- Continue to Phase 7: Student course/quiz browsing
