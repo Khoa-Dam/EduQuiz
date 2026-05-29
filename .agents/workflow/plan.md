@@ -567,6 +567,13 @@ Checklist:
 * Tables are readable.
 * Back links exist where needed.
 
+Status:
+
+* Completed.
+* Added student dashboard action links for course browsing and attempt history.
+* Verified existing forms, tables, empty states, and back links from prior CRUD/result pages.
+* `php artisan migrate --env=testing`, `php artisan route:list`, `php artisan test`, and `npm run build` passed.
+
 ### Phase 12: Demo seed data
 
 Goal:

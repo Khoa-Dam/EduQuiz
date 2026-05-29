@@ -386,3 +386,35 @@ Notes:
 - MySQL testing database: `eduquiz_test`.
 - Route list included `admin.attempts.*`.
 - `npm run build` passed with a non-blocking Vite plugin timing warning.
+
+### Run: Phase 11 UI polish
+
+Commands:
+- `php artisan migrate --env=testing`
+- `php artisan route:list`
+- `php artisan test`
+- `npm run build`
+
+Result:
+- Passed
+
+Errors:
+- None
+
+Fixes:
+- None
+
+Git Check:
+- git status: tracked Phase 11 Blade and workflow files before commit
+- branch: `feature/phase-11-ui-polish`
+- commit: `style(ui): polish student dashboard`
+- push: Passed
+
+Encoding Check:
+- Found mojibake: No
+- Files affected: None
+- Fixed: No
+
+Notes:
+- PHPUnit result: 65 tests passed, 183 assertions.
+- MySQL testing database: `eduquiz_test`.

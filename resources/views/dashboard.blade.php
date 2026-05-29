@@ -13,6 +13,16 @@
                     <p class="mt-2 text-sm text-gray-600">
                         You are logged in as a student.
                     </p>
+                    <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+                        <a href="{{ route('courses.index') }}" class="rounded-md border border-gray-200 p-4 transition hover:border-indigo-300 hover:bg-gray-50">
+                            <span class="block text-sm font-semibold text-gray-900">Browse Courses</span>
+                            <span class="mt-1 block text-sm text-gray-600">Find active courses and start available quizzes.</span>
+                        </a>
+                        <a href="{{ route('attempts.index') }}" class="rounded-md border border-gray-200 p-4 transition hover:border-indigo-300 hover:bg-gray-50">
+                            <span class="block text-sm font-semibold text-gray-900">My Attempts</span>
+                            <span class="mt-1 block text-sm text-gray-600">Review your submitted quiz results.</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

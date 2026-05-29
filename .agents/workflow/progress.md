@@ -5,7 +5,7 @@ This file is the main source for tracking completed phases, current work, blocke
 ## Current Status
 
 Current Phase:
-- Phase 11: UI polish
+- Phase 12: Demo seed data
 
 Overall Status:
 - In progress
@@ -14,7 +14,7 @@ Blocking:
 - No
 
 Next Task:
-- Start Phase 11 from `.agents/workflow/plan.md`
+- Start Phase 12 from `.agents/workflow/plan.md`
 
 ## Phase Progress
 
@@ -28,7 +28,7 @@ Next Task:
 - [x] Phase 8: Quiz taking and scoring
 - [x] Phase 9: Student result history
 - [x] Phase 10: Admin attempt review
-- [ ] Phase 11: UI polish
+- [x] Phase 11: UI polish
 - [ ] Phase 12: Demo seed data
 - [ ] Phase 13: Manual testing
 - [ ] Phase 14: README and GitHub
@@ -684,3 +684,51 @@ Result:
 
 Next:
 - Continue to Phase 11: UI polish
+
+### Run: Phase 11 UI polish
+
+Current Phase:
+- Phase 11: UI polish
+
+Skills Considered:
+- frontend-ui-engineering
+- code-simplification
+- git-workflow-and-versioning
+
+Skills Used:
+- frontend-ui-engineering
+- code-review-and-quality
+- git-workflow-and-versioning
+
+Completed:
+- Added clear student dashboard action links to browse courses and view attempts.
+- Rechecked existing CRUD/result pages for empty states, readable tables, and back links.
+- Verified no route, test, or build regression.
+
+Files Changed:
+- `resources/views/dashboard.blade.php`
+- `.agents/workflow/plan.md`
+- `.agents/workflow/progress.md`
+- `.agents/workflow/test-log.md`
+
+Checks Run:
+- `php artisan migrate --env=testing` - passed
+- `php artisan route:list` - passed
+- `php artisan test` - passed, 65 tests and 183 assertions
+- `npm run build` - passed
+
+Git:
+- Branch: `feature/phase-11-ui-polish`
+- Commit: `style(ui): polish student dashboard`
+- Push: Passed
+
+Encoding Check:
+- Found mojibake: No
+- Files affected: None
+- Fixed: No
+
+Result:
+- Passed
+
+Next:
+- Continue to Phase 12: Demo seed data
