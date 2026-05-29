@@ -319,3 +319,36 @@ Notes:
 - PHPUnit result: 59 tests passed, 167 assertions.
 - MySQL testing database: `eduquiz_test`.
 - Route list included `quizzes.submit`.
+
+### Run: Phase 9 student result history
+
+Commands:
+- `php artisan migrate --env=testing`
+- `php artisan route:list`
+- `php artisan test`
+- `npm run build`
+
+Result:
+- Passed
+
+Errors:
+- None
+
+Fixes:
+- None
+
+Git Check:
+- git status: tracked Phase 9 controller, route, Blade, test, and workflow files before commit
+- branch: `feature/phase-09-student-result-history`
+- commit: `feat(results): add student attempt history`
+- push: Passed
+
+Encoding Check:
+- Found mojibake: No
+- Files affected: None
+- Fixed: No
+
+Notes:
+- PHPUnit result: 62 tests passed, 175 assertions.
+- MySQL testing database: `eduquiz_test`.
+- Route list included `attempts.index` and `attempts.show`.

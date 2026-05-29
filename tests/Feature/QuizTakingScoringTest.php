@@ -19,14 +19,13 @@ class QuizTakingScoringTest extends TestCase
         $student = User::factory()->student()->create();
         [$quiz, $questionOne, $questionTwo, $correctOne, $wrongTwo] = $this->quizWithQuestions();
 
-        $this->actingAs($student)
+        $response = $this->actingAs($student)
             ->post("/quizzes/{$quiz->id}/submit", [
                 'answers' => [
                     $questionOne->id => $correctOne->id,
                     $questionTwo->id => $wrongTwo->id,
                 ],
-            ])
-            ->assertRedirect(route('quizzes.show', $quiz, absolute: false));
+            ]);
 
         $this->assertDatabaseHas('quiz_attempts', [
             'user_id' => $student->id,
@@ -35,6 +34,9 @@ class QuizTakingScoringTest extends TestCase
             'total_questions' => 2,
             'correct_answers' => 1,
         ]);
+
+        $attempt = $student->quizAttempts()->where('quiz_id', $quiz->id)->firstOrFail();
+        $response->assertRedirect(route('attempts.show', $attempt, absolute: false));
 
         $this->assertDatabaseHas('quiz_attempt_answers', [
             'question_id' => $questionOne->id,

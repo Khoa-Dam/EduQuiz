@@ -62,7 +62,7 @@ class QuizAttemptController extends Controller
         });
 
         return redirect()
-            ->route('quizzes.show', $quiz)
+            ->route('attempts.show', $attempt)
             ->with('success', "Quiz submitted. Score: {$attempt->score}.");
     }
 

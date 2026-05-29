@@ -517,6 +517,16 @@ Checklist:
 * Student cannot view another user's attempt.
 * Detail shows score and correct/wrong counts.
 
+Status:
+
+* Completed.
+* Added student attempt history and attempt detail routes.
+* Added ownership enforcement for attempt detail.
+* Added attempt list and detail Blade pages.
+* Updated quiz submit flow to redirect to saved attempt result.
+* Added feature tests for own history, own detail, and cross-user denial.
+* `php artisan migrate --env=testing`, `php artisan route:list`, `php artisan test`, and `npm run build` passed.
+
 ### Phase 10: Admin attempt review
 
 Goal:

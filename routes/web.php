@@ -9,6 +9,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Student\CourseController as StudentCourseController;
 use App\Http\Controllers\Student\QuizAttemptController as StudentQuizAttemptController;
+use App\Http\Controllers\Student\QuizAttemptHistoryController as StudentQuizAttemptHistoryController;
 use App\Http\Controllers\Student\QuizController as StudentQuizController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,6 +38,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/quizzes/{quiz}', [StudentQuizController::class, 'show'])->name('quizzes.show');
     Route::get('/quizzes/{quiz}/start', [StudentQuizController::class, 'start'])->name('quizzes.start');
     Route::post('/quizzes/{quiz}/submit', [StudentQuizAttemptController::class, 'store'])->name('quizzes.submit');
+    Route::get('/my-attempts', [StudentQuizAttemptHistoryController::class, 'index'])->name('attempts.index');
+    Route::get('/my-attempts/{attempt}', [StudentQuizAttemptHistoryController::class, 'show'])->name('attempts.show');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

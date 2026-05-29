@@ -5,7 +5,7 @@ This file is the main source for tracking completed phases, current work, blocke
 ## Current Status
 
 Current Phase:
-- Phase 9: Student result history
+- Phase 10: Admin attempt review
 
 Overall Status:
 - In progress
@@ -14,7 +14,7 @@ Blocking:
 - No
 
 Next Task:
-- Start Phase 9 from `.agents/workflow/plan.md`
+- Start Phase 10 from `.agents/workflow/plan.md`
 
 ## Phase Progress
 
@@ -26,7 +26,7 @@ Next Task:
 - [x] Phase 6: Admin Question & Answer CRUD
 - [x] Phase 7: Student course/quiz browsing
 - [x] Phase 8: Quiz taking and scoring
-- [ ] Phase 9: Student result history
+- [x] Phase 9: Student result history
 - [ ] Phase 10: Admin attempt review
 - [ ] Phase 11: UI polish
 - [ ] Phase 12: Demo seed data
@@ -565,3 +565,63 @@ Result:
 
 Next:
 - Continue to Phase 9: Student result history
+
+### Run: Phase 9 student result history
+
+Current Phase:
+- Phase 9: Student result history
+
+Skills Considered:
+- backend-api-engineering
+- security-and-hardening
+- frontend-ui-engineering
+- git-workflow-and-versioning
+
+Skills Used:
+- backend-api-engineering
+- security-and-hardening
+- frontend-ui-engineering
+- code-review-and-quality
+- git-workflow-and-versioning
+
+Completed:
+- Added student attempt history routes.
+- Added attempt ownership check.
+- Added attempt list and detail Blade pages.
+- Updated quiz submit redirect to the saved attempt detail.
+- Added tests for own attempt list, own attempt detail, and denied cross-user access.
+
+Files Changed:
+- `app/Http/Controllers/Student/QuizAttemptHistoryController.php`
+- `app/Http/Controllers/Student/QuizAttemptController.php`
+- `routes/web.php`
+- `resources/views/layouts/navigation.blade.php`
+- `resources/views/student/attempts/index.blade.php`
+- `resources/views/student/attempts/show.blade.php`
+- `tests/Feature/StudentAttemptHistoryTest.php`
+- `tests/Feature/QuizTakingScoringTest.php`
+- `.agents/workflow/plan.md`
+- `.agents/workflow/progress.md`
+- `.agents/workflow/test-log.md`
+
+Checks Run:
+- `php artisan migrate --env=testing` - passed
+- `php artisan route:list` - passed
+- `php artisan test` - passed, 62 tests and 175 assertions
+- `npm run build` - passed
+
+Git:
+- Branch: `feature/phase-09-student-result-history`
+- Commit: `feat(results): add student attempt history`
+- Push: Passed
+
+Encoding Check:
+- Found mojibake: No
+- Files affected: None
+- Fixed: No
+
+Result:
+- Passed
+
+Next:
+- Continue to Phase 10: Admin attempt review
