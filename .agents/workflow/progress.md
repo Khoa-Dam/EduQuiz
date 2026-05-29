@@ -5,7 +5,7 @@ This file is the main source for tracking completed phases, current work, blocke
 ## Current Status
 
 Current Phase:
-- Phase 5: Admin Quiz CRUD
+- Phase 6: Admin Question & Answer CRUD
 
 Overall Status:
 - In progress
@@ -14,7 +14,7 @@ Blocking:
 - No
 
 Next Task:
-- Start Phase 5 from `.agents/workflow/plan.md`
+- Start Phase 6 from `.agents/workflow/plan.md`
 
 ## Phase Progress
 
@@ -22,7 +22,7 @@ Next Task:
 - [x] Phase 2: Role admin/student
 - [x] Phase 3: Core database schema
 - [x] Phase 4: Admin Course CRUD
-- [ ] Phase 5: Admin Quiz CRUD
+- [x] Phase 5: Admin Quiz CRUD
 - [ ] Phase 6: Admin Question & Answer CRUD
 - [ ] Phase 7: Student course/quiz browsing
 - [ ] Phase 8: Quiz taking and scoring
@@ -311,3 +311,65 @@ Result:
 
 Next:
 - Continue to Phase 5: Admin Quiz CRUD
+
+### Run: Phase 5 admin quiz CRUD
+
+Current Phase:
+- Phase 5: Admin Quiz CRUD
+
+Skills Considered:
+- backend-api-engineering
+- database-data-modeling
+- frontend-ui-engineering
+- git-workflow-and-versioning
+
+Skills Used:
+- backend-api-engineering
+- database-data-modeling
+- frontend-ui-engineering
+- code-review-and-quality
+- git-workflow-and-versioning
+
+Completed:
+- Added admin Quiz resource routes.
+- Added QuizController with index, create, store, show, edit, update, and destroy.
+- Added admin Quiz Blade pages for listing, creating, editing, viewing, and deleting quizzes.
+- Added quiz navigation and admin dashboard link.
+- Added feature tests for admin quiz list/create/update/delete, validation, and student denial.
+
+Files Changed:
+- `app/Http/Controllers/Admin/QuizController.php`
+- `routes/web.php`
+- `resources/views/admin/dashboard.blade.php`
+- `resources/views/layouts/navigation.blade.php`
+- `resources/views/admin/quizzes/_form.blade.php`
+- `resources/views/admin/quizzes/index.blade.php`
+- `resources/views/admin/quizzes/create.blade.php`
+- `resources/views/admin/quizzes/edit.blade.php`
+- `resources/views/admin/quizzes/show.blade.php`
+- `tests/Feature/AdminQuizCrudTest.php`
+- `.agents/workflow/plan.md`
+- `.agents/workflow/progress.md`
+- `.agents/workflow/test-log.md`
+
+Checks Run:
+- `php artisan migrate --env=testing` - passed
+- `php artisan route:list` - passed
+- `php artisan test` - passed, 44 tests and 120 assertions
+- `npm run build` - passed
+
+Git:
+- Branch: `feature/phase-05-admin-quiz-crud`
+- Commit: `feat(admin): implement quiz management`
+- Push: Passed
+
+Encoding Check:
+- Found mojibake: No
+- Files affected: None
+- Fixed: No
+
+Result:
+- Passed
+
+Next:
+- Continue to Phase 6: Admin Question & Answer CRUD

@@ -13,9 +13,12 @@
                     <p class="mt-2 text-sm text-gray-600">
                         Manage EduQuiz courses, quizzes, questions, and student attempts from here.
                     </p>
-                    <div class="mt-6">
+                    <div class="mt-6 flex flex-wrap gap-3">
                         <a href="{{ route('admin.courses.index') }}" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                             Manage Courses
+                        </a>
+                        <a href="{{ route('admin.quizzes.index') }}" class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                            Manage Quizzes
                         </a>
                     </div>
                 </div>

@@ -408,6 +408,15 @@ Checklist:
 * Quiz list shows related course.
 * Quiz detail works.
 
+Status:
+
+* Completed.
+* Added admin-only Quiz resource routes and controller.
+* Added quiz list, create, edit, show, and delete Blade UI.
+* Added validation for course, title, duration, status, and description.
+* Added feature tests for admin Quiz CRUD and student access denial.
+* `php artisan migrate --env=testing`, `php artisan route:list`, `php artisan test`, and `npm run build` passed.
+
 ### Phase 6: Admin Question & Answer CRUD
 
 Goal:
