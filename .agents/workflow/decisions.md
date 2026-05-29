@@ -165,3 +165,15 @@ Answer CRUD must prevent:
 * Deleting the only correct answer when other answers remain.
 
 Deleting the only answer for a question is allowed because the question returns to having no answers.
+
+## TD-012: Quiz Submission Completeness
+
+Students must select one answer for every question before submitting a quiz.
+
+Reason:
+
+* `quiz_attempt_answers.answer_id` is required.
+* Attempt detail should have one saved answer per question.
+* Missing answers should be corrected before scoring.
+
+If partial submissions are needed later, change `quiz_attempt_answers.answer_id` to nullable and update scoring rules.

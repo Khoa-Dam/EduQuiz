@@ -5,7 +5,7 @@ This file is the main source for tracking completed phases, current work, blocke
 ## Current Status
 
 Current Phase:
-- Phase 8: Quiz taking and scoring
+- Phase 9: Student result history
 
 Overall Status:
 - In progress
@@ -14,7 +14,7 @@ Blocking:
 - No
 
 Next Task:
-- Start Phase 8 from `.agents/workflow/plan.md`
+- Start Phase 9 from `.agents/workflow/plan.md`
 
 ## Phase Progress
 
@@ -25,7 +25,7 @@ Next Task:
 - [x] Phase 5: Admin Quiz CRUD
 - [x] Phase 6: Admin Question & Answer CRUD
 - [x] Phase 7: Student course/quiz browsing
-- [ ] Phase 8: Quiz taking and scoring
+- [x] Phase 8: Quiz taking and scoring
 - [ ] Phase 9: Student result history
 - [ ] Phase 10: Admin attempt review
 - [ ] Phase 11: UI polish
@@ -505,3 +505,63 @@ Result:
 
 Next:
 - Continue to Phase 8: Quiz taking and scoring
+
+### Run: Phase 8 quiz taking and scoring
+
+Current Phase:
+- Phase 8: Quiz taking and scoring
+
+Skills Considered:
+- backend-api-engineering
+- test-driven-development
+- security-and-hardening
+- code-review-and-quality
+- git-workflow-and-versioning
+
+Skills Used:
+- backend-api-engineering
+- test-driven-development
+- security-and-hardening
+- code-review-and-quality
+- git-workflow-and-versioning
+
+Completed:
+- Added student quiz submit route.
+- Added QuizAttemptController with transactional scoring and attempt persistence.
+- Updated quiz start page from placeholder to answer selection form.
+- Saved quiz_attempt and quiz_attempt_answers records.
+- Added tests for scoring, required answers, answer ownership validation, and inactive quiz denial.
+- Recorded submission answer requirement in technical decisions.
+
+Files Changed:
+- `app/Http/Controllers/Student/QuizAttemptController.php`
+- `routes/web.php`
+- `resources/views/student/quizzes/show.blade.php`
+- `resources/views/student/quizzes/start.blade.php`
+- `tests/Feature/QuizTakingScoringTest.php`
+- `.agents/workflow/plan.md`
+- `.agents/workflow/progress.md`
+- `.agents/workflow/test-log.md`
+- `.agents/workflow/decisions.md`
+
+Checks Run:
+- `php artisan migrate --env=testing` - passed
+- `php artisan route:list` - passed
+- `php artisan test` - passed, 59 tests and 167 assertions
+- `npm run build` - passed
+
+Git:
+- Branch: `feature/phase-08-quiz-scoring`
+- Commit: `feat(student): implement quiz taking and scoring`
+- Push: Passed
+
+Encoding Check:
+- Found mojibake: No
+- Files affected: None
+- Fixed: No
+
+Result:
+- Passed
+
+Next:
+- Continue to Phase 9: Student result history

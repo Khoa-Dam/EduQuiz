@@ -493,6 +493,16 @@ Checklist:
 * Attempt is saved.
 * Attempt answer detail is saved.
 
+Status:
+
+* Completed.
+* Added quiz submit route and QuizAttemptController.
+* Updated quiz start page to render answer choices and submit form.
+* Added score calculation using question points.
+* Saved quiz_attempt and quiz_attempt_answers records.
+* Added feature tests for scoring, required answers, invalid answer ownership, and inactive quiz denial.
+* `php artisan migrate --env=testing`, `php artisan route:list`, `php artisan test`, and `npm run build` passed.
+
 ### Phase 9: Student result history
 
 Goal:

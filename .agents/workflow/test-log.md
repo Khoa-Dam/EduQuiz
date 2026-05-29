@@ -286,3 +286,36 @@ Notes:
 - PHPUnit result: 55 tests passed, 157 assertions.
 - MySQL testing database: `eduquiz_test`.
 - Route list included `courses.*` and `quizzes.*` student routes.
+
+### Run: Phase 8 quiz taking and scoring
+
+Commands:
+- `php artisan migrate --env=testing`
+- `php artisan route:list`
+- `php artisan test`
+- `npm run build`
+
+Result:
+- Passed
+
+Errors:
+- None
+
+Fixes:
+- None
+
+Git Check:
+- git status: tracked Phase 8 controller, route, Blade, test, and workflow files before commit
+- branch: `feature/phase-08-quiz-scoring`
+- commit: `feat(student): implement quiz taking and scoring`
+- push: Passed
+
+Encoding Check:
+- Found mojibake: No
+- Files affected: None
+- Fixed: No
+
+Notes:
+- PHPUnit result: 59 tests passed, 167 assertions.
+- MySQL testing database: `eduquiz_test`.
+- Route list included `quizzes.submit`.
