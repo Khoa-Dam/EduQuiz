@@ -337,6 +337,15 @@ Checklist:
 * Student cannot access `/admin`.
 * Admin can access `/admin/dashboard`.
 
+Status:
+
+* Completed.
+* Added simple `users.role` support with `admin` and `student` roles.
+* New registered users default to `student`.
+* Admin middleware protects `/admin/dashboard`.
+* Verified with MySQL testing database `eduquiz_test`.
+* `php artisan migrate --env=testing`, `php artisan route:list`, `php artisan test`, and `npm run build` passed.
+
 ### Phase 3: Core database schema
 
 Goal:

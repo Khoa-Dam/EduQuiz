@@ -5,7 +5,7 @@ This file is the main source for tracking completed phases, current work, blocke
 ## Current Status
 
 Current Phase:
-- Phase 2: Role admin/student
+- Phase 3: Core database schema
 
 Overall Status:
 - In progress
@@ -14,12 +14,12 @@ Blocking:
 - No
 
 Next Task:
-- Start Phase 2 from `.agents/workflow/plan.md`
+- Start Phase 3 from `.agents/workflow/plan.md`
 
 ## Phase Progress
 
 - [x] Phase 1: Project setup
-- [ ] Phase 2: Role admin/student
+- [x] Phase 2: Role admin/student
 - [ ] Phase 3: Core database schema
 - [ ] Phase 4: Admin Course CRUD
 - [ ] Phase 5: Admin Quiz CRUD
@@ -121,3 +121,68 @@ Result:
 
 Next:
 - Continue to Phase 2: Role admin/student
+
+### Run: Phase 2 role admin/student
+
+Current Phase:
+- Phase 2: Role admin/student
+
+Skills Considered:
+- backend-api-engineering
+- security-and-hardening
+- code-review-and-quality
+- git-workflow-and-versioning
+
+Skills Used:
+- backend-api-engineering
+- security-and-hardening
+- code-review-and-quality
+- git-workflow-and-versioning
+
+Completed:
+- Added `role` support for users with `admin` and `student` values.
+- Set new and factory-created users to default student role.
+- Added admin and student demo accounts in the database seeder.
+- Added admin middleware and registered the `admin` middleware alias.
+- Added role-aware `/dashboard` routing and protected `/admin/dashboard`.
+- Added feature tests for registration default role, student dashboard, admin dashboard, and student admin denial.
+
+Files Changed:
+- `app/Models/User.php`
+- `app/Http/Controllers/DashboardController.php`
+- `app/Http/Controllers/Admin/DashboardController.php`
+- `app/Http/Middleware/AdminMiddleware.php`
+- `bootstrap/app.php`
+- `database/migrations/2026_05_29_000001_add_role_to_users_table.php`
+- `database/factories/UserFactory.php`
+- `database/seeders/DatabaseSeeder.php`
+- `routes/web.php`
+- `resources/views/dashboard.blade.php`
+- `resources/views/admin/dashboard.blade.php`
+- `resources/views/layouts/navigation.blade.php`
+- `tests/Feature/RoleAccessTest.php`
+- `.agents/workflow/plan.md`
+- `.agents/workflow/progress.md`
+- `.agents/workflow/test-log.md`
+
+Checks Run:
+- `php artisan migrate --env=testing` - passed
+- `php artisan route:list` - passed
+- `php artisan test` - passed, 29 tests and 71 assertions
+- `npm run build` - passed
+
+Git:
+- Branch: `feature/phase-02-roles`
+- Commit: `feat(auth): add admin and student roles`
+- Push: Passed
+
+Encoding Check:
+- Found mojibake: No
+- Files affected: None
+- Fixed: No
+
+Result:
+- Passed
+
+Next:
+- Continue to Phase 3: Core database schema
