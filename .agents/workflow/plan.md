@@ -686,8 +686,10 @@ Demo script:
 
 Status:
 
-* Paused until Phase 14.5 UI polish is merged or used for the final recording.
+* Completed.
 * Added `docs/video-demo-script.md` with a 3-5 minute recording goal, demo accounts, recording checklist, full demo flow, suggested narration, backup plan, and final submission checklist.
+* Phase 15 was completed before Phase 14.5 Frontend UI Polish.
+* After Phase 14.5, the existing demo script was reviewed and synced to match the polished landing page, dashboards, navigation, quiz-taking pages, and result/history pages.
 * Verified with `php artisan route:list`, `php artisan migrate --env=testing`, `php artisan test`, and `npm run build`.
 
 ## 10. Seven-Day Schedule

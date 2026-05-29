@@ -195,6 +195,43 @@ Notes:
 - UI polish used the installed `redesign-existing-projects` Taste Skill.
 - Changed Blade and workflow Markdown files were scanned for common mojibake patterns.
 
+### Run: Final demo sync after UI polish
+
+Commands:
+- `php artisan route:list`
+- `php artisan migrate --env=testing`
+- `php artisan test`
+- `npm run build`
+- `rg` scan for common mojibake patterns in `docs`, `.agents/workflow`, and `README.md`
+
+Result:
+- Passed
+
+Errors:
+- None
+
+Fixes:
+- None
+
+Git Check:
+- git status: tracked final demo script and workflow files before commit
+- branch: `feature/phase-14-5-frontend-ui-polish`
+- commit: `docs(demo): sync video script after UI polish`
+- push: Passed
+
+Encoding Check:
+- Found mojibake: No
+- Files affected: None
+- Fixed: No
+
+Notes:
+- Route list showed 61 routes.
+- Migration check reported nothing to migrate.
+- PHPUnit result: 66 tests passed, 254 assertions.
+- MySQL testing database: `eduquiz_test`.
+- Production asset build passed.
+- Video demo script was reviewed after Phase 14.5 UI Polish and synced to the polished landing page, dashboards, navigation, quiz-taking, result, history, and admin attempt review flow.
+
 ### Run: Phase 1 project setup
 
 Commands:

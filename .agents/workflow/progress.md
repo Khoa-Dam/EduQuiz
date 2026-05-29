@@ -5,7 +5,7 @@ This file is the main source for tracking completed phases, current work, blocke
 ## Current Status
 
 Current Phase:
-- Phase 14.5: Frontend UI Polish
+- Final sync after Phase 14.5 UI Polish
 
 Overall Status:
 - Complete
@@ -14,7 +14,7 @@ Blocking:
 - No
 
 Next Task:
-- Continue to Phase 15: Video demo using the polished UI.
+- Record the final video demo using the updated script, then submit the GitHub repository link and video link.
 
 ## Phase Progress
 
@@ -33,7 +33,7 @@ Next Task:
 - [x] Phase 13: Manual testing
 - [x] Phase 14: README and GitHub
 - [x] Phase 14.5: Frontend UI Polish
-- [ ] Phase 15: Demo video
+- [x] Phase 15: Demo video
 
 ## Run Log
 
@@ -299,6 +299,56 @@ Result:
 
 Next:
 - Continue to Phase 15: Video demo using the polished UI.
+
+### Run: Final demo sync after UI polish
+
+Current Phase:
+- Final sync after Phase 14.5 UI Polish
+
+Skills Considered:
+- using-agent-skills
+- documentation-and-adrs
+- git-workflow-and-versioning
+
+Skills Used:
+- using-agent-skills
+
+Reason:
+- The task was a documentation and workflow synchronization after UI changes, not new product work.
+
+Completed:
+- Located the existing Phase 15 demo script at `docs/video-demo-script.md`.
+- Reviewed the script against the polished UI from Phase 14.5.
+- Updated the script to mention the EduQuiz landing page, improved admin dashboard, improved student dashboard, role-specific navigation, quiz-taking cards, result page, history table, and admin attempt review.
+- Clarified that Phase 15 was completed earlier and reviewed after Phase 14.5 UI Polish.
+
+Files Changed:
+- `docs/video-demo-script.md`
+- `.agents/workflow/plan.md`
+- `.agents/workflow/progress.md`
+- `.agents/workflow/test-log.md`
+
+Checks Run:
+- `php artisan route:list` - passed, 61 routes
+- `php artisan migrate --env=testing` - passed
+- `php artisan test` - passed, 66 tests and 254 assertions
+- `npm run build` - passed
+
+Git:
+- Branch: `feature/phase-14-5-frontend-ui-polish`
+- Commit: `docs(demo): sync video script after UI polish`
+- Push: Passed
+
+Encoding Check:
+- Found mojibake: No
+- Files affected: None
+- Fixed: No
+
+Result:
+- Passed
+
+Next:
+- Commit documentation sync, push the branch, then record the final video demo.
 
 ### Run: Phase 1 project setup
 

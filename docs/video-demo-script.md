@@ -2,7 +2,7 @@
 
 ## Goal
 
-Record a 3-5 minute demo showing the main EduQuiz features: admin content management, student quiz taking, scoring, attempt history, and admin result review.
+Record a 3-5 minute demo showing the polished EduQuiz flow: landing page, role-based navigation, admin content management, student quiz taking, scoring, attempt history, and admin result review.
 
 ## Demo Accounts
 
@@ -20,6 +20,7 @@ Use the seeded demo accounts:
 - Database migrated with `php artisan migrate`
 - Demo data seeded with `php artisan db:seed`
 - Browser ready at `http://127.0.0.1:8000`
+- Landing page checked at `/`
 - Admin account ready
 - Student account ready
 - Browser zoom and screen size readable for recording
@@ -29,18 +30,19 @@ Use the seeded demo accounts:
 
 1. Project introduction
 2. Tech stack summary
-3. Admin login
-4. Admin dashboard
-5. Admin reviews or creates course
-6. Admin reviews or creates quiz
-7. Admin reviews or creates questions and answers
-8. Student login
-9. Student views courses
-10. Student opens quiz
-11. Student submits quiz
-12. Student views score/history
-13. Admin views attempts/results
-14. Closing summary
+3. EduQuiz landing page
+4. Admin login
+5. Admin dashboard
+6. Admin reviews or creates course
+7. Admin reviews or creates quiz
+8. Admin reviews or creates questions and answers
+9. Student login
+10. Student dashboard and courses
+11. Student opens quiz
+12. Student submits quiz
+13. Student views score/history
+14. Admin views attempts/results
+15. Closing summary
 
 ## Suggested Narration
 
@@ -52,7 +54,15 @@ Use the seeded demo accounts:
 
 "The project uses Laravel, Laravel Breeze Blade authentication, MySQL, Eloquent relationships, Blade views, Tailwind CSS, Vite, and PHPUnit tests."
 
-### 3. Admin Login
+### 3. EduQuiz Landing Page
+
+"The landing page introduces EduQuiz as an education and quiz LMS product, with clear actions for login and registration."
+
+Actions:
+- Open `/`.
+- Show the EduQuiz branding, headline, feature cards, Login/Register buttons, and admin/student flow section.
+
+### 4. Admin Login
 
 "First, I will log in as the admin using the seeded demo account."
 
@@ -60,33 +70,34 @@ Actions:
 - Open `/login`.
 - Log in with `admin@example.com` and `password`.
 
-### 4. Admin Dashboard
+### 5. Admin Dashboard
 
-"The admin dashboard gives access to course, quiz, question, answer, and attempt management."
+"The admin dashboard summarizes the LMS and gives quick access to content management and result review."
 
 Actions:
 - Show `/admin/dashboard`.
-- Point out the admin navigation.
+- Point out the EduQuiz branding and role-specific admin navigation.
+- Show the dashboard header, stats cards, and quick action cards.
 
-### 5. Admin Reviews or Creates Course
+### 6. Admin Reviews or Creates Course
 
 "Courses are the main learning containers. The admin can create, update, view, and delete courses."
 
 Actions:
 - Open `/admin/courses`.
-- Show seeded courses such as `Laravel Fundamentals`.
+- Show the polished course table, actions, and seeded courses such as `Laravel Fundamentals`.
 - If time allows, create a short demo course.
 
-### 6. Admin Reviews or Creates Quiz
+### 7. Admin Reviews or Creates Quiz
 
 "Each quiz belongs to a course and has a title, description, duration, and status."
 
 Actions:
 - Open `/admin/quizzes`.
-- Show an existing quiz such as `Laravel MVC Quiz`.
+- Show the quiz table and an existing quiz such as `Laravel MVC Quiz`.
 - If time allows, create or edit a quiz.
 
-### 7. Admin Reviews or Creates Questions and Answers
+### 8. Admin Reviews or Creates Questions and Answers
 
 "Questions belong to quizzes, and each question has answer choices. The app enforces that a question with answers keeps at least one correct answer."
 
@@ -94,9 +105,9 @@ Actions:
 - Open `/admin/questions`.
 - Show an existing question.
 - Open answers for the question.
-- Show one correct answer and one incorrect answer.
+- Show the form/table styling, one correct answer, and one incorrect answer.
 
-### 8. Student Login
+### 9. Student Login
 
 "Next, I will log out and log in as a student."
 
@@ -104,15 +115,17 @@ Actions:
 - Log out.
 - Log in with `student@example.com` and `password`.
 
-### 9. Student Views Courses
+### 10. Student Dashboard and Courses
 
-"Students can browse active courses and see available quizzes."
+"The student dashboard gives a clear learning overview, quick links, and access to active courses and quiz history."
 
 Actions:
+- Show `/dashboard`.
+- Point out the welcome section, stats, quick links, and student navigation.
 - Open `/courses`.
 - Open a course detail page.
 
-### 10. Student Opens Quiz
+### 11. Student Opens Quiz
 
 "The student can open a quiz and start answering questions."
 
@@ -120,24 +133,26 @@ Actions:
 - Open a quiz detail page.
 - Click the start quiz action.
 
-### 11. Student Submits Quiz
+### 12. Student Submits Quiz
 
 "The student selects one answer for each question and submits the quiz."
 
 Actions:
-- Select answers.
+- Show the readable question cards and answer choices.
+- Select one answer for each question.
 - Submit the quiz.
 
-### 12. Student Views Score and History
+### 13. Student Views Score and History
 
 "After submission, EduQuiz calculates the score, saves the attempt, and shows the result. Students can also review their attempt history."
 
 Actions:
-- Show the result page.
+- Show the result page with score, correct answers, and quiz context.
 - Open `/my-attempts`.
-- Open the attempt detail.
+- Show the attempt history table.
+- Open the attempt detail page.
 
-### 13. Admin Views Attempts and Results
+### 14. Admin Views Attempts and Results
 
 "Finally, the admin can review student attempts, including student information, quiz information, score, and selected answers."
 
@@ -145,9 +160,10 @@ Actions:
 - Log out as student.
 - Log in as admin.
 - Open `/admin/attempts`.
-- Open an attempt detail page.
+- Show the polished attempt list.
+- Open an attempt detail page with answer review.
 
-### 14. Closing Summary
+### 15. Closing Summary
 
 "This demo covered the main requirements: authentication, admin and student roles, CRUD management, relationships, quiz scoring, student history, admin result review, seeded demo data, and automated tests."
 
@@ -171,4 +187,3 @@ If live create or edit actions take too long:
 - Build passing
 - Demo accounts verified
 - Demo script reviewed before recording
-
