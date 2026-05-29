@@ -458,6 +458,15 @@ Checklist:
 * Student sees active quizzes.
 * Student does not see admin pages.
 
+Status:
+
+* Completed.
+* Added authenticated student course list and course detail pages.
+* Added active quiz detail and quiz start pages.
+* Added active-only visibility rules for student browsing.
+* Added feature tests for active course/quiz visibility, quiz start page, and admin denial.
+* `php artisan migrate --env=testing`, `php artisan route:list`, `php artisan test`, and `npm run build` passed.
+
 ### Phase 8: Quiz taking and scoring
 
 Goal:

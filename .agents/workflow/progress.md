@@ -5,7 +5,7 @@ This file is the main source for tracking completed phases, current work, blocke
 ## Current Status
 
 Current Phase:
-- Phase 7: Student course/quiz browsing
+- Phase 8: Quiz taking and scoring
 
 Overall Status:
 - In progress
@@ -14,7 +14,7 @@ Blocking:
 - No
 
 Next Task:
-- Start Phase 7 from `.agents/workflow/plan.md`
+- Start Phase 8 from `.agents/workflow/plan.md`
 
 ## Phase Progress
 
@@ -24,7 +24,7 @@ Next Task:
 - [x] Phase 4: Admin Course CRUD
 - [x] Phase 5: Admin Quiz CRUD
 - [x] Phase 6: Admin Question & Answer CRUD
-- [ ] Phase 7: Student course/quiz browsing
+- [x] Phase 7: Student course/quiz browsing
 - [ ] Phase 8: Quiz taking and scoring
 - [ ] Phase 9: Student result history
 - [ ] Phase 10: Admin attempt review
@@ -445,3 +445,63 @@ Result:
 
 Next:
 - Continue to Phase 7: Student course/quiz browsing
+
+### Run: Phase 7 student course and quiz browsing
+
+Current Phase:
+- Phase 7: Student course/quiz browsing
+
+Skills Considered:
+- frontend-ui-engineering
+- backend-api-engineering
+- git-workflow-and-versioning
+
+Skills Used:
+- frontend-ui-engineering
+- backend-api-engineering
+- code-review-and-quality
+- git-workflow-and-versioning
+
+Completed:
+- Added student course list and course detail routes.
+- Added student quiz detail and quiz start routes.
+- Added active-only course and quiz visibility checks.
+- Added student navigation to courses.
+- Added Blade pages for student course and quiz browsing.
+- Added feature tests for browsing, start page access, hidden inactive content, and admin denial.
+
+Files Changed:
+- `app/Http/Controllers/Student/CourseController.php`
+- `app/Http/Controllers/Student/QuizController.php`
+- `routes/web.php`
+- `resources/views/layouts/navigation.blade.php`
+- `resources/views/student/courses/index.blade.php`
+- `resources/views/student/courses/show.blade.php`
+- `resources/views/student/quizzes/show.blade.php`
+- `resources/views/student/quizzes/start.blade.php`
+- `tests/Feature/StudentCourseQuizBrowsingTest.php`
+- `.agents/workflow/plan.md`
+- `.agents/workflow/progress.md`
+- `.agents/workflow/test-log.md`
+
+Checks Run:
+- `php artisan migrate --env=testing` - passed
+- `php artisan route:list` - passed
+- `php artisan test` - passed, 55 tests and 157 assertions
+- `npm run build` - passed
+
+Git:
+- Branch: `feature/phase-07-student-course-quiz-browsing`
+- Commit: `feat(student): add course and quiz browsing`
+- Push: Passed
+
+Encoding Check:
+- Found mojibake: No
+- Files affected: None
+- Fixed: No
+
+Result:
+- Passed
+
+Next:
+- Continue to Phase 8: Quiz taking and scoring

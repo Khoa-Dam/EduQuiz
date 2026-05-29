@@ -15,6 +15,11 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    @if (! Auth::user()?->isAdmin())
+                        <x-nav-link :href="route('courses.index')" :active="request()->routeIs('courses.*') || request()->routeIs('quizzes.*')">
+                            {{ __('Courses') }}
+                        </x-nav-link>
+                    @endif
                     @if (Auth::user()?->isAdmin())
                         <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
                             {{ __('Admin') }}
@@ -84,6 +89,11 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            @if (! Auth::user()?->isAdmin())
+                <x-responsive-nav-link :href="route('courses.index')" :active="request()->routeIs('courses.*') || request()->routeIs('quizzes.*')">
+                    {{ __('Courses') }}
+                </x-responsive-nav-link>
+            @endif
             @if (Auth::user()?->isAdmin())
                 <x-responsive-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
                     {{ __('Admin') }}
