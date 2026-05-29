@@ -384,6 +384,40 @@ Encoding Check:
 Notes:
 - PHPUnit result: 65 tests passed, 183 assertions.
 - MySQL testing database: `eduquiz_test`.
+
+### Run: Phase 12 demo seed data
+
+Commands:
+- `php artisan migrate --env=testing`
+- `php artisan db:seed --env=testing`
+- `php artisan test`
+- `npm run build`
+- `php artisan route:list`
+
+Result:
+- Passed
+
+Errors:
+- None
+
+Fixes:
+- None
+
+Git Check:
+- git status: tracked Phase 12 seeder and workflow files before commit
+- branch: `feature/phase-12-demo-seed-data`
+- commit: `chore(seed): add demo quiz data`
+- push: Passed
+
+Encoding Check:
+- Found mojibake: No
+- Files affected: None
+- Fixed: No
+
+Notes:
+- PHPUnit result: 65 tests passed, 183 assertions.
+- MySQL testing database: `eduquiz_test`.
+- Demo accounts: `admin@example.com` and `student@example.com`, password `password`.
 - Route list included `admin.attempts.*`.
 - `npm run build` passed with a non-blocking Vite plugin timing warning.
 

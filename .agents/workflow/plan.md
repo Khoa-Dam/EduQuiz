@@ -590,6 +590,14 @@ Checklist:
 * Seeder runs successfully.
 * Demo data is enough for immediate demo.
 
+Status:
+
+* Completed.
+* Added idempotent demo seed data for admin and student accounts.
+* Added 2 courses with active quizzes, questions, and answers.
+* Verified seeder with `php artisan db:seed --env=testing`.
+* `php artisan migrate --env=testing`, `php artisan db:seed --env=testing`, `php artisan test`, `npm run build`, and `php artisan route:list` passed.
+
 ### Phase 13: Manual testing
 
 Checklist:

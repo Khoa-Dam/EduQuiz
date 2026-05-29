@@ -5,7 +5,7 @@ This file is the main source for tracking completed phases, current work, blocke
 ## Current Status
 
 Current Phase:
-- Phase 12: Demo seed data
+- Phase 13: Manual testing
 
 Overall Status:
 - In progress
@@ -14,7 +14,7 @@ Blocking:
 - No
 
 Next Task:
-- Start Phase 12 from `.agents/workflow/plan.md`
+- Start Phase 13 from `.agents/workflow/plan.md`
 
 ## Phase Progress
 
@@ -29,7 +29,7 @@ Next Task:
 - [x] Phase 9: Student result history
 - [x] Phase 10: Admin attempt review
 - [x] Phase 11: UI polish
-- [ ] Phase 12: Demo seed data
+- [x] Phase 12: Demo seed data
 - [ ] Phase 13: Manual testing
 - [ ] Phase 14: README and GitHub
 - [ ] Phase 15: Demo video
@@ -732,3 +732,55 @@ Result:
 
 Next:
 - Continue to Phase 12: Demo seed data
+
+### Run: Phase 12 demo seed data
+
+Current Phase:
+- Phase 12: Demo seed data
+
+Skills Considered:
+- database-data-modeling
+- fullstack-delivery-workflow
+- git-workflow-and-versioning
+
+Skills Used:
+- database-data-modeling
+- fullstack-delivery-workflow
+- code-review-and-quality
+- git-workflow-and-versioning
+
+Completed:
+- Made DatabaseSeeder idempotent.
+- Added demo admin account `admin@example.com`.
+- Added demo student account `student@example.com`.
+- Added 2 active courses with active quizzes.
+- Added demo questions and answers for each quiz.
+
+Files Changed:
+- `database/seeders/DatabaseSeeder.php`
+- `.agents/workflow/plan.md`
+- `.agents/workflow/progress.md`
+- `.agents/workflow/test-log.md`
+
+Checks Run:
+- `php artisan migrate --env=testing` - passed
+- `php artisan db:seed --env=testing` - passed
+- `php artisan test` - passed, 65 tests and 183 assertions
+- `npm run build` - passed
+- `php artisan route:list` - passed
+
+Git:
+- Branch: `feature/phase-12-demo-seed-data`
+- Commit: `chore(seed): add demo quiz data`
+- Push: Passed
+
+Encoding Check:
+- Found mojibake: No
+- Files affected: None
+- Fixed: No
+
+Result:
+- Passed
+
+Next:
+- Continue to Phase 13: Manual testing
