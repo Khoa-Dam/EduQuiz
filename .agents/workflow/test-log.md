@@ -269,6 +269,44 @@ Notes:
 - Production asset build passed.
 - Breeze auth logic was kept intact. The changes were limited to Blade auth presentation and workflow documentation.
 
+### Run: UX states and error pages follow-up
+
+Commands:
+- `php artisan route:list`
+- `php artisan migrate --env=testing`
+- `php artisan test`
+- `npm run build`
+- `rg` scan for common mojibake patterns in changed Blade and workflow files
+
+Result:
+- Passed
+
+Errors:
+- Initial `php artisan test` run timed out after 120 seconds without a PHPUnit failure.
+
+Fixes:
+- Reran `php artisan test` with a longer timeout; it passed.
+
+Git Check:
+- git status: pending final review
+- branch: `feature/ux-states-and-error-pages`
+- commit: `style(ux): add loading states and error pages`
+- push: Passed
+
+Encoding Check:
+- Found mojibake: No
+- Files affected: None
+- Fixed: No
+
+Notes:
+- Route list showed 61 routes.
+- Migration check reported nothing to migrate.
+- PHPUnit result: 66 tests passed, 254 assertions.
+- MySQL testing database: `eduquiz_test`.
+- Production asset build passed.
+- UX follow-up changes were limited to Blade, Blade components, Tailwind CSS, Laravel error views, and workflow documentation.
+- Backend auth behavior, routes, controllers, and database schema were not changed.
+
 ### Run: Phase 1 project setup
 
 Commands:

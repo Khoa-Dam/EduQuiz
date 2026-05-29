@@ -13,7 +13,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             @if (session('success'))
-                <div class="mb-4 rounded-md bg-green-50 p-4 text-sm font-medium text-green-800">
+                <div class="mb-4 eq-alert-success">
                     {{ session('success') }}
                 </div>
             @endif
@@ -21,10 +21,12 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6">
                     @if ($courses->isEmpty())
-                        <div class="rounded-md border border-dashed border-gray-300 p-8 text-center">
-                            <p class="text-sm font-medium text-gray-900">No courses yet.</p>
-                            <p class="mt-1 text-sm text-gray-600">Create the first course to start building quizzes.</p>
-                        </div>
+                        <x-empty-state
+                            title="No courses yet"
+                            message="Create the first course to start building quizzes for students."
+                            :href="route('admin.courses.create')"
+                            action="Create course"
+                        />
                     @else
                         <div class="overflow-x-auto">
                             <table class="min-w-full divide-y divide-gray-200 text-sm">
@@ -58,7 +60,7 @@
                                                     <form method="POST" action="{{ route('admin.courses.destroy', $course) }}">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="font-medium text-red-700 hover:text-red-900" onclick="return confirm('Delete this course?')">
+                                                        <button type="submit" class="font-medium text-red-700 hover:text-red-900" onclick="return confirm('Are you sure you want to delete this item? This action cannot be undone.')">
                                                             Delete
                                                         </button>
                                                     </form>

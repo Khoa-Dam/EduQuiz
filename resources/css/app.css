@@ -10,6 +10,10 @@
     body {
         @apply bg-slate-50 text-slate-900;
     }
+
+    [x-cloak] {
+        display: none !important;
+    }
 }
 
 @layer components {
@@ -54,23 +58,35 @@
     }
 
     .eq-btn-primary {
-        @apply inline-flex items-center justify-center rounded-xl bg-slate-950 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition duration-200 hover:-translate-y-0.5 hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 active:translate-y-0;
+        @apply inline-flex items-center justify-center rounded-xl bg-slate-950 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition duration-200 hover:-translate-y-0.5 hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 active:translate-y-0 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-60;
     }
 
     .eq-btn-secondary {
-        @apply inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-emerald-300 hover:text-slate-950 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 active:translate-y-0;
+        @apply inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-emerald-300 hover:text-slate-950 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 active:translate-y-0 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-60;
     }
 
     .eq-btn-danger {
-        @apply inline-flex items-center justify-center rounded-xl bg-red-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition duration-200 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2;
+        @apply inline-flex items-center justify-center rounded-xl bg-red-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition duration-200 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-60;
     }
 
     .eq-alert-success {
         @apply rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-medium text-emerald-900;
     }
 
+    .eq-alert-error {
+        @apply rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-900;
+    }
+
     .eq-empty {
         @apply rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-8 text-center;
+    }
+
+    .eq-empty-title {
+        @apply text-base font-bold text-slate-950;
+    }
+
+    .eq-empty-text {
+        @apply mt-2 text-sm leading-6 text-slate-600;
     }
 
     .eq-action-row {

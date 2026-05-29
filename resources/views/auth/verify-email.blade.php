@@ -14,12 +14,13 @@
     @endif
 
     <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <form method="POST" action="{{ route('verification.send') }}">
+        <form method="POST" action="{{ route('verification.send') }}" x-data="{ submitting: false }" x-on:submit="submitting = true">
             @csrf
 
             <div>
-                <x-primary-button class="w-full sm:w-auto">
-                    {{ __('Resend Verification Email') }}
+                <x-primary-button class="w-full sm:w-auto" x-bind:disabled="submitting">
+                    <span x-show="! submitting">{{ __('Resend Verification Email') }}</span>
+                    <span x-cloak x-show="submitting">Sending...</span>
                 </x-primary-button>
             </div>
         </form>

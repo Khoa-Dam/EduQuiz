@@ -13,7 +13,7 @@
     <div class="py-12">
         <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
             @if (session('success'))
-                <div class="mb-4 rounded-md bg-green-50 p-4 text-sm font-medium text-green-800">
+                <div class="mb-4 eq-alert-success">
                     {{ session('success') }}
                 </div>
             @endif
@@ -28,7 +28,14 @@
                         <h4 class="text-sm font-semibold uppercase text-gray-700">Answers</h4>
 
                         @if ($question->answers->isEmpty())
-                            <p class="mt-3 text-sm text-gray-600">No answers yet.</p>
+                            <div class="mt-4">
+                                <x-empty-state
+                                    title="No answers yet"
+                                    message="Add answer choices so students can submit this question."
+                                    :href="route('admin.answers.create', ['question_id' => $question->id])"
+                                    action="Add answer"
+                                />
+                            </div>
                         @else
                             <div class="mt-3 overflow-x-auto">
                                 <table class="min-w-full divide-y divide-gray-200 text-sm">
@@ -50,7 +57,7 @@
                                                         <form method="POST" action="{{ route('admin.answers.destroy', $answer) }}">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="submit" class="font-medium text-red-700 hover:text-red-900" onclick="return confirm('Delete this answer?')">
+                                                            <button type="submit" class="font-medium text-red-700 hover:text-red-900" onclick="return confirm('Are you sure you want to delete this item? This action cannot be undone.')">
                                                                 Delete
                                                             </button>
                                                         </form>

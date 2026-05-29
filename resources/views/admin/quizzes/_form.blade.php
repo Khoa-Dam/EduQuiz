@@ -44,7 +44,10 @@
 </div>
 
 <div class="mt-6 flex items-center gap-3">
-    <x-primary-button>{{ $submitLabel }}</x-primary-button>
+    <x-primary-button x-bind:disabled="submitting">
+        <span x-show="! submitting">{{ $submitLabel }}</span>
+        <span x-cloak x-show="submitting">Saving...</span>
+    </x-primary-button>
     <a href="{{ route('admin.quizzes.index') }}" class="eq-link">
         Cancel
     </a>

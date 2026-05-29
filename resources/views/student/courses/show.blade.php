@@ -16,9 +16,13 @@
                         <h3 class="eq-section-title">Available quizzes</h3>
 
                         @if ($course->quizzes->isEmpty())
-                            <div class="mt-4 eq-empty">
-                                <p class="text-sm font-medium text-slate-900">No active quizzes are available for this course.</p>
-                                <p class="mt-1 eq-muted">Check another course or come back after an admin publishes a quiz.</p>
+                            <div class="mt-4">
+                                <x-empty-state
+                                    title="No active quizzes are available for this course"
+                                    message="Check another course or come back after an admin publishes a quiz."
+                                    :href="route('courses.index')"
+                                    action="Browse courses"
+                                />
                             </div>
                         @else
                             <div class="mt-4 grid gap-3">

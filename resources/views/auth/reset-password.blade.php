@@ -5,7 +5,7 @@
         <p class="mt-3 text-sm leading-6 text-slate-600">Create a new password so you can get back to your EduQuiz workspace.</p>
     </div>
 
-    <form method="POST" action="{{ route('password.store') }}" class="space-y-5">
+    <form method="POST" action="{{ route('password.store') }}" class="space-y-5" x-data="{ submitting: false }" x-on:submit="submitting = true">
         @csrf
 
         <!-- Password Reset Token -->
@@ -38,8 +38,9 @@
         </div>
 
         <div>
-            <x-primary-button class="w-full">
-                {{ __('Reset Password') }}
+            <x-primary-button class="w-full" x-bind:disabled="submitting">
+                <span x-show="! submitting">{{ __('Reset Password') }}</span>
+                <span x-cloak x-show="submitting">Resetting...</span>
             </x-primary-button>
         </div>
     </form>

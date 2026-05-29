@@ -15,10 +15,12 @@
                         <p class="mt-2 eq-muted">Review scores, submitted times, and detailed answer feedback.</p>
                     </div>
                     @if ($attempts->isEmpty())
-                        <div class="eq-empty">
-                            <p class="text-sm font-medium text-gray-900">No attempts yet.</p>
-                            <p class="mt-1 text-sm text-gray-600">Take a quiz to see your results here.</p>
-                        </div>
+                        <x-empty-state
+                            title="No attempts yet"
+                            message="Take a quiz to see your scores and answer history here."
+                            :href="route('courses.index')"
+                            action="Browse courses"
+                        />
                     @else
                         <div class="overflow-x-auto">
                             <table class="min-w-full divide-y divide-gray-200 text-sm">

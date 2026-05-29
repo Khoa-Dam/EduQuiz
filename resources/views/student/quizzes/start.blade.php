@@ -17,7 +17,7 @@
                         {{ $quiz->duration_minutes ? 'Duration: '.$quiz->duration_minutes.' minutes.' : 'There is no time limit.' }}
                     </p>
 
-                    <form method="POST" action="{{ route('quizzes.submit', $quiz) }}" class="mt-6 space-y-6">
+                    <form method="POST" action="{{ route('quizzes.submit', $quiz) }}" class="mt-6 space-y-6" x-data="{ submitting: false }" x-on:submit="submitting = true">
                         @csrf
 
                         @foreach ($quiz->questions as $question)
@@ -44,7 +44,10 @@
                             <a href="{{ route('quizzes.show', $quiz) }}" class="eq-link">
                                 Back to quiz detail
                             </a>
-                            <x-primary-button>Submit Quiz</x-primary-button>
+                            <x-primary-button x-bind:disabled="submitting">
+                                <span x-show="! submitting">Submit Quiz</span>
+                                <span x-cloak x-show="submitting">Submitting...</span>
+                            </x-primary-button>
                         </div>
                     </form>
                 </div>

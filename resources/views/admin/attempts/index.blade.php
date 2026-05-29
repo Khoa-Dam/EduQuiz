@@ -15,10 +15,12 @@
                         <p class="mt-2 eq-muted">Use this page during the demo to show stored attempts and scoring output.</p>
                     </div>
                     @if ($attempts->isEmpty())
-                        <div class="eq-empty">
-                            <p class="text-sm font-medium text-gray-900">No attempts yet.</p>
-                            <p class="mt-1 text-sm text-gray-600">Student submissions will appear here.</p>
-                        </div>
+                        <x-empty-state
+                            title="No attempts yet"
+                            message="Student submissions will appear here after a quiz is completed."
+                            :href="route('admin.dashboard')"
+                            action="Back to dashboard"
+                        />
                     @else
                         <div class="overflow-x-auto">
                             <table class="min-w-full divide-y divide-gray-200 text-sm">

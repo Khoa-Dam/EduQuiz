@@ -13,7 +13,7 @@
     <div class="py-12">
         <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
             @if (session('success'))
-                <div class="mb-4 rounded-md bg-green-50 p-4 text-sm font-medium text-green-800">
+                <div class="mb-4 eq-alert-success">
                     {{ session('success') }}
                 </div>
             @endif
@@ -40,7 +40,7 @@
                         <form method="POST" action="{{ route('admin.courses.destroy', $course) }}">
                             @csrf
                             @method('DELETE')
-                            <x-danger-button onclick="return confirm('Delete this course?')">
+                            <x-danger-button onclick="return confirm('Are you sure you want to delete this item? This action cannot be undone.')">
                                 Delete Course
                             </x-danger-button>
                         </form>

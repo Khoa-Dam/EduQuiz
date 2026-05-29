@@ -8,7 +8,7 @@
     <!-- Session Status -->
     <x-auth-session-status class="mb-5 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-medium text-emerald-900" :status="session('status')" />
 
-    <form method="POST" action="{{ route('login') }}" class="space-y-5">
+    <form method="POST" action="{{ route('login') }}" class="space-y-5" x-data="{ submitting: false }" x-on:submit="submitting = true">
         @csrf
 
         <!-- Email Address -->
@@ -46,8 +46,9 @@
         </div>
 
         <div>
-            <x-primary-button class="w-full">
-                {{ __('Log in') }}
+            <x-primary-button class="w-full" x-bind:disabled="submitting">
+                <span x-show="! submitting">{{ __('Log in') }}</span>
+                <span x-cloak x-show="submitting">Logging in...</span>
             </x-primary-button>
         </div>
     </form>

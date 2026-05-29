@@ -15,10 +15,12 @@
                         <p class="mt-2 eq-muted">Only active courses are shown to students.</p>
                     </div>
                     @if ($courses->isEmpty())
-                        <div class="eq-empty">
-                            <p class="text-sm font-medium text-gray-900">No active courses available.</p>
-                            <p class="mt-1 text-sm text-gray-600">Check again after an admin publishes courses.</p>
-                        </div>
+                        <x-empty-state
+                            title="No active courses available"
+                            message="Check again after an admin publishes courses for students."
+                            :href="route('dashboard')"
+                            action="Back to dashboard"
+                        />
                     @else
                         <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
                             @foreach ($courses as $course)

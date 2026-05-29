@@ -32,10 +32,12 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6">
                     @if ($answers->isEmpty())
-                        <div class="rounded-md border border-dashed border-gray-300 p-8 text-center">
-                            <p class="text-sm font-medium text-gray-900">No answers yet.</p>
-                            <p class="mt-1 text-sm text-gray-600">Create answers from a question detail page.</p>
-                        </div>
+                        <x-empty-state
+                            title="No answers yet"
+                            message="Create answers from a question detail page and mark at least one answer as correct."
+                            :href="route('admin.answers.create')"
+                            action="Create answer"
+                        />
                     @else
                         <div class="overflow-x-auto">
                             <table class="min-w-full divide-y divide-gray-200 text-sm">
@@ -59,7 +61,7 @@
                                                     <form method="POST" action="{{ route('admin.answers.destroy', $answer) }}">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="font-medium text-red-700 hover:text-red-900" onclick="return confirm('Delete this answer?')">
+                                                        <button type="submit" class="font-medium text-red-700 hover:text-red-900" onclick="return confirm('Are you sure you want to delete this item? This action cannot be undone.')">
                                                             Delete
                                                         </button>
                                                     </form>

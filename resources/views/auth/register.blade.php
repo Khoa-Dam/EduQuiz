@@ -5,7 +5,7 @@
         <p class="mt-3 text-sm leading-6 text-slate-600">Join as a student, browse active courses, take quizzes, and keep your attempt history in one place.</p>
     </div>
 
-    <form method="POST" action="{{ route('register') }}" class="space-y-5">
+    <form method="POST" action="{{ route('register') }}" class="space-y-5" x-data="{ submitting: false }" x-on:submit="submitting = true">
         @csrf
 
         <!-- Name -->
@@ -48,8 +48,9 @@
         </div>
 
         <div>
-            <x-primary-button class="w-full">
-                {{ __('Register') }}
+            <x-primary-button class="w-full" x-bind:disabled="submitting">
+                <span x-show="! submitting">{{ __('Register') }}</span>
+                <span x-cloak x-show="submitting">Creating account...</span>
             </x-primary-button>
         </div>
     </form>
