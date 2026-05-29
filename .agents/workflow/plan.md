@@ -614,6 +614,13 @@ Checklist:
 * Logout works.
 * Role middleware works.
 
+Status:
+
+* Completed.
+* Added automated manual demo flow coverage for register, login, logout, admin setup, student quiz taking, scoring, history, admin attempt review, and role middleware.
+* Verified with MySQL testing database `eduquiz_test`.
+* `php artisan migrate --env=testing`, `php artisan test`, `npm run build`, and `php artisan route:list` passed.
+
 ### Phase 14: README and GitHub
 
 README should include:
@@ -627,6 +634,13 @@ README should include:
 * Demo accounts.
 * Database setup.
 * Screenshots if available.
+
+Status:
+
+* Completed.
+* Replaced the default Laravel README with EduQuiz-specific documentation.
+* Documented the project description, tech stack, features, install guide, run guide, MySQL setup, demo accounts, main routes, testing commands, and demo flow.
+* Verified with `php artisan route:list`, `php artisan migrate --env=testing`, `php artisan test`, and `npm run build`.
 
 ### Phase 15: Demo video
 

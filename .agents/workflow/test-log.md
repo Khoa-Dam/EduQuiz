@@ -19,19 +19,19 @@ Blocking:
 
 ## Manual Flow Checks
 
-- [ ] Register student
-- [ ] Login student
-- [ ] Login admin
-- [ ] Student cannot access admin pages
-- [ ] Admin can access admin dashboard
-- [ ] Admin can create course
-- [ ] Admin can create quiz
-- [ ] Admin can create question and answer
-- [ ] Student can browse courses
-- [ ] Student can take quiz
-- [ ] Score is calculated correctly
-- [ ] Student can view own history
-- [ ] Admin can view attempts
+- [x] Register student
+- [x] Login student
+- [x] Login admin
+- [x] Student cannot access admin pages
+- [x] Admin can access admin dashboard
+- [x] Admin can create course
+- [x] Admin can create quiz
+- [x] Admin can create question and answer
+- [x] Student can browse courses
+- [x] Student can take quiz
+- [x] Score is calculated correctly
+- [x] Student can view own history
+- [x] Admin can view attempts
 
 ## Test Runs
 
@@ -56,6 +56,71 @@ Encoding Check:
 
 Notes:
 - Update this file after every test/check run.
+
+### Run: Phase 13 manual testing
+
+Commands:
+- `php artisan test --filter=ManualDemoFlowTest`
+- `php artisan test --filter=ManualDemoFlowTest --stop-on-failure --debug`
+- `php artisan migrate --env=testing`
+- `php artisan test`
+- `npm run build`
+- `php artisan route:list`
+
+Result:
+- Passed
+
+Errors:
+- The first focused test command timed out after 120 seconds without failure output.
+
+Fixes:
+- Stopped the stuck PHP test process.
+- Reran the focused test with debug output; it passed.
+
+Git Check:
+- git status: tracked Phase 13 test and workflow files before commit
+- branch: `feature/phase-13-manual-testing`
+- commit: `test(manual): add demo flow coverage`
+- push: Passed
+
+Encoding Check:
+- Found mojibake: No
+- Files affected: None
+- Fixed: No
+
+Notes:
+- Focused test result: 1 test passed, 71 assertions.
+- PHPUnit result: 66 tests passed, 254 assertions.
+- MySQL testing database: `eduquiz_test`.
+- Route list showed 61 routes.
+
+### Run: Phase 14 README and GitHub
+
+Commands:
+- `php artisan route:list`
+- `php artisan migrate --env=testing`
+- `php artisan test`
+- `npm run build`
+
+Result:
+- Passed
+
+Errors:
+- None
+
+Fixes:
+- None
+
+Encoding Check:
+- Found mojibake: No
+- Files affected: None
+- Fixed: No
+
+Notes:
+- Route list showed 61 routes.
+- PHPUnit result: 66 tests passed, 254 assertions.
+- MySQL testing database: `eduquiz_test`.
+- README now documents setup, demo accounts, routes, testing, and demo flow.
 
 ### Run: Phase 1 project setup
 

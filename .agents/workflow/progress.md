@@ -5,7 +5,7 @@ This file is the main source for tracking completed phases, current work, blocke
 ## Current Status
 
 Current Phase:
-- Phase 13: Manual testing
+- Phase 15: Demo video
 
 Overall Status:
 - In progress
@@ -14,7 +14,7 @@ Blocking:
 - No
 
 Next Task:
-- Start Phase 13 from `.agents/workflow/plan.md`
+- Start Phase 15 from `.agents/workflow/plan.md`
 
 ## Phase Progress
 
@@ -30,8 +30,8 @@ Next Task:
 - [x] Phase 10: Admin attempt review
 - [x] Phase 11: UI polish
 - [x] Phase 12: Demo seed data
-- [ ] Phase 13: Manual testing
-- [ ] Phase 14: README and GitHub
+- [x] Phase 13: Manual testing
+- [x] Phase 14: README and GitHub
 - [ ] Phase 15: Demo video
 
 ## Run Log
@@ -69,6 +69,102 @@ Next:
 
 Notes:
 - Update this file after every agent run.
+
+### Run: Phase 13 manual testing
+
+Current Phase:
+- Phase 13: Manual testing
+
+Skills Considered:
+- test-driven-development
+- unit-integration-testing
+- playwright
+- debugging-and-error-recovery
+- code-review-and-quality
+- git-workflow-and-versioning
+
+Skills Used:
+- test-driven-development
+- unit-integration-testing
+- debugging-and-error-recovery
+- code-review-and-quality
+- git-workflow-and-versioning
+
+Completed:
+- Added automated coverage for the manual demo checklist.
+- Verified registration, student login, admin login, logout, role middleware, admin course creation, admin quiz creation, admin question and answer creation, student quiz taking, score display flow, student history, and admin result review.
+- Confirmed Phase 13 runs against MySQL testing database `eduquiz_test`.
+
+Files Changed:
+- `tests/Feature/ManualDemoFlowTest.php`
+- `.agents/workflow/plan.md`
+- `.agents/workflow/progress.md`
+- `.agents/workflow/test-log.md`
+
+Checks Run:
+- `php artisan test --filter=ManualDemoFlowTest` - initial run timed out with no failure output
+- `php artisan test --filter=ManualDemoFlowTest --stop-on-failure --debug` - passed, 1 test and 71 assertions
+- `php artisan migrate --env=testing` - passed
+- `php artisan test` - passed, 66 tests and 254 assertions
+- `npm run build` - passed
+- `php artisan route:list` - passed
+
+Git:
+- Branch: `feature/phase-13-manual-testing`
+- Commit: `test(manual): add demo flow coverage`
+- Push: Passed
+
+Encoding Check:
+- Found mojibake: No
+- Files affected: None
+- Fixed: No
+
+Result:
+- Passed
+
+Next:
+- Continue to Phase 14: README and GitHub
+
+### Run: Phase 14 README and GitHub
+
+Current Phase:
+- Phase 14: README and GitHub
+
+Skills Considered:
+- using-agent-skills
+- documentation-and-adrs
+- git-workflow-and-versioning
+
+Skills Used:
+- using-agent-skills
+
+Completed:
+- Replaced the default Laravel README with EduQuiz project documentation.
+- Documented the tech stack, features, requirements, installation, MySQL setup, run commands, test commands, demo accounts, main routes, and demo flow.
+- Confirmed the README reflects seeded demo accounts and current application routes.
+
+Files Changed:
+- `README.md`
+- `.agents/workflow/plan.md`
+- `.agents/workflow/progress.md`
+- `.agents/workflow/test-log.md`
+
+Checks Run:
+- `php artisan route:list` - passed
+- `php artisan migrate --env=testing` - passed
+- `php artisan test` - passed, 66 tests and 254 assertions
+- `npm run build` - passed
+
+Encoding Check:
+- Found mojibake: No
+- Files affected: None
+- Fixed: No
+
+Result:
+- Passed
+
+Next:
+- Continue to Phase 15: Demo video
 
 ### Run: Phase 1 project setup
 
