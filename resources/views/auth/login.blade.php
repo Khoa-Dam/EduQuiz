@@ -1,14 +1,14 @@
 <x-guest-layout>
-    <div class="mb-8">
+    <div class="mb-6">
         <p class="text-sm font-semibold uppercase tracking-[0.16em] text-emerald-700">EduQuiz account</p>
-        <h1 class="mt-3 text-3xl font-black tracking-tight text-slate-950">Welcome back</h1>
-        <p class="mt-3 text-sm leading-6 text-slate-600">Log in to continue learning or manage your quizzes.</p>
+        <h1 class="mt-2 text-2xl font-black tracking-tight text-slate-950">Welcome back</h1>
+        <p class="mt-2 text-sm leading-6 text-slate-600">Log in to continue learning or manage your quizzes.</p>
     </div>
 
     <!-- Session Status -->
     <x-auth-session-status class="mb-5 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-medium text-emerald-900" :status="session('status')" />
 
-    <form method="POST" action="{{ route('login') }}" class="space-y-5" x-data="{ submitting: false }" x-on:submit="submitting = true">
+    <form method="POST" action="{{ route('login') }}" class="space-y-4" x-data="{ submitting: false }" x-on:submit="submitting = true">
         @csrf
 
         <!-- Email Address -->
@@ -54,7 +54,7 @@
     </form>
 
     @if (Route::has('register'))
-        <div class="mt-6 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-center text-sm text-slate-600">
+        <div class="mt-5 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-center text-sm text-slate-600">
             New to EduQuiz?
             <a href="{{ route('register') }}" class="font-semibold text-emerald-700 transition hover:text-emerald-900 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2">
                 Create an account

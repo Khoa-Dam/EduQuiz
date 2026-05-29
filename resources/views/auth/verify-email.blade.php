@@ -1,8 +1,8 @@
 <x-guest-layout>
-    <div class="mb-8">
+    <div class="mb-6">
         <p class="text-sm font-semibold uppercase tracking-[0.16em] text-emerald-700">Verify email</p>
-        <h1 class="mt-3 text-3xl font-black tracking-tight text-slate-950">Check your inbox</h1>
-        <p class="mt-3 text-sm leading-6 text-slate-600">
+        <h1 class="mt-2 text-2xl font-black tracking-tight text-slate-950">Check your inbox</h1>
+        <p class="mt-2 text-sm leading-6 text-slate-600">
             {{ __('Thanks for signing up! Before getting started, please verify your email address by clicking the link we just emailed to you. If you did not receive the email, we will send another.') }}
         </p>
     </div>

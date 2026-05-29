@@ -1,13 +1,13 @@
 <x-guest-layout>
-    <div class="mb-8">
+    <div class="mb-6">
         <p class="text-sm font-semibold uppercase tracking-[0.16em] text-emerald-700">Security check</p>
-        <h1 class="mt-3 text-3xl font-black tracking-tight text-slate-950">Confirm your password</h1>
-        <p class="mt-3 text-sm leading-6 text-slate-600">
+        <h1 class="mt-2 text-2xl font-black tracking-tight text-slate-950">Confirm your password</h1>
+        <p class="mt-2 text-sm leading-6 text-slate-600">
             {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}
         </p>
     </div>
 
-    <form method="POST" action="{{ route('password.confirm') }}" class="space-y-5" x-data="{ submitting: false }" x-on:submit="submitting = true">
+    <form method="POST" action="{{ route('password.confirm') }}" class="space-y-4" x-data="{ submitting: false }" x-on:submit="submitting = true">
         @csrf
 
         <!-- Password -->
@@ -31,7 +31,7 @@
         </div>
     </form>
 
-    <div class="mt-6 text-center">
+    <div class="mt-5 text-center">
         <a href="{{ route('login') }}" class="text-sm font-semibold text-emerald-700 transition hover:text-emerald-900 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2">
             Back to login
         </a>

@@ -1,11 +1,11 @@
 <x-guest-layout>
-    <div class="mb-8">
+    <div class="mb-6">
         <p class="text-sm font-semibold uppercase tracking-[0.16em] text-emerald-700">Start learning</p>
-        <h1 class="mt-3 text-3xl font-black tracking-tight text-slate-950">Create your EduQuiz account</h1>
-        <p class="mt-3 text-sm leading-6 text-slate-600">Join as a student, browse active courses, take quizzes, and keep your attempt history in one place.</p>
+        <h1 class="mt-2 text-2xl font-black tracking-tight text-slate-950">Create your EduQuiz account</h1>
+        <p class="mt-2 text-sm leading-6 text-slate-600">Join as a student, browse active courses, take quizzes, and keep your attempt history in one place.</p>
     </div>
 
-    <form method="POST" action="{{ route('register') }}" class="space-y-5" x-data="{ submitting: false }" x-on:submit="submitting = true">
+    <form method="POST" action="{{ route('register') }}" class="space-y-4" x-data="{ submitting: false }" x-on:submit="submitting = true">
         @csrf
 
         <!-- Name -->
@@ -55,7 +55,7 @@
         </div>
     </form>
 
-    <div class="mt-6 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-center text-sm text-slate-600">
+    <div class="mt-5 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-center text-sm text-slate-600">
         Already have an account?
         <a class="font-semibold text-emerald-700 transition hover:text-emerald-900 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2" href="{{ route('login') }}">
             Log in

@@ -669,6 +669,7 @@ Status:
 * Added small dashboard stat queries for demo clarity without changing business behavior.
 * Auth UI polish was completed after frontend polish to align Breeze login, register, password reset, password confirmation, and email verification pages with the EduQuiz visual style.
 * UX states and error pages follow-up was completed after frontend polish to add custom error pages, submit loading states, delete confirmations, stronger empty states, and consistent feedback styling.
+* UI refinement pass was completed after frontend polish to tighten landing, auth, dashboard, navigation, card, table, form, and result page proportions for demo readiness.
 * Used Blade, Tailwind/simple styling, and Laravel Breeze only.
 * Verified with `php artisan route:list`, `php artisan migrate --env=testing`, `php artisan test`, and `npm run build`.
 
