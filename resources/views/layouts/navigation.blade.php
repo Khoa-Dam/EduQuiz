@@ -1,13 +1,16 @@
-<nav x-data="{ open: false }" class="sticky top-0 z-40 border-b border-slate-200 bg-white/90 shadow-sm shadow-slate-200/70 backdrop-blur">
+<nav x-data="{ open: false }" class="sticky top-0 z-40 border-b border-white/80 bg-white/80 shadow-sm shadow-slate-200/70 backdrop-blur">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex min-h-14 justify-between gap-4 py-2.5">
             <div class="flex items-center">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}" class="flex items-center gap-3">
-                        <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-slate-950 text-sm font-black text-emerald-300 shadow-sm">EQ</span>
-                        <span class="hidden text-base font-black tracking-tight text-slate-950 sm:block">EduQuiz</span>
+                    <a href="{{ route('dashboard') }}" class="flex items-center gap-3 rounded-2xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2">
+                        <span class="flex h-9 w-9 items-center justify-center rounded-2xl bg-slate-950 text-sm font-black text-emerald-300 shadow-sm shadow-slate-300">EQ</span>
+                        <span class="hidden leading-tight sm:block">
+                            <span class="block text-base font-black tracking-tight text-slate-950">EduQuiz</span>
+                            <span class="block text-[11px] font-bold uppercase tracking-[0.16em] text-emerald-700">Mini LMS</span>
+                        </span>
                     </a>
                 </div>
 
@@ -48,7 +51,7 @@
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
-                        <button class="inline-flex items-center rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-sm font-semibold leading-4 text-slate-600 shadow-sm transition duration-150 ease-in-out hover:border-emerald-200 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                        <button class="inline-flex items-center rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-sm font-bold leading-4 text-slate-600 shadow-sm transition duration-150 ease-in-out hover:border-emerald-300 hover:text-slate-900 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-emerald-500">
                             <div>{{ Auth::user()->name }}</div>
 
                             <div class="ms-1">

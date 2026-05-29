@@ -1,52 +1,42 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex items-center justify-between gap-4">
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Course Detail
-            </h2>
-            <a href="{{ route('admin.courses.edit', $course) }}" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-                Edit Course
-            </a>
+        <div class="eq-page-heading">
+            <div>
+                <p class="text-sm font-bold text-emerald-700">Course detail</p>
+                <h2 class="mt-1 text-2xl font-black tracking-tight text-slate-950">{{ $course->title }}</h2>
+            </div>
+            <a href="{{ route('admin.courses.edit', $course) }}" class="eq-btn-primary">Edit course</a>
         </div>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
+    <div class="eq-page">
+        <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
             @if (session('success'))
-                <div class="mb-4 eq-alert-success">
-                    {{ session('success') }}
-                </div>
+                <div class="mb-4 eq-alert-success">{{ session('success') }}</div>
             @endif
 
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6">
-                    <div class="flex items-start justify-between gap-4">
+            <section class="eq-panel">
+                <div class="eq-panel-body">
+                    <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                         <div>
-                            <h3 class="text-lg font-semibold text-gray-900">{{ $course->title }}</h3>
-                            <p class="mt-2 text-sm text-gray-600">
-                                {{ $course->description ?: 'No description provided.' }}
-                            </p>
+                            <p class="eq-badge">Course</p>
+                            <h3 class="mt-4 text-3xl font-black tracking-tight text-slate-950">{{ $course->title }}</h3>
+                            <p class="mt-3 max-w-3xl text-sm leading-6 text-slate-600">{{ $course->description ?: 'No description provided.' }}</p>
                         </div>
-                        <span class="inline-flex rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-700">
-                            {{ ucfirst($course->status) }}
-                        </span>
+                        <span class="eq-status-badge">{{ ucfirst($course->status) }}</span>
                     </div>
 
-                    <div class="mt-6 flex items-center justify-between border-t border-gray-100 pt-4">
-                        <a href="{{ route('admin.courses.index') }}" class="text-sm font-medium text-gray-600 hover:text-gray-900">
-                            Back to courses
-                        </a>
+                    <div class="mt-8 flex flex-col gap-3 border-t border-slate-100 pt-5 sm:flex-row sm:items-center sm:justify-between">
+                        <a href="{{ route('admin.courses.index') }}" class="eq-link">Back to courses</a>
 
                         <form method="POST" action="{{ route('admin.courses.destroy', $course) }}">
                             @csrf
                             @method('DELETE')
-                            <x-danger-button onclick="return confirm('Are you sure you want to delete this item? This action cannot be undone.')">
-                                Delete Course
-                            </x-danger-button>
+                            <x-danger-button onclick="return confirm('Are you sure you want to delete this item? This action cannot be undone.')">Delete course</x-danger-button>
                         </form>
                     </div>
                 </div>
-            </div>
+            </section>
         </div>
     </div>
 </x-app-layout>

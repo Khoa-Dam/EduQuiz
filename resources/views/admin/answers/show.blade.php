@@ -1,30 +1,27 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Answer Detail
-        </h2>
+        <div class="eq-page-heading">
+            <div>
+                <p class="text-sm font-bold text-emerald-700">Answer detail</p>
+                <h2 class="mt-1 text-2xl font-black tracking-tight text-slate-950">Answer choice</h2>
+            </div>
+            <a href="{{ route('admin.answers.edit', $answer) }}" class="eq-btn-primary">Edit answer</a>
+        </div>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6">
-                    <p class="text-sm font-medium text-gray-600">
-                        {{ \Illuminate\Support\Str::limit($answer->question->question_text, 120) }}
-                    </p>
-                    <p class="mt-4 text-gray-900">{{ $answer->answer_text }}</p>
-                    <p class="mt-3 text-sm text-gray-600">Correct: {{ $answer->is_correct ? 'Yes' : 'No' }}</p>
+    <div class="eq-page">
+        <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+            <section class="eq-panel">
+                <div class="eq-panel-body">
+                    <p class="eq-badge">{{ $answer->is_correct ? 'Correct answer' : 'Answer option' }}</p>
+                    <h3 class="mt-4 text-2xl font-black tracking-tight text-slate-950">{{ $answer->answer_text }}</h3>
+                    <p class="mt-4 text-sm leading-6 text-slate-600">Question: {{ $answer->question->question_text }}</p>
 
-                    <div class="mt-6 flex items-center justify-between border-t border-gray-100 pt-4">
-                        <a href="{{ route('admin.questions.show', $answer->question) }}" class="text-sm font-medium text-gray-600 hover:text-gray-900">
-                            Back to question
-                        </a>
-                        <a href="{{ route('admin.answers.edit', $answer) }}" class="text-sm font-medium text-indigo-700 hover:text-indigo-900">
-                            Edit answer
-                        </a>
+                    <div class="mt-8 border-t border-slate-100 pt-5">
+                        <a href="{{ route('admin.answers.index') }}" class="eq-link">Back to answers</a>
                     </div>
                 </div>
-            </div>
+            </section>
         </div>
     </div>
 </x-app-layout>

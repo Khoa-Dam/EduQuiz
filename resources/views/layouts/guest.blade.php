@@ -5,59 +5,59 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ config('app.name', 'EduQuiz') }}</title>
 
-        <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600,700,800&display=swap" rel="stylesheet" />
 
-        <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans text-slate-900 antialiased">
-        <main class="min-h-screen bg-slate-50">
-            <div class="mx-auto grid min-h-screen w-full max-w-6xl items-center gap-6 px-4 py-6 sm:px-6 lg:grid-cols-[0.82fr_1fr] lg:px-8">
-                <section class="hidden overflow-hidden rounded-2xl border border-slate-200 bg-slate-950 p-6 text-white shadow-sm shadow-slate-300/60 lg:block">
+        <main class="min-h-screen overflow-hidden bg-slate-950">
+            <div class="absolute inset-x-0 top-0 h-[520px] bg-[radial-gradient(circle_at_22%_10%,_rgba(16,185,129,0.26),_transparent_28%),radial-gradient(circle_at_82%_18%,_rgba(45,212,191,0.10),_transparent_26%)]"></div>
+
+            <div class="relative z-10 mx-auto grid min-h-screen w-full max-w-6xl items-center gap-6 px-4 py-6 sm:px-6 lg:grid-cols-[0.9fr_1fr] lg:px-8">
+                <section class="hidden rounded-[2rem] border border-white/10 bg-white/10 p-6 text-white shadow-2xl shadow-emerald-950/30 backdrop-blur lg:block">
                     <a href="/" class="inline-flex items-center gap-3 rounded-2xl focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:ring-offset-2 focus:ring-offset-slate-950">
-                        <span class="flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-400 text-base font-black text-slate-950">EQ</span>
+                        <span class="flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-400 text-base font-black text-slate-950">EQ</span>
                         <span>
-                            <span class="block text-lg font-bold tracking-tight">EduQuiz</span>
-                            <span class="block text-xs font-semibold uppercase tracking-[0.18em] text-emerald-200">Mini Quiz LMS</span>
+                            <span class="block text-lg font-black tracking-tight">EduQuiz</span>
+                            <span class="block text-xs font-bold uppercase tracking-[0.18em] text-emerald-200">Mini Quiz LMS</span>
                         </span>
                     </a>
 
-                    <div class="mt-10 max-w-lg">
-                        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-200">Learn. Practice. Review.</p>
-                        <h1 class="mt-3 text-3xl font-black tracking-tight text-white">Sign in to continue your quiz workflow.</h1>
-                        <p class="mt-4 text-sm leading-6 text-slate-300">
-                            EduQuiz keeps the demo flow focused: admins manage learning content, students take quizzes, and results stay easy to review.
+                    <div class="mt-10">
+                        <p class="text-sm font-bold text-emerald-200">Learn. Practice. Review.</p>
+                        <h1 class="mt-3 max-w-md text-4xl font-black leading-tight tracking-tight text-white">A focused quiz workspace for Laravel demos.</h1>
+                        <p class="mt-4 max-w-lg text-sm leading-6 text-slate-300">
+                            Admins manage quiz content. Students submit answers. EduQuiz keeps scores and attempt history easy to explain.
                         </p>
                     </div>
 
                     <div class="mt-8 grid gap-3">
-                        <div class="rounded-2xl border border-white/10 bg-white/10 p-4">
-                            <p class="text-sm font-semibold text-white">Admin flow</p>
-                            <p class="mt-2 text-sm leading-6 text-slate-300">Create courses, quizzes, questions, and review submitted attempts.</p>
+                        <div class="rounded-2xl bg-white p-4 text-slate-950">
+                            <p class="text-sm font-black">Admin flow</p>
+                            <p class="mt-1 text-sm leading-6 text-slate-600">Create courses, quizzes, questions, and review student attempts.</p>
                         </div>
                         <div class="rounded-2xl border border-white/10 bg-white/10 p-4">
-                            <p class="text-sm font-semibold text-white">Student flow</p>
-                            <p class="mt-2 text-sm leading-6 text-slate-300">Browse active courses, answer quiz questions, and view scores and history.</p>
+                            <p class="text-sm font-black text-white">Student flow</p>
+                            <p class="mt-1 text-sm leading-6 text-slate-300">Browse active courses, take quizzes, and view result history.</p>
                         </div>
                     </div>
                 </section>
 
                 <section class="mx-auto w-full max-w-md">
                     <div class="mb-5 flex items-center justify-between gap-4 lg:hidden">
-                        <a href="/" class="inline-flex items-center gap-3 rounded-2xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2">
-                            <span class="flex h-10 w-10 items-center justify-center rounded-2xl bg-slate-950 text-sm font-black text-white">EQ</span>
+                        <a href="/" class="inline-flex items-center gap-3 rounded-2xl focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:ring-offset-2 focus:ring-offset-slate-950">
+                            <span class="flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-400 text-sm font-black text-slate-950">EQ</span>
                             <span>
-                                <span class="block text-base font-bold tracking-tight text-slate-950">EduQuiz</span>
-                                <span class="block text-xs font-semibold uppercase tracking-[0.16em] text-emerald-700">Mini Quiz LMS</span>
+                                <span class="block text-base font-black tracking-tight text-white">EduQuiz</span>
+                                <span class="block text-xs font-bold uppercase tracking-[0.16em] text-emerald-200">Mini Quiz LMS</span>
                             </span>
                         </a>
                     </div>
 
-                    <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm shadow-slate-200/80 sm:p-6">
+                    <div class="rounded-[2rem] border border-white/80 bg-white/95 p-5 shadow-2xl shadow-emerald-950/30 backdrop-blur sm:p-6">
                         {{ $slot }}
                     </div>
                 </section>

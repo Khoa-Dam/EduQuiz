@@ -21,14 +21,14 @@
         <title>{{ $title }} - {{ config('app.name', 'EduQuiz') }}</title>
 
         <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600,700,800&display=swap" rel="stylesheet" />
 
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans text-slate-900 antialiased">
-        <main class="min-h-screen bg-slate-50">
+        <main class="eq-app-shell">
             <div class="mx-auto flex min-h-screen max-w-4xl items-center px-4 py-10 sm:px-6 lg:px-8">
-                <section class="w-full rounded-3xl border border-slate-200 bg-white p-8 text-center shadow-sm shadow-slate-200/80 sm:p-10">
+                <section class="w-full rounded-3xl border border-white/80 bg-white/90 p-8 text-center shadow-xl shadow-slate-200/80 backdrop-blur sm:p-10">
                     <a href="{{ url('/') }}" class="mx-auto inline-flex items-center gap-3 rounded-2xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2">
                         <span class="flex h-11 w-11 items-center justify-center rounded-2xl bg-slate-950 text-sm font-black text-emerald-300">EQ</span>
                         <span class="text-left">
