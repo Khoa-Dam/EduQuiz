@@ -8,13 +8,13 @@ Current Phase:
 - Phase 15: Demo video
 
 Overall Status:
-- In progress
+- Complete
 
 Blocking:
 - No
 
 Next Task:
-- Start Phase 15 from `.agents/workflow/plan.md`
+- Record the demo video and submit the GitHub repository link with the video link.
 
 ## Phase Progress
 
@@ -32,7 +32,7 @@ Next Task:
 - [x] Phase 12: Demo seed data
 - [x] Phase 13: Manual testing
 - [x] Phase 14: README and GitHub
-- [ ] Phase 15: Demo video
+- [x] Phase 15: Demo video
 
 ## Run Log
 
@@ -165,6 +165,53 @@ Result:
 
 Next:
 - Continue to Phase 15: Demo video
+
+### Run: Phase 15 video demo
+
+Current Phase:
+- Phase 15: Demo video
+
+Skills Considered:
+- using-agent-skills
+- shipping-and-launch
+- git-workflow-and-versioning
+
+Skills Used:
+- using-agent-skills
+
+Completed:
+- Confirmed Phase 15 was the next unfinished phase.
+- Created the final 3-5 minute video demo script and recording checklist.
+- Included demo accounts, practical narration, a backup plan using seeded data, and the final submission checklist.
+- Ran final project verification.
+
+Files Changed:
+- `docs/video-demo-script.md`
+- `.agents/workflow/plan.md`
+- `.agents/workflow/progress.md`
+- `.agents/workflow/test-log.md`
+
+Checks Run:
+- `php artisan route:list` - passed, 61 routes
+- `php artisan migrate --env=testing` - passed
+- `php artisan test` - passed, 66 tests and 254 assertions
+- `npm run build` - passed
+
+Git:
+- Branch: `feature/phase-15-video-demo`
+- Commit: Pending
+- Push: Pending
+
+Encoding Check:
+- Found mojibake: No
+- Files affected: None
+- Fixed: No
+
+Result:
+- Passed
+
+Next:
+- Commit and push `feature/phase-15-video-demo`.
 
 ### Run: Phase 1 project setup
 

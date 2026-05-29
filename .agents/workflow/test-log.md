@@ -122,6 +122,42 @@ Notes:
 - MySQL testing database: `eduquiz_test`.
 - README now documents setup, demo accounts, routes, testing, and demo flow.
 
+### Run: Phase 15 video demo
+
+Commands:
+- `php artisan route:list`
+- `php artisan migrate --env=testing`
+- `php artisan test`
+- `npm run build`
+
+Result:
+- Passed
+
+Errors:
+- None
+
+Fixes:
+- None
+
+Git Check:
+- git status: pending final review before commit
+- branch: `feature/phase-15-video-demo`
+- commit: Pending
+- push: Pending
+
+Encoding Check:
+- Found mojibake: No
+- Files affected: None
+- Fixed: No
+
+Notes:
+- Route list showed 61 routes.
+- Migration check reported nothing to migrate.
+- PHPUnit result: 66 tests passed, 254 assertions.
+- MySQL testing database: `eduquiz_test`.
+- Production asset build passed.
+- Video demo script and final submission checklist were added.
+
 ### Run: Phase 1 project setup
 
 Commands:

@@ -656,6 +656,12 @@ Demo script:
 8. Admin reviews result.
 9. Close with short summary.
 
+Status:
+
+* Completed.
+* Added `docs/video-demo-script.md` with a 3-5 minute recording goal, demo accounts, recording checklist, full demo flow, suggested narration, backup plan, and final submission checklist.
+* Verified with `php artisan route:list`, `php artisan migrate --env=testing`, `php artisan test`, and `npm run build`.
+
 ## 10. Seven-Day Schedule
 
 ### Day 1
