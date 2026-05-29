@@ -36,6 +36,9 @@
                         <x-nav-link :href="route('admin.questions.index')" :active="request()->routeIs('admin.questions.*')">
                             {{ __('Questions') }}
                         </x-nav-link>
+                        <x-nav-link :href="route('admin.attempts.index')" :active="request()->routeIs('admin.attempts.*')">
+                            {{ __('Results') }}
+                        </x-nav-link>
                     @endif
                 </div>
             </div>
@@ -112,6 +115,9 @@
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('admin.questions.index')" :active="request()->routeIs('admin.questions.*')">
                     {{ __('Questions') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('admin.attempts.index')" :active="request()->routeIs('admin.attempts.*')">
+                    {{ __('Results') }}
                 </x-responsive-nav-link>
             @endif
         </div>

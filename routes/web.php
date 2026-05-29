@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CourseController as AdminCourseController;
 use App\Http\Controllers\Admin\QuizController as AdminQuizController;
 use App\Http\Controllers\Admin\QuestionController as AdminQuestionController;
 use App\Http\Controllers\Admin\AnswerController as AdminAnswerController;
+use App\Http\Controllers\Admin\AttemptController as AdminAttemptController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Student\CourseController as StudentCourseController;
@@ -30,6 +31,8 @@ Route::middleware(['auth', 'admin'])
         Route::resource('quizzes', AdminQuizController::class);
         Route::resource('questions', AdminQuestionController::class);
         Route::resource('answers', AdminAnswerController::class);
+        Route::get('attempts', [AdminAttemptController::class, 'index'])->name('attempts.index');
+        Route::get('attempts/{attempt}', [AdminAttemptController::class, 'show'])->name('attempts.show');
     });
 
 Route::middleware('auth')->group(function () {

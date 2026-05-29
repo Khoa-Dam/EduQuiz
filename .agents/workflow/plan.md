@@ -541,6 +541,15 @@ Checklist:
 * Admin sees attempt detail.
 * User, quiz, and score are clear.
 
+Status:
+
+* Completed.
+* Added admin attempt list and detail routes.
+* Added admin attempt review pages with student, quiz, course, score, and answer detail.
+* Added navigation and dashboard links for result review.
+* Added feature tests for admin list, admin detail, and student denial.
+* `php artisan migrate --env=testing`, `php artisan route:list`, `php artisan test`, and `npm run build` passed.
+
 ### Phase 11: UI polish
 
 Goal:
