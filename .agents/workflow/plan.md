@@ -361,6 +361,15 @@ Checklist:
 * Foreign keys are correct.
 * Relationships work.
 
+Status:
+
+* Completed.
+* Added migrations for courses, quizzes, questions, answers, quiz_attempts, and quiz_attempt_answers.
+* Added Eloquent models and relationships for the core quiz domain.
+* Added schema and relationship tests.
+* Verified with MySQL testing database `eduquiz_test`.
+* `php artisan migrate --env=testing`, `php artisan test`, `php artisan route:list`, and `npm run build` passed.
+
 ### Phase 4: Admin Course CRUD
 
 Goal:

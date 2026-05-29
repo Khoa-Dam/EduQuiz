@@ -5,7 +5,7 @@ This file is the main source for tracking completed phases, current work, blocke
 ## Current Status
 
 Current Phase:
-- Phase 3: Core database schema
+- Phase 4: Admin Course CRUD
 
 Overall Status:
 - In progress
@@ -14,13 +14,13 @@ Blocking:
 - No
 
 Next Task:
-- Start Phase 3 from `.agents/workflow/plan.md`
+- Start Phase 4 from `.agents/workflow/plan.md`
 
 ## Phase Progress
 
 - [x] Phase 1: Project setup
 - [x] Phase 2: Role admin/student
-- [ ] Phase 3: Core database schema
+- [x] Phase 3: Core database schema
 - [ ] Phase 4: Admin Course CRUD
 - [ ] Phase 5: Admin Quiz CRUD
 - [ ] Phase 6: Admin Question & Answer CRUD
@@ -186,3 +186,67 @@ Result:
 
 Next:
 - Continue to Phase 3: Core database schema
+
+### Run: Phase 3 core database schema
+
+Current Phase:
+- Phase 3: Core database schema
+
+Skills Considered:
+- database-data-modeling
+- code-review-and-quality
+- git-workflow-and-versioning
+
+Skills Used:
+- database-data-modeling
+- code-review-and-quality
+- git-workflow-and-versioning
+
+Completed:
+- Added core EduQuiz schema migrations for courses, quizzes, questions, answers, quiz attempts, and attempt answers.
+- Added Eloquent models and relationships for all core quiz tables.
+- Added `User::quizAttempts()` relationship.
+- Added schema and relationship tests.
+- Recorded schema defaults and cascade behavior in technical decisions.
+
+Files Changed:
+- `app/Models/User.php`
+- `app/Models/Course.php`
+- `app/Models/Quiz.php`
+- `app/Models/Question.php`
+- `app/Models/Answer.php`
+- `app/Models/QuizAttempt.php`
+- `app/Models/QuizAttemptAnswer.php`
+- `database/migrations/2026_05_29_000002_create_courses_table.php`
+- `database/migrations/2026_05_29_000003_create_quizzes_table.php`
+- `database/migrations/2026_05_29_000004_create_questions_table.php`
+- `database/migrations/2026_05_29_000005_create_answers_table.php`
+- `database/migrations/2026_05_29_000006_create_quiz_attempts_table.php`
+- `database/migrations/2026_05_29_000007_create_quiz_attempt_answers_table.php`
+- `tests/Feature/DatabaseSchemaTest.php`
+- `.agents/workflow/plan.md`
+- `.agents/workflow/progress.md`
+- `.agents/workflow/test-log.md`
+- `.agents/workflow/decisions.md`
+
+Checks Run:
+- `php artisan migrate --env=testing` - passed
+- `php artisan test` - passed, 32 tests and 88 assertions
+- `php artisan route:list` - passed
+- `npm run build` - passed
+
+Git:
+- Branch: `feature/phase-03-database-schema`
+- Commit: `feat(database): add core EduQuiz schema`
+- Push: Passed
+
+Encoding Check:
+- Found mojibake: No
+- Files affected: None
+- Fixed: No
+
+Result:
+- Passed
+
+Next:
+- Continue to Phase 4: Admin Course CRUD

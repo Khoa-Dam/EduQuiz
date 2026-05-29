@@ -128,3 +128,26 @@ Do not commit:
 * `.env`
 * `.env.testing`
 * `.env.*`
+
+## TD-010: Core Schema Defaults and Cascades
+
+Use simple string statuses for course and quiz publishing state.
+
+Default status:
+
+* `active`
+
+Use default question points:
+
+* `1`
+
+Use cascade deletes from parent learning content to child records:
+
+* Course deletes its quizzes.
+* Quiz deletes its questions and attempts.
+* Question deletes its answers and attempt answers.
+* QuizAttempt deletes its attempt answers.
+
+Use one selected answer per question per attempt:
+
+* Unique key on `quiz_attempt_id` and `question_id`.
