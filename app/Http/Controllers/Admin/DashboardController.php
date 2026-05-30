@@ -20,6 +20,10 @@ class DashboardController extends Controller
                 'questions' => Question::count(),
                 'attempts' => QuizAttempt::count(),
             ],
+            'latestAttempts' => QuizAttempt::with(['user', 'quiz.course'])
+                ->latest('submitted_at')
+                ->limit(3)
+                ->get(),
         ]);
     }
 }

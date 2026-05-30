@@ -385,6 +385,45 @@ Notes:
 - Full UI redesign pass completed after Phase 14.5 polish.
 - Redesign remained Blade/Tailwind-only and did not add packages, GSAP, animation libraries, React, Vue, Inertia, route changes, schema changes, or auth behavior changes.
 
+### Run: Reference-based UI redesign pass after Phase 14.5
+
+Commands:
+- `php artisan route:list`
+- `npm run build`
+- `php artisan migrate --env=testing`
+- `php artisan test`
+- `rg` scan for common mojibake patterns in `resources/views`, `.agents/workflow`, and `lang`
+
+Result:
+- Passed
+
+Errors:
+- None
+
+Fixes:
+- None
+
+Git Check:
+- git status: pending final commit
+- branch: `feature/reference-ui-redesign`
+- commit: pending
+- push: pending
+
+Encoding Check:
+- Found mojibake: No
+- Files affected: None
+- Fixed: No
+
+Notes:
+- Route list showed 61 routes.
+- Migration check reported nothing to migrate.
+- PHPUnit result: 66 tests passed, 254 assertions.
+- MySQL testing database: `eduquiz_test`.
+- Production asset build passed.
+- Reference-based UI redesign completed using login and dashboard reference images.
+- Global and contextual loading UX was added for internal navigation, form submission, quiz submission, and confirmed deletes.
+- Redesign remained Blade/Tailwind-only and did not add packages, GSAP, animation libraries, React, Vue, Inertia, route changes, schema changes, or auth behavior changes.
+
 ### Run: Phase 1 project setup
 
 Commands:

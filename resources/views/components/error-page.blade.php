@@ -26,6 +26,8 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans text-slate-900 antialiased">
+        <x-loading-overlay />
+
         <main class="eq-app-shell">
             <div class="mx-auto flex min-h-screen max-w-4xl items-center px-4 py-10 sm:px-6 lg:px-8">
                 <section class="w-full rounded-3xl border border-white/80 bg-white/90 p-8 text-center shadow-xl shadow-slate-200/80 backdrop-blur sm:p-10">

@@ -13,32 +13,34 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased">
-        <main class="min-h-screen overflow-hidden bg-slate-950 text-white">
-            <div class="absolute inset-x-0 top-0 h-[560px] bg-[radial-gradient(circle_at_20%_10%,_rgba(16,185,129,0.28),_transparent_30%),radial-gradient(circle_at_85%_20%,_rgba(45,212,191,0.12),_transparent_26%)]"></div>
+        <x-loading-overlay />
+
+        <main class="min-h-screen overflow-hidden bg-[#eef4ed] text-slate-950">
+            <div class="absolute inset-x-0 top-0 h-[620px] bg-[radial-gradient(circle_at_18%_8%,_rgba(16,185,129,0.20),_transparent_30%),radial-gradient(circle_at_86%_12%,_rgba(124,58,237,0.10),_transparent_24%)]"></div>
 
             <nav class="relative z-10">
                 <div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 lg:px-8">
                     <a href="{{ url('/') }}" class="flex items-center gap-3 rounded-2xl focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:ring-offset-2 focus:ring-offset-slate-950">
                         <span class="flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-400 text-base font-black text-slate-950 shadow-lg shadow-emerald-500/20">EQ</span>
                         <span>
-                            <span class="block text-lg font-black tracking-tight">EduQuiz</span>
-                            <span class="block text-[11px] font-bold uppercase tracking-[0.18em] text-emerald-200">Mini Quiz LMS</span>
+                            <span class="block text-lg font-black tracking-tight text-slate-950">EduQuiz</span>
+                            <span class="block text-[11px] font-bold uppercase tracking-[0.18em] text-emerald-700">Mini Quiz LMS</span>
                         </span>
                     </a>
 
                     @if (Route::has('login'))
                         <div class="flex items-center gap-2">
                             @auth
-                                <a href="{{ url('/dashboard') }}" class="rounded-xl border border-white/15 px-4 py-2 text-sm font-bold text-white transition hover:bg-white/10">
+                                <a href="{{ url('/dashboard') }}" class="rounded-2xl border border-slate-200 bg-white px-4 py-2 text-sm font-bold text-slate-700 shadow-sm transition hover:border-emerald-300 hover:text-slate-950">
                                     Dashboard
                                 </a>
                             @else
-                                <a href="{{ route('login') }}" class="rounded-xl px-4 py-2 text-sm font-bold text-slate-200 transition hover:bg-white/10 hover:text-white">
+                                <a href="{{ route('login') }}" class="rounded-2xl px-4 py-2 text-sm font-bold text-slate-700 transition hover:bg-white hover:text-slate-950">
                                     Log in
                                 </a>
 
                                 @if (Route::has('register'))
-                                    <a href="{{ route('register') }}" class="rounded-xl bg-emerald-400 px-4 py-2 text-sm font-bold text-slate-950 shadow-lg shadow-emerald-500/20 transition hover:-translate-y-0.5 hover:bg-emerald-300">
+                                    <a href="{{ route('register') }}" class="rounded-2xl bg-slate-950 px-4 py-2 text-sm font-bold text-white shadow-lg shadow-slate-300 transition hover:-translate-y-0.5 hover:bg-emerald-950">
                                         Register
                                     </a>
                                 @endif
@@ -48,28 +50,28 @@
                 </div>
             </nav>
 
-            <section class="relative z-10 mx-auto grid max-w-7xl items-center gap-8 px-5 pb-14 pt-8 lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:pb-16 lg:pt-12">
+            <section class="relative z-10 mx-auto grid max-w-7xl items-center gap-8 px-5 pb-12 pt-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8 lg:pb-14 lg:pt-10">
                 <div class="max-w-3xl">
-                    <p class="text-sm font-bold text-emerald-200">Laravel Blade learning workspace</p>
-                    <h1 class="mt-4 max-w-4xl text-4xl font-black leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
+                    <p class="text-sm font-bold text-emerald-700">Laravel Blade learning workspace</p>
+                    <h1 class="mt-4 max-w-4xl text-4xl font-black leading-[1.05] tracking-tight text-slate-950 sm:text-5xl">
                         Courses, quizzes, and results in one clear demo flow.
                     </h1>
-                    <p class="mt-5 max-w-2xl text-base leading-7 text-slate-300">
+                    <p class="mt-5 max-w-2xl text-base leading-7 text-slate-600">
                         EduQuiz shows a complete Laravel MVC workflow: admins prepare learning content, students take quizzes, and every attempt stays easy to review.
                     </p>
                     <div class="mt-7 flex flex-col gap-3 sm:flex-row">
-                        <a href="{{ route('login') }}" class="inline-flex items-center justify-center rounded-xl bg-emerald-400 px-5 py-3 text-sm font-black text-slate-950 shadow-lg shadow-emerald-500/20 transition hover:-translate-y-0.5 hover:bg-emerald-300">
+                        <a href="{{ route('login') }}" class="inline-flex items-center justify-center rounded-2xl bg-slate-950 px-5 py-3 text-sm font-black text-white shadow-lg shadow-slate-300/70 transition hover:-translate-y-0.5 hover:bg-emerald-950">
                             Start demo
                         </a>
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-black text-white transition hover:-translate-y-0.5 hover:bg-white/10">
+                            <a href="{{ route('register') }}" class="inline-flex items-center justify-center rounded-2xl border border-slate-200 bg-white px-5 py-3 text-sm font-black text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:border-emerald-300 hover:text-slate-950">
                                 Create student account
                             </a>
                         @endif
                     </div>
                 </div>
 
-                <div class="rounded-[2rem] border border-white/10 bg-white/10 p-4 shadow-2xl shadow-emerald-950/40 backdrop-blur">
+                <div class="rounded-[2rem] border border-white/80 bg-white/70 p-4 shadow-2xl shadow-slate-300/70 backdrop-blur">
                     <div class="overflow-hidden rounded-3xl bg-slate-50 text-slate-950">
                         <div class="border-b border-slate-200 bg-white p-5">
                             <div class="flex items-center justify-between gap-4">
@@ -87,12 +89,12 @@
                             </div>
                             <div class="grid gap-3 sm:grid-cols-2">
                                 <div class="rounded-2xl bg-white p-4 shadow-sm shadow-slate-200/70">
-                                    <p class="text-3xl font-black tabular-nums text-slate-950">3</p>
-                                    <p class="mt-1 text-sm font-semibold text-slate-600">Core student steps</p>
+                                    <p class="text-sm font-black text-slate-950">Student path</p>
+                                    <p class="mt-1 text-sm font-semibold text-slate-600">Courses, quizzes, history</p>
                                 </div>
                                 <div class="rounded-2xl bg-emerald-50 p-4 shadow-sm shadow-emerald-100">
-                                    <p class="text-3xl font-black tabular-nums text-emerald-900">100%</p>
-                                    <p class="mt-1 text-sm font-semibold text-emerald-900">Saved scoring flow</p>
+                                    <p class="text-sm font-black text-emerald-900">Admin path</p>
+                                    <p class="mt-1 text-sm font-semibold text-emerald-900">Content and results</p>
                                 </div>
                             </div>
                             <div class="rounded-2xl bg-white p-4 shadow-sm shadow-slate-200/70">
@@ -109,7 +111,7 @@
                 </div>
             </section>
 
-            <section class="relative z-10 bg-slate-100 text-slate-950">
+            <section class="relative z-10 bg-white/70 text-slate-950">
                 <div class="mx-auto max-w-7xl px-5 py-14 lg:px-8">
                     <div class="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
                         <div>

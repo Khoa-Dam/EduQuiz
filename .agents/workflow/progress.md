@@ -5,7 +5,7 @@ This file is the main source for tracking completed phases, current work, blocke
 ## Current Status
 
 Current Phase:
-- Full UI redesign pass after Phase 14.5
+- Reference-based UI redesign pass after Phase 14.5
 
 Overall Status:
 - Complete
@@ -607,6 +607,81 @@ Result:
 
 Next:
 - Commit and push the full UI redesign branch, then record the final demo video.
+
+### Run: Reference-based UI redesign pass after Phase 14.5
+
+Current Phase:
+- Reference-based UI redesign pass after Phase 14.5
+
+Skills Considered:
+- redesign-existing-projects
+- gpt-taste
+- design-taste-frontend
+- git-workflow-and-versioning
+
+Skills Used:
+- redesign-existing-projects
+- gpt-taste as a static visual critique checklist only
+
+Reason:
+- The task was a reference-based redesign of the existing Laravel Blade UI while preserving routes, auth behavior, schema, tests, and business logic.
+
+Audit Summary:
+- The local login reference used a high-contrast split auth composition with a compact white form panel.
+- The local dashboard reference used a desktop LMS shell with a left sidebar, main content, colored hero/banner cards, and a right summary panel.
+- EduQuiz already had a first full redesign, so this pass focused on reference adaptation, stronger dashboard composition, and global/contextual loading feedback.
+
+Completed:
+- Created the branch `feature/reference-ui-redesign`.
+- Added a reusable centered page loading overlay for internal navigation.
+- Added vanilla JavaScript handling for internal navigation loading and confirmed delete loading.
+- Updated the Breeze auth failure message to `Invalid email or password. Please try again.`
+- Refined the landing page with a lighter reference-inspired product preview and balanced CTAs.
+- Reworked the guest auth layout toward the split-screen login reference while keeping Breeze logic intact.
+- Reworked the authenticated app shell into a desktop sidebar layout with mobile fallback navigation.
+- Redesigned student and admin dashboards with reference-inspired hero cards and right summary panels using real data only.
+- Added small dashboard controller data only for real featured course and recent attempt summaries.
+- Kept the redesign Blade/Tailwind-only with no new packages, GSAP, animation libraries, React, Vue, Inertia, route changes, schema changes, or auth behavior changes.
+
+Files Changed:
+- `app/Http/Controllers/Admin/DashboardController.php`
+- `app/Http/Controllers/DashboardController.php`
+- `lang/en/auth.php`
+- `resources/css/app.css`
+- `resources/js/app.js`
+- `resources/views/components/loading-overlay.blade.php`
+- `resources/views/components/error-page.blade.php`
+- `resources/views/layouts/app.blade.php`
+- `resources/views/layouts/guest.blade.php`
+- `resources/views/layouts/navigation.blade.php`
+- `resources/views/welcome.blade.php`
+- `resources/views/dashboard.blade.php`
+- `resources/views/admin/dashboard.blade.php`
+- `.agents/workflow/progress.md`
+- `.agents/workflow/test-log.md`
+
+Checks Run:
+- `php artisan route:list` - passed, 61 routes
+- `php artisan migrate --env=testing` - passed
+- `php artisan test` - passed, 66 tests and 254 assertions
+- `npm run build` - passed
+- `rg` scan for common mojibake patterns - passed
+
+Git:
+- Branch: `feature/reference-ui-redesign`
+- Commit: pending
+- Push: pending
+
+Encoding Check:
+- Found mojibake: No
+- Files affected: None
+- Fixed: No
+
+Result:
+- Passed
+
+Next:
+- Commit and push the reference-based UI redesign branch, then record the final demo video.
 
 ### Run: Phase 1 project setup
 

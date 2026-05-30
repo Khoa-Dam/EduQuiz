@@ -11,11 +11,12 @@
 
     <div class="eq-page">
         <div class="eq-container">
-            <section class="eq-hero-panel bg-slate-950 text-white">
-                <div class="grid gap-6 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+            <section class="grid gap-5 xl:grid-cols-[minmax(0,1fr)_20rem]">
+                <div class="eq-hero-panel bg-[linear-gradient(135deg,_#0f172a_0%,_#064e3b_58%,_#312e81_100%)] text-white">
+                    <div class="grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
                     <div>
                         <p class="text-sm font-bold text-emerald-300">Demo control center</p>
-                        <h3 class="mt-3 max-w-3xl text-3xl font-black leading-tight tracking-tight sm:text-4xl">
+                        <h3 class="mt-3 max-w-3xl text-3xl font-black leading-tight tracking-tight">
                             Manage content, publish quizzes, and review student results.
                         </h3>
                         <p class="mt-4 max-w-2xl text-sm leading-6 text-slate-300">
@@ -40,7 +41,27 @@
                             <span class="mt-1 block text-xs font-semibold text-emerald-950">Attempt review</span>
                         </a>
                     </div>
+                    </div>
                 </div>
+
+                <aside class="eq-card">
+                    <p class="text-sm font-black text-slate-950">Recent results</p>
+                    <p class="mt-2 eq-muted">Latest submitted attempts across the LMS.</p>
+
+                    <div class="mt-5 grid gap-3">
+                        @forelse ($latestAttempts as $attempt)
+                            <a href="{{ route('admin.attempts.show', $attempt) }}" class="rounded-2xl border border-slate-200 bg-slate-50 p-3 transition hover:border-emerald-300 hover:bg-emerald-50">
+                                <p class="text-sm font-black text-slate-950">{{ $attempt->quiz->title }}</p>
+                                <p class="mt-1 text-xs font-semibold text-slate-500">{{ $attempt->user->name }} - Score {{ $attempt->score }}</p>
+                            </a>
+                        @empty
+                            <div class="rounded-2xl bg-emerald-50 p-4">
+                                <p class="text-sm font-black text-slate-950">No attempts yet</p>
+                                <p class="mt-1 text-sm text-slate-600">Student submissions will appear here.</p>
+                            </div>
+                        @endforelse
+                    </div>
+                </aside>
             </section>
 
             <section class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

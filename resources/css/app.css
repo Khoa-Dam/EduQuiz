@@ -8,7 +8,7 @@
     }
 
     body {
-        @apply bg-slate-100 text-slate-900;
+        @apply bg-[#f4f7f3] text-slate-900;
     }
 
     [x-cloak] {
@@ -18,11 +18,23 @@
 
 @layer components {
     .eq-app-shell {
-        @apply min-h-screen bg-[radial-gradient(circle_at_top_left,_rgba(16,185,129,0.12),_transparent_28%),linear-gradient(180deg,_#f8fafc_0%,_#eef2f7_100%)];
+        @apply min-h-screen bg-[radial-gradient(circle_at_top_left,_rgba(16,185,129,0.13),_transparent_28%),radial-gradient(circle_at_bottom_right,_rgba(124,58,237,0.08),_transparent_24%),linear-gradient(180deg,_#f8fafc_0%,_#eef4ed_100%)];
+    }
+
+    .eq-sidebar-shell {
+        @apply min-h-screen lg:grid lg:grid-cols-[18rem_minmax(0,1fr)];
+    }
+
+    .eq-sidebar {
+        @apply sticky top-0 hidden h-screen border-r border-white/80 bg-white/90 px-5 py-6 shadow-xl shadow-slate-200/70 backdrop-blur lg:flex lg:flex-col;
+    }
+
+    .eq-main-shell {
+        @apply min-w-0;
     }
 
     .eq-page {
-        @apply py-8 sm:py-10;
+        @apply py-6 sm:py-8;
     }
 
     .eq-container {
@@ -30,7 +42,7 @@
     }
 
     .eq-panel {
-        @apply overflow-hidden rounded-3xl border border-white/80 bg-white/90 shadow-xl shadow-slate-200/70 backdrop-blur;
+        @apply overflow-hidden rounded-3xl border border-white/80 bg-white/95 shadow-xl shadow-slate-200/70 backdrop-blur;
     }
 
     .eq-panel-body {
@@ -38,15 +50,15 @@
     }
 
     .eq-hero-panel {
-        @apply overflow-hidden rounded-3xl border border-white/80 bg-white/90 p-5 shadow-xl shadow-slate-200/80 backdrop-blur sm:p-7;
+        @apply overflow-hidden rounded-3xl border border-white/80 bg-white/95 p-5 shadow-xl shadow-slate-200/80 backdrop-blur sm:p-6;
     }
 
     .eq-card {
-        @apply rounded-2xl border border-white/80 bg-white/90 p-5 shadow-lg shadow-slate-200/70 transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:shadow-xl hover:shadow-emerald-100 active:translate-y-0;
+        @apply rounded-3xl border border-white/80 bg-white/95 p-5 shadow-lg shadow-slate-200/70 transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:shadow-xl hover:shadow-emerald-100 active:translate-y-0;
     }
 
     .eq-stat-card {
-        @apply rounded-2xl border border-white/80 bg-white/90 p-4 shadow-lg shadow-slate-200/70;
+        @apply rounded-3xl border border-white/80 bg-white/95 p-4 shadow-lg shadow-slate-200/70;
     }
 
     .eq-stat-marker {
@@ -74,19 +86,35 @@
     }
 
     .eq-btn-primary {
-        @apply inline-flex items-center justify-center rounded-xl bg-slate-950 px-4 py-2.5 text-sm font-bold text-white shadow-lg shadow-slate-300/60 transition duration-200 hover:-translate-y-0.5 hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 active:translate-y-0 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-60;
+        @apply inline-flex items-center justify-center rounded-2xl bg-slate-950 px-4 py-2.5 text-sm font-bold text-white shadow-lg shadow-slate-300/60 transition duration-200 hover:-translate-y-0.5 hover:bg-emerald-950 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 active:translate-y-0 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-60;
     }
 
     .eq-btn-secondary {
-        @apply inline-flex items-center justify-center rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-bold text-slate-700 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-emerald-300 hover:text-slate-950 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 active:translate-y-0 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-60;
+        @apply inline-flex items-center justify-center rounded-2xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-bold text-slate-700 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-emerald-300 hover:text-slate-950 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 active:translate-y-0 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-60;
     }
 
     .eq-btn-danger {
-        @apply inline-flex items-center justify-center rounded-xl bg-red-600 px-4 py-2.5 text-sm font-bold text-white shadow-sm transition duration-200 hover:-translate-y-0.5 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 active:translate-y-0 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-60;
+        @apply inline-flex items-center justify-center rounded-2xl bg-red-600 px-4 py-2.5 text-sm font-bold text-white shadow-sm transition duration-200 hover:-translate-y-0.5 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 active:translate-y-0 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-60;
     }
 
     .eq-btn-ghost {
-        @apply inline-flex items-center justify-center rounded-xl px-3 py-2 text-sm font-bold text-slate-600 transition duration-200 hover:bg-slate-100 hover:text-slate-950 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2;
+        @apply inline-flex items-center justify-center rounded-2xl px-3 py-2 text-sm font-bold text-slate-600 transition duration-200 hover:bg-slate-100 hover:text-slate-950 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2;
+    }
+
+    .eq-side-link {
+        @apply flex items-center gap-3 rounded-2xl px-3 py-2.5 text-sm font-black text-slate-600 transition duration-200 hover:bg-emerald-50 hover:text-emerald-950 focus:outline-none focus:ring-2 focus:ring-emerald-500;
+    }
+
+    .eq-side-link-active {
+        @apply bg-slate-950 text-white shadow-lg shadow-slate-300 hover:bg-slate-950 hover:text-white;
+    }
+
+    .eq-side-icon {
+        @apply flex h-8 w-8 items-center justify-center rounded-xl bg-slate-100 text-xs font-black text-slate-700;
+    }
+
+    .eq-side-link-active .eq-side-icon {
+        @apply bg-emerald-400 text-slate-950;
     }
 
     .eq-alert-success {
@@ -177,5 +205,33 @@
     main input[type="radio"],
     main input[type="checkbox"] {
         @apply border-slate-300 text-emerald-600 focus:ring-emerald-500;
+    }
+
+    .eq-loader-dot {
+        @apply inline-flex h-3 w-3 rounded-full bg-emerald-500;
+        animation: eq-pulse 900ms ease-in-out infinite;
+    }
+}
+
+@keyframes eq-pulse {
+    0%, 100% {
+        transform: scale(0.85);
+        opacity: 0.45;
+    }
+    50% {
+        transform: scale(1.15);
+        opacity: 1;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *, ::before, ::after {
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 1ms !important;
     }
 }

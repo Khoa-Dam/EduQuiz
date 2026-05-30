@@ -15,22 +15,29 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased">
+        <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-2xl focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-black focus:text-slate-950 focus:shadow-xl">Skip to content</a>
+        <x-loading-overlay />
+
         <div class="eq-app-shell">
-            @include('layouts.navigation')
+            <div class="eq-sidebar-shell">
+                @include('layouts.navigation')
 
-            <!-- Page Heading -->
-            @isset($header)
-                <header class="border-b border-white/80 bg-white/70 shadow-sm shadow-slate-200/70 backdrop-blur">
-                    <div class="mx-auto max-w-7xl px-4 py-5 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endisset
+                <div class="eq-main-shell">
+                    <!-- Page Heading -->
+                    @isset($header)
+                        <header class="border-b border-white/80 bg-white/75 shadow-sm shadow-slate-200/70 backdrop-blur">
+                            <div class="mx-auto max-w-7xl px-4 py-5 sm:px-6 lg:px-8">
+                                {{ $header }}
+                            </div>
+                        </header>
+                    @endisset
 
-            <!-- Page Content -->
-            <main class="pb-12">
-                {{ $slot }}
-            </main>
+                    <!-- Page Content -->
+                    <main id="main-content" class="pb-12">
+                        {{ $slot }}
+                    </main>
+                </div>
+            </div>
         </div>
     </body>
 </html>

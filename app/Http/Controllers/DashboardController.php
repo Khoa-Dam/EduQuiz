@@ -23,6 +23,10 @@ class DashboardController extends Controller
                 'activeQuizzes' => Quiz::where('status', 'active')->count(),
                 'attempts' => QuizAttempt::where('user_id', $request->user()?->id)->count(),
             ],
+            'featuredCourse' => Course::withCount(['quizzes' => fn ($query) => $query->where('status', 'active')])
+                ->where('status', 'active')
+                ->latest()
+                ->first(),
             'latestAttempt' => QuizAttempt::with('quiz.course')
                 ->where('user_id', $request->user()?->id)
                 ->latest('submitted_at')
