@@ -95,12 +95,12 @@
                             <p class="mt-3 text-sm font-semibold leading-6 text-violet-100">
                                 Build a quiz, publish only when complete, then review student results from one workflow.
                             </p>
-                            <div class="mt-5 rounded-2xl bg-white/10 p-4">
+                            <div class="mt-5 rounded-2xl border border-white/80 bg-white p-4 text-slate-950 shadow-sm shadow-violet-900/10">
                                 <div class="flex items-center justify-between gap-4">
-                                    <span class="text-xs font-black uppercase tracking-[0.14em] text-violet-100">Readiness</span>
-                                    <span class="text-sm font-black text-white">85%</span>
+                                    <span class="text-xs font-black uppercase tracking-[0.14em] text-violet-700">Readiness</span>
+                                    <span class="text-sm font-black text-slate-950">85%</span>
                                 </div>
-                                <div class="mt-3 h-2 overflow-hidden rounded-full bg-white/10">
+                                <div class="mt-3 h-2 overflow-hidden rounded-full bg-slate-200">
                                     <div class="h-full w-[85%] rounded-full bg-yellow-300"></div>
                                 </div>
                             </div>
