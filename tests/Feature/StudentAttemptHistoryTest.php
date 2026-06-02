@@ -9,6 +9,7 @@ use App\Models\Quiz;
 use App\Models\QuizAttempt;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class StudentAttemptHistoryTest extends TestCase
@@ -24,6 +25,7 @@ class StudentAttemptHistoryTest extends TestCase
             ->get('/my-attempts')
             ->assertOk()
             ->assertSee($attempt->quiz->title)
+            ->assertSee('+90')
             ->assertSee('View result');
     }
 
@@ -36,8 +38,31 @@ class StudentAttemptHistoryTest extends TestCase
             ->get("/my-attempts/{$attempt->id}")
             ->assertOk()
             ->assertSee('Attempt Result')
+            ->assertSee('XP earned')
+            ->assertSee('+90')
             ->assertSee('Correct answer')
             ->assertSee('Correct');
+    }
+
+    public function test_student_attempt_detail_renders_quiz_and_question_images(): void
+    {
+        Storage::fake('public');
+
+        $student = User::factory()->student()->create();
+        Storage::disk('public')->put('quizzes/result-cover.jpg', 'fake image content');
+        Storage::disk('public')->put('questions/result-question.jpg', 'fake image content');
+        $attempt = $this->attemptFor($student, 'quizzes/result-cover.jpg', 'questions/result-question.jpg');
+
+        $this->actingAs($student)
+            ->get('/my-attempts')
+            ->assertOk()
+            ->assertSee('/storage/quizzes/result-cover.jpg');
+
+        $this->actingAs($student)
+            ->get("/my-attempts/{$attempt->id}")
+            ->assertOk()
+            ->assertSee('/storage/quizzes/result-cover.jpg')
+            ->assertSee('/storage/questions/result-question.jpg');
     }
 
     public function test_student_cannot_view_another_users_attempt(): void
@@ -51,13 +76,18 @@ class StudentAttemptHistoryTest extends TestCase
             ->assertForbidden();
     }
 
-    private function attemptFor(User $user): QuizAttempt
+    private function attemptFor(User $user, ?string $quizCoverPath = null, ?string $questionImagePath = null): QuizAttempt
     {
         $course = Course::create(['title' => 'Laravel Course']);
-        $quiz = Quiz::create(['course_id' => $course->id, 'title' => 'Laravel Quiz']);
+        $quiz = Quiz::create([
+            'course_id' => $course->id,
+            'title' => 'Laravel Quiz',
+            'cover_image_path' => $quizCoverPath,
+        ]);
         $question = Question::create([
             'quiz_id' => $quiz->id,
             'question_text' => 'Question text',
+            'image_path' => $questionImagePath,
             'points' => 1,
         ]);
         $answer = Answer::create([
@@ -71,6 +101,7 @@ class StudentAttemptHistoryTest extends TestCase
             'score' => 1,
             'total_questions' => 1,
             'correct_answers' => 1,
+            'xp_earned' => 90,
             'started_at' => now(),
             'submitted_at' => now(),
         ]);

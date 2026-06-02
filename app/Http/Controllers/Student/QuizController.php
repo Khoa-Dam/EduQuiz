@@ -4,10 +4,15 @@ namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
 use App\Models\Quiz;
+use App\Services\QuizReadinessService;
 use Illuminate\View\View;
 
 class QuizController extends Controller
 {
+    public function __construct(private readonly QuizReadinessService $readiness)
+    {
+    }
+
     public function show(Quiz $quiz): View
     {
         $this->ensureQuizIsAvailable($quiz);
@@ -28,6 +33,9 @@ class QuizController extends Controller
     {
         $quiz->loadMissing('course');
 
-        abort_unless($quiz->status === 'active' && $quiz->course->status === 'active', 404);
+        abort_unless(
+            $quiz->status === 'active' && $quiz->course->status === 'active' && $this->readiness->isReady($quiz),
+            404
+        );
     }
 }

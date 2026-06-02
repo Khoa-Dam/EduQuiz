@@ -9,7 +9,7 @@
     <div class="eq-page">
         <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
             <div class="eq-panel">
-                <form method="POST" action="{{ route('admin.quizzes.update', $quiz) }}" class="eq-panel-body" x-data="{ submitting: false }" x-on:submit="submitting = true">
+                <form method="POST" action="{{ route('admin.quizzes.update', $quiz) }}" enctype="multipart/form-data" class="eq-panel-body" x-data="{ submitting: false }" x-on:submit="submitting = true">
                     @csrf
                     @method('PUT')
 

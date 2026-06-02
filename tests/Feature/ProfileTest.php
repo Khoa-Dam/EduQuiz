@@ -4,6 +4,8 @@ namespace Tests\Feature;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\Testing\File;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class ProfileTest extends TestCase
@@ -43,6 +45,66 @@ class ProfileTest extends TestCase
         $this->assertNull($user->email_verified_at);
     }
 
+    public function test_profile_avatar_can_be_uploaded(): void
+    {
+        Storage::fake('public');
+
+        $user = User::factory()->create();
+
+        $this
+            ->actingAs($user)
+            ->patch('/profile', [
+                'name' => 'Test User',
+                'email' => $user->email,
+                'avatar' => $this->fakePng('avatar.png'),
+            ])
+            ->assertSessionHasNoErrors()
+            ->assertRedirect('/profile');
+
+        $user->refresh();
+
+        $this->assertNotNull($user->avatar_path);
+        Storage::disk('public')->assertExists($user->avatar_path);
+        $this->assertStringContainsString('/storage/', $user->avatarUrl());
+    }
+
+    public function test_profile_avatar_can_be_replaced_and_removed(): void
+    {
+        Storage::fake('public');
+
+        $oldPath = $this->fakePng('old-avatar.png')->store('avatars', 'public');
+        $user = User::factory()->create(['avatar_path' => $oldPath]);
+
+        $this
+            ->actingAs($user)
+            ->patch('/profile', [
+                'name' => $user->name,
+                'email' => $user->email,
+                'avatar' => $this->fakePng('new-avatar.png'),
+            ])
+            ->assertSessionHasNoErrors()
+            ->assertRedirect('/profile');
+
+        $user->refresh();
+        Storage::disk('public')->assertMissing($oldPath);
+        Storage::disk('public')->assertExists($user->avatar_path);
+
+        $pathToRemove = $user->avatar_path;
+
+        $this
+            ->actingAs($user)
+            ->patch('/profile', [
+                'name' => $user->name,
+                'email' => $user->email,
+                'remove_avatar' => '1',
+            ])
+            ->assertSessionHasNoErrors()
+            ->assertRedirect('/profile');
+
+        $this->assertNull($user->refresh()->avatar_path);
+        Storage::disk('public')->assertMissing($pathToRemove);
+    }
+
     public function test_email_verification_status_is_unchanged_when_the_email_address_is_unchanged(): void
     {
         $user = User::factory()->create();
@@ -79,6 +141,24 @@ class ProfileTest extends TestCase
         $this->assertNull($user->fresh());
     }
 
+    public function test_user_avatar_is_deleted_when_account_is_deleted(): void
+    {
+        Storage::fake('public');
+
+        $avatarPath = $this->fakePng('avatar.png')->store('avatars', 'public');
+        $user = User::factory()->create(['avatar_path' => $avatarPath]);
+
+        $this
+            ->actingAs($user)
+            ->delete('/profile', [
+                'password' => 'password',
+            ])
+            ->assertSessionHasNoErrors()
+            ->assertRedirect('/');
+
+        Storage::disk('public')->assertMissing($avatarPath);
+    }
+
     public function test_correct_password_must_be_provided_to_delete_account(): void
     {
         $user = User::factory()->create();
@@ -95,5 +175,13 @@ class ProfileTest extends TestCase
             ->assertRedirect('/profile');
 
         $this->assertNotNull($user->fresh());
+    }
+
+    private function fakePng(string $name): File
+    {
+        return File::createWithContent(
+            $name,
+            base64_decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+/p9sAAAAASUVORK5CYII=')
+        );
     }
 }

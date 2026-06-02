@@ -5,7 +5,7 @@
                 <p class="text-sm font-bold text-emerald-700">Quiz detail</p>
                 <h2 class="mt-1 text-2xl font-black tracking-tight text-slate-950">{{ $quiz->title }}</h2>
             </div>
-            <a href="{{ route('admin.quizzes.edit', $quiz) }}" class="eq-btn-primary">Edit quiz</a>
+            <a href="{{ route('admin.quiz-builder.edit', $quiz) }}" class="eq-btn-primary">Open builder</a>
         </div>
     </x-slot>
 
@@ -26,7 +26,29 @@
                         <span class="eq-status-badge">{{ ucfirst($quiz->status) }}</span>
                     </div>
 
+                    @if ($quiz->coverImageUrl())
+                        <div class="mt-6 overflow-hidden rounded-3xl border border-slate-200 bg-slate-50">
+                            <img src="{{ $quiz->coverImageUrl() }}" alt="Cover image for {{ $quiz->title }}" class="max-h-96 w-full object-cover">
+                        </div>
+                    @endif
+
+                    @if ($readinessErrors !== [])
+                        <div class="mt-6 rounded-3xl border border-amber-200 bg-amber-50 p-5">
+                            <p class="text-sm font-black text-amber-900">Setup needed before students can take this quiz</p>
+                            <ul class="mt-3 list-disc space-y-1 pl-5 text-sm text-amber-800">
+                                @foreach ($readinessErrors as $message)
+                                    <li>{{ $message }}</li>
+                                @endforeach
+                            </ul>
+                            <a href="{{ route('admin.quiz-builder.edit', $quiz) }}" class="mt-4 inline-flex eq-btn-secondary">Continue setup</a>
+                        </div>
+                    @endif
+
                     <dl class="mt-6 grid gap-4 sm:grid-cols-2">
+                        <div class="eq-stat-card">
+                            <dt class="text-sm font-bold text-slate-500">Questions</dt>
+                            <dd class="mt-2 text-xl font-black text-slate-950">{{ $quiz->questions->count() }}</dd>
+                        </div>
                         <div class="eq-stat-card">
                             <dt class="text-sm font-bold text-slate-500">Duration</dt>
                             <dd class="mt-2 text-xl font-black text-slate-950">{{ $quiz->duration_minutes ? $quiz->duration_minutes.' minutes' : 'No limit' }}</dd>

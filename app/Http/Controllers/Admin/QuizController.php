@@ -5,13 +5,20 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\Quiz;
+use App\Services\QuizReadinessService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
 class QuizController extends Controller
 {
+    public function __construct(private readonly QuizReadinessService $readiness)
+    {
+    }
+
     private const STATUSES = [
         'active' => 'Active',
         'inactive' => 'Inactive',
@@ -20,11 +27,13 @@ class QuizController extends Controller
     public function index(): View
     {
         $quizzes = Quiz::query()
-            ->with('course')
+            ->with(['course', 'questions.answers'])
             ->latest()
             ->paginate(10);
+        $quizReadiness = $quizzes->getCollection()
+            ->mapWithKeys(fn (Quiz $quiz): array => [$quiz->id => $this->readiness->isReady($quiz)]);
 
-        return view('admin.quizzes.index', compact('quizzes'));
+        return view('admin.quizzes.index', compact('quizzes', 'quizReadiness'));
     }
 
     public function create(): View
@@ -38,7 +47,19 @@ class QuizController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
-        $quiz = Quiz::create($this->validatedData($request));
+        $data = $this->validatedData($request);
+
+        if (($data['status'] ?? null) === 'active') {
+            throw ValidationException::withMessages([
+                'status' => 'Use Quiz Builder to publish a quiz after adding questions and answers.',
+            ]);
+        }
+
+        if ($request->hasFile('cover_image')) {
+            $data['cover_image_path'] = $request->file('cover_image')->store('quizzes', 'public');
+        }
+
+        $quiz = Quiz::create($data);
 
         return redirect()
             ->route('admin.quizzes.show', $quiz)
@@ -47,9 +68,12 @@ class QuizController extends Controller
 
     public function show(Quiz $quiz): View
     {
-        $quiz->load('course');
+        $quiz->load(['course', 'questions.answers']);
 
-        return view('admin.quizzes.show', compact('quiz'));
+        return view('admin.quizzes.show', [
+            'quiz' => $quiz,
+            'readinessErrors' => $this->readiness->errors($quiz),
+        ]);
     }
 
     public function edit(Quiz $quiz): View
@@ -63,7 +87,28 @@ class QuizController extends Controller
 
     public function update(Request $request, Quiz $quiz): RedirectResponse
     {
-        $quiz->update($this->validatedData($request));
+        $data = $this->validatedData($request);
+
+        if ($request->boolean('remove_cover_image') && $quiz->cover_image_path) {
+            Storage::disk('public')->delete($quiz->cover_image_path);
+            $data['cover_image_path'] = null;
+        }
+
+        if ($request->hasFile('cover_image')) {
+            if ($quiz->cover_image_path) {
+                Storage::disk('public')->delete($quiz->cover_image_path);
+            }
+
+            $data['cover_image_path'] = $request->file('cover_image')->store('quizzes', 'public');
+        }
+
+        if (($data['status'] ?? null) === 'active' && ! $this->readiness->isReady($quiz)) {
+            throw ValidationException::withMessages([
+                'status' => $this->readiness->errors($quiz),
+            ]);
+        }
+
+        $quiz->update($data);
 
         return redirect()
             ->route('admin.quizzes.show', $quiz)
@@ -72,6 +117,10 @@ class QuizController extends Controller
 
     public function destroy(Quiz $quiz): RedirectResponse
     {
+        if ($quiz->cover_image_path) {
+            Storage::disk('public')->delete($quiz->cover_image_path);
+        }
+
         $quiz->delete();
 
         return redirect()
@@ -84,12 +133,18 @@ class QuizController extends Controller
      */
     private function validatedData(Request $request): array
     {
-        return $request->validate([
+        $data = $request->validate([
             'course_id' => ['required', 'integer', 'exists:courses,id'],
             'title' => ['required', 'string', 'max:255'],
             'description' => ['nullable', 'string'],
+            'cover_image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
+            'remove_cover_image' => ['nullable', 'boolean'],
             'duration_minutes' => ['nullable', 'integer', 'min:1', 'max:10080'],
             'status' => ['required', 'string', Rule::in(array_keys(self::STATUSES))],
         ]);
+
+        unset($data['cover_image'], $data['remove_cover_image']);
+
+        return $data;
     }
 }

@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Answer;
 use App\Models\Quiz;
 use App\Models\QuizAttempt;
+use App\Services\LearningProgressService;
+use App\Services\QuizReadinessService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -13,6 +15,13 @@ use Illuminate\Validation\ValidationException;
 
 class QuizAttemptController extends Controller
 {
+    public function __construct(
+        private readonly QuizReadinessService $readiness,
+        private readonly LearningProgressService $progress,
+    )
+    {
+    }
+
     public function store(Request $request, Quiz $quiz): RedirectResponse
     {
         $this->ensureQuizIsAvailable($quiz);
@@ -56,6 +65,7 @@ class QuizAttemptController extends Controller
             $attempt->update([
                 'score' => $score,
                 'correct_answers' => $correctAnswers,
+                'xp_earned' => $this->progress->xpForAttempt($correctAnswers, $quiz->questions->count()),
             ]);
 
             return $attempt;
@@ -70,7 +80,10 @@ class QuizAttemptController extends Controller
     {
         $quiz->loadMissing('course');
 
-        abort_unless($quiz->status === 'active' && $quiz->course->status === 'active', 404);
+        abort_unless(
+            $quiz->status === 'active' && $quiz->course->status === 'active' && $this->readiness->isReady($quiz),
+            404
+        );
     }
 
     private function validateSubmittedAnswers(Request $request, Quiz $quiz): void

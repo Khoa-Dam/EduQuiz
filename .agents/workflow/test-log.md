@@ -35,6 +35,243 @@ Blocking:
 
 ## Test Runs
 
+### Run: User menu popup navigation polish
+
+Commands:
+- `npm run build`
+- `php artisan test --filter=AuthenticationTest`
+- `php artisan test --filter=RoleAccessTest`
+- `php artisan test`
+- Playwright user-menu smoke against `http://127.0.0.1:8001`
+- `rg` scan for old `P`/`L` topbar placeholders in navigation
+- `git diff --check`
+
+Result:
+- Passed
+
+Errors:
+- First Playwright smoke used an accessibility role lookup that did not detect the visible menu item reliably.
+
+Fixes:
+- Reran the smoke with visible role-menu and text-filtered menuitem locators; the admin and student profile/logout flows passed.
+
+Notes:
+- Production asset build passed.
+- Full PHPUnit result: 90 tests passed, 355 assertions.
+- Browser smoke verified admin and student can open the user popup, navigate to Profile, and log out with no console/page errors.
+- Navigation no longer has raw `P`/`L` placeholder controls.
+
+### Run: Mondly-inspired lavender UI redesign pass
+
+Commands:
+- `npm run build`
+- `php artisan test --filter=AdminQuizBuilderTest`
+- `php artisan test --filter=RoleAccessTest`
+- `php artisan test --filter=StudentCourseQuizBrowsingTest`
+- `php artisan test --filter=AuthenticationTest`
+- `php artisan test`
+- Playwright screenshot script against `http://127.0.0.1:8000`
+- Playwright full browser smoke script against `http://127.0.0.1:8000`
+- `rg` scan for common mojibake patterns in `resources/views`, `resources/css`, and `public/favicon.svg`
+
+Result:
+- Passed
+
+Errors:
+- Initial focused PHPUnit commands were run in parallel against the same MySQL `eduquiz_test` database and collided while `RefreshDatabase` dropped/created tables.
+- Visual screenshot review showed primary button text inside the hero and launch-console rows had weak contrast after the light-theme override.
+
+Fixes:
+- Reran focused PHPUnit suites sequentially; all passed.
+- Added scoped contrast exceptions for primary buttons on hero/studio surfaces.
+- Changed the builder launch-console rows to readable slate text on violet-tinted rows.
+
+Notes:
+- Production asset build passed.
+- Full PHPUnit result: 90 tests passed, 355 assertions.
+- Browser screenshot smoke passed with no console or page errors and refreshed `D:/tmp/eduquiz-dashboard-wow.png`, `D:/tmp/eduquiz-courses-wow.png`, and `D:/tmp/eduquiz-builder-wow.png`.
+- Full browser smoke passed: admin created/published through Quiz Builder, student completed the quiz, result page showed XP.
+- Mojibake scan found no common encoding artifacts in the checked UI files.
+
+### Run: Stronger mission-flow UI redesign pass
+
+Commands:
+- `npm run build`
+- `php artisan test`
+- Playwright browser smoke script against `http://127.0.0.1:8000`
+- Playwright screenshot script for dashboard, courses, and builder
+- `php artisan route:list`
+- `git diff --check`
+
+Result:
+- Passed
+
+Errors:
+- Initial build failed because `bg-slate-950/78` is not a valid Tailwind opacity utility.
+
+Fixes:
+- Changed the command dock background utility to `bg-slate-950/80`.
+
+Notes:
+- PHPUnit result: 90 tests passed, 355 assertions.
+- Browser smoke result: admin publish flow and student cockpit/result flow passed with a clean console.
+- Screenshot pass wrote refreshed `D:/tmp/eduquiz-dashboard-wow.png`, `D:/tmp/eduquiz-courses-wow.png`, and `D:/tmp/eduquiz-builder-wow.png`.
+- Route list showed 67 routes.
+- `git diff --check` found no whitespace errors.
+
+### Run: Large game-like UI redesign pass
+
+Commands:
+- `npm run build`
+- `php artisan test --filter=RoleAccessTest`
+- `php artisan test --filter=StudentCourseQuizBrowsingTest`
+- Playwright browser smoke script against `http://127.0.0.1:8000`
+- Playwright screenshot script for dashboard, courses, and builder
+- `php artisan test`
+- `php artisan route:list`
+- `git diff --check`
+
+Result:
+- Passed
+
+Errors:
+- None.
+
+Fixes:
+- None.
+
+Notes:
+- PHPUnit result: 90 tests passed, 355 assertions.
+- Browser smoke result: admin publish flow and student stepper/result flow still passed with a clean console.
+- Screenshot pass wrote `D:/tmp/eduquiz-dashboard-wow.png`, `D:/tmp/eduquiz-courses-wow.png`, and `D:/tmp/eduquiz-builder-wow.png`.
+- Route list showed 67 routes.
+- Production asset build passed.
+- `git diff --check` found no whitespace errors.
+
+### Run: Game-like Quiz Studio and XP progress upgrade
+
+Commands:
+- `php artisan migrate:fresh --env=testing`
+- `php artisan test --filter=LearningProgressServiceTest`
+- `php artisan test --filter=QuizTakingScoringTest`
+- `php artisan test --filter=StudentAttemptHistoryTest`
+- `php artisan test --filter=DatabaseSchemaTest`
+- `php artisan test --filter=AdminQuizBuilderTest`
+- `php artisan migrate`
+- Playwright browser smoke script against `http://127.0.0.1:8000`
+- `npm run build`
+- `php artisan route:list`
+- `git diff --check`
+- `php artisan test`
+
+Result:
+- Passed
+
+Errors:
+- Parallel focused PHPUnit runs collided on the shared MySQL `eduquiz_test` database while `RefreshDatabase` was dropping/recreating tables.
+- Full suite initially failed because the Builder page no longer contained the legacy visible text `Quiz Builder`.
+- First browser smoke script looked for the newly created quiz by text in `/courses`, but that flow was not reliable for the card layout.
+
+Fixes:
+- Refreshed the testing database and reran focused suites sequentially.
+- Restored compatibility copy as `Quiz Builder · Live Studio`.
+- Updated browser smoke to read the quiz id from the builder edit URL and open the student quiz detail directly.
+
+Notes:
+- PHPUnit result: 90 tests passed, 355 assertions.
+- Browser smoke result: admin creates/publishes in Live Studio, student completes the stepper quiz, result shows XP, and browser console is clean.
+- Route list showed 67 routes.
+- Production asset build passed.
+- Local database migration for `quiz_attempts.xp_earned` passed.
+- `git diff --check` found no whitespace errors.
+
+### Run: Browser-verified Admin Quiz Builder hardening
+
+Commands:
+- `Start-Process php artisan serve --host=127.0.0.1 --port=8000`
+- Playwright browser smoke script against `http://127.0.0.1:8000`
+- `npm run build`
+- `php artisan test`
+- `php artisan route:list`
+
+Result:
+- Passed
+
+Errors:
+- First browser smoke attempt found the Quiz Builder form did not submit because the click handler disabled the submit button before native form submission.
+- The browser console also reported an invalid Alpine expression for the primary submit button intent.
+- GSAP emitted warnings when optional animation targets were missing on some pages.
+
+Fixes:
+- Changed builder click handling so it only sets the submit intent; the form submit event now owns the loading state.
+- Replaced the Blade `@js` expression inside the Alpine click handler with a quoted intent value.
+- Guarded GSAP hero, reveal, and media animations so they only run when targets exist.
+- Rebuilt production assets after the JavaScript fix.
+
+Notes:
+- Browser smoke result: admin login, builder create/publish, admin quiz Active check, student login, course list, and profile page all passed.
+- Browser console result: no warnings or errors after fixes.
+- PHPUnit result: 88 tests passed, 346 assertions.
+- Route list showed 67 routes.
+- Production asset build passed.
+
+### Run: Admin Quiz Builder refactor
+
+Commands:
+- `php artisan route:list`
+- `php artisan test --filter=AdminQuizBuilderTest`
+- `php artisan test --filter=StudentCourseQuizBrowsingTest`
+- `php artisan test --filter=AdminQuizCrudTest`
+- `php artisan test`
+- `npm run build`
+
+Result:
+- Passed
+
+Errors:
+- Initial focused tests were run in parallel against the same MySQL test database and collided during `RefreshDatabase`.
+- `ManualDemoFlowTest` initially failed because the old manual flow tried to create an active quiz through legacy CRUD without builder-ready answers.
+
+Fixes:
+- Refreshed the testing database with `php artisan migrate:fresh --env=testing`.
+- Reran focused tests sequentially.
+- Updated the manual demo flow to create and publish the quiz through Quiz Builder.
+
+Notes:
+- Route list showed 67 routes.
+- PHPUnit result: 84 tests passed, 333 assertions.
+- Production asset build passed.
+- Builder render, draft save, publish success, publish failure, legacy active blocking, and student readiness filtering are covered.
+
+### Run: Quiz Builder hardening follow-up
+
+Commands:
+- `php artisan test --filter=AdminQuizBuilderTest`
+- `php artisan test --filter=StudentCourseQuizBrowsingTest`
+- `php artisan test --filter=AdminQuizCrudTest`
+- `php artisan route:list`
+- `npm run build`
+- `php artisan test`
+- `php artisan test --stop-on-failure`
+
+Result:
+- Passed
+
+Errors:
+- `php artisan test` timed out unexpectedly without returning PHPUnit failure details.
+
+Fixes:
+- Checked active PHP processes.
+- Reran the full suite with `--stop-on-failure`; it completed successfully.
+
+Notes:
+- Route list showed 67 routes.
+- Focused builder result: 10 tests passed, 32 assertions.
+- Focused student browsing result: 8 tests passed, 27 assertions.
+- Focused admin quiz CRUD result: 9 tests passed, 32 assertions.
+- Full PHPUnit result: 88 tests passed, 346 assertions.
+- Production asset build passed.
+
 ### Run: Not started yet
 
 Commands:
@@ -417,12 +654,15 @@ Encoding Check:
 Notes:
 - Route list showed 61 routes.
 - Migration check reported nothing to migrate.
-- PHPUnit result: 66 tests passed, 254 assertions.
+- PHPUnit result: 75 tests passed, 311 assertions.
 - MySQL testing database: `eduquiz_test`.
 - Production asset build passed.
 - Reference-based UI redesign completed using login and dashboard reference images.
 - Global and contextual loading UX was added for internal navigation, form submission, quiz submission, and confirmed deletes.
-- Redesign remained Blade/Tailwind-only and did not add packages, GSAP, animation libraries, React, Vue, Inertia, route changes, schema changes, or auth behavior changes.
+- Media enhancement follow-up added quiz cover images, question images, profile avatars, public-disk cleanup, student image rendering, and GSAP reveal motion with reduced-motion handling.
+- Image URL bug fix changed quiz, question, and avatar helpers to emit relative `/storage/...` URLs so images do not depend on `APP_URL` matching the local dev host and port.
+- Confirmed `public/storage` exists as a junction to `storage/app/public`.
+- Routes, auth behavior, scoring behavior, and core quiz business logic remained unchanged.
 
 ### Run: Phase 1 project setup
 

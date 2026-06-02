@@ -21,6 +21,12 @@
                     <h3 class="mt-4 text-2xl font-black tracking-tight text-slate-950">{{ $question->question_text }}</h3>
                     <p class="mt-3 text-sm font-bold text-slate-500">Points: {{ $question->points }}</p>
 
+                    @if ($question->imageUrl())
+                        <div class="mt-6 overflow-hidden rounded-3xl border border-slate-200 bg-slate-50">
+                            <img src="{{ $question->imageUrl() }}" alt="Image for this question" class="max-h-96 w-full object-cover">
+                        </div>
+                    @endif
+
                     <div class="mt-7 border-t border-slate-100 pt-5">
                         <div class="mb-4 flex items-center justify-between gap-4">
                             <h4 class="text-lg font-black text-slate-950">Answer choices</h4>

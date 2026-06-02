@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\CourseController as AdminCourseController;
+use App\Http\Controllers\Admin\QuizBuilderController as AdminQuizBuilderController;
 use App\Http\Controllers\Admin\QuizController as AdminQuizController;
+use App\Http\Controllers\Admin\QuizPublishController as AdminQuizPublishController;
 use App\Http\Controllers\Admin\QuestionController as AdminQuestionController;
 use App\Http\Controllers\Admin\AnswerController as AdminAnswerController;
 use App\Http\Controllers\Admin\AttemptController as AdminAttemptController;
@@ -27,6 +29,12 @@ Route::middleware(['auth', 'admin'])
     ->name('admin.')
     ->group(function (): void {
         Route::get('/dashboard', AdminDashboardController::class)->name('dashboard');
+        Route::get('quiz-builder/create', [AdminQuizBuilderController::class, 'create'])->name('quiz-builder.create');
+        Route::post('quiz-builder', [AdminQuizBuilderController::class, 'store'])->name('quiz-builder.store');
+        Route::get('quiz-builder/{quiz}/edit', [AdminQuizBuilderController::class, 'edit'])->name('quiz-builder.edit');
+        Route::put('quiz-builder/{quiz}', [AdminQuizBuilderController::class, 'update'])->name('quiz-builder.update');
+        Route::post('quizzes/{quiz}/publish', [AdminQuizPublishController::class, 'publish'])->name('quizzes.publish');
+        Route::post('quizzes/{quiz}/unpublish', [AdminQuizPublishController::class, 'unpublish'])->name('quizzes.unpublish');
         Route::resource('courses', AdminCourseController::class);
         Route::resource('quizzes', AdminQuizController::class);
         Route::resource('questions', AdminQuestionController::class);
