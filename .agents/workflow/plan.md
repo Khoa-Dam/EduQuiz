@@ -264,21 +264,21 @@ Expected view tree:
 
 ```text
 resources/views/
-├── layouts/
-│   ├── app.blade.php
-│   └── admin.blade.php
-├── dashboard.blade.php
-├── admin/
-│   ├── dashboard.blade.php
-│   ├── courses/
-│   ├── quizzes/
-│   ├── questions/
-│   ├── answers/
-│   └── attempts/
-└── student/
-    ├── courses/
-    ├── quizzes/
-    └── attempts/
+|-- layouts/
+|   |-- app.blade.php
+|   `-- admin.blade.php
+|-- dashboard.blade.php
+|-- admin/
+|   |-- dashboard.blade.php
+|   |-- courses/
+|   |-- quizzes/
+|   |-- questions/
+|   |-- answers/
+|   `-- attempts/
+`-- student/
+    |-- courses/
+    |-- quizzes/
+    `-- attempts/
 ```
 
 View groups:
@@ -314,6 +314,12 @@ Checklist:
 * Register/login/logout work.
 * Dashboard is accessible after login.
 
+Status:
+
+* Completed.
+* Verified with MySQL testing database `eduquiz_test`.
+* `php artisan route:list`, `php artisan migrate --env=testing`, `php artisan test`, and `npm run build` passed.
+
 ### Phase 2: Role admin/student
 
 Goal:
@@ -331,6 +337,15 @@ Checklist:
 * Student cannot access `/admin`.
 * Admin can access `/admin/dashboard`.
 
+Status:
+
+* Completed.
+* Added simple `users.role` support with `admin` and `student` roles.
+* New registered users default to `student`.
+* Admin middleware protects `/admin/dashboard`.
+* Verified with MySQL testing database `eduquiz_test`.
+* `php artisan migrate --env=testing`, `php artisan route:list`, `php artisan test`, and `npm run build` passed.
+
 ### Phase 3: Core database schema
 
 Goal:
@@ -345,6 +360,15 @@ Checklist:
 * Database has all required tables.
 * Foreign keys are correct.
 * Relationships work.
+
+Status:
+
+* Completed.
+* Added migrations for courses, quizzes, questions, answers, quiz_attempts, and quiz_attempt_answers.
+* Added Eloquent models and relationships for the core quiz domain.
+* Added schema and relationship tests.
+* Verified with MySQL testing database `eduquiz_test`.
+* `php artisan migrate --env=testing`, `php artisan test`, `php artisan route:list`, and `npm run build` passed.
 
 ### Phase 4: Admin Course CRUD
 
@@ -361,6 +385,15 @@ Checklist:
 * Course deletion works.
 * Course list displays correctly.
 
+Status:
+
+* Completed.
+* Added admin-only Course resource routes and controller.
+* Added course list, create, edit, show, and delete Blade UI.
+* Added validation for course title, description, and status.
+* Added feature tests for admin Course CRUD and student access denial.
+* `php artisan migrate --env=testing`, `php artisan route:list`, `php artisan test`, and `npm run build` passed.
+
 ### Phase 5: Admin Quiz CRUD
 
 Goal:
@@ -374,6 +407,15 @@ Checklist:
 * Create quiz for a course.
 * Quiz list shows related course.
 * Quiz detail works.
+
+Status:
+
+* Completed.
+* Added admin-only Quiz resource routes and controller.
+* Added quiz list, create, edit, show, and delete Blade UI.
+* Added validation for course, title, duration, status, and description.
+* Added feature tests for admin Quiz CRUD and student access denial.
+* `php artisan migrate --env=testing`, `php artisan route:list`, `php artisan test`, and `npm run build` passed.
 
 ### Phase 6: Admin Question & Answer CRUD
 
@@ -391,6 +433,16 @@ Checklist:
 * Correct answer marking works.
 * Questions display by quiz.
 
+Status:
+
+* Completed.
+* Added admin-only Question and Answer resource routes and controllers.
+* Added question list, create, edit, show, and delete Blade UI.
+* Added answer list, create, edit, show, and delete Blade UI.
+* Added validation so each question with answers keeps at least one correct answer.
+* Added feature tests for question CRUD, answer CRUD, correct-answer marking, validation, and student access denial.
+* `php artisan migrate --env=testing`, `php artisan route:list`, `php artisan test`, and `npm run build` passed.
+
 ### Phase 7: Student course/quiz browsing
 
 Goal:
@@ -405,6 +457,15 @@ Checklist:
 * Student sees active courses.
 * Student sees active quizzes.
 * Student does not see admin pages.
+
+Status:
+
+* Completed.
+* Added authenticated student course list and course detail pages.
+* Added active quiz detail and quiz start pages.
+* Added active-only visibility rules for student browsing.
+* Added feature tests for active course/quiz visibility, quiz start page, and admin denial.
+* `php artisan migrate --env=testing`, `php artisan route:list`, `php artisan test`, and `npm run build` passed.
 
 ### Phase 8: Quiz taking and scoring
 
@@ -432,6 +493,16 @@ Checklist:
 * Attempt is saved.
 * Attempt answer detail is saved.
 
+Status:
+
+* Completed.
+* Added quiz submit route and QuizAttemptController.
+* Updated quiz start page to render answer choices and submit form.
+* Added score calculation using question points.
+* Saved quiz_attempt and quiz_attempt_answers records.
+* Added feature tests for scoring, required answers, invalid answer ownership, and inactive quiz denial.
+* `php artisan migrate --env=testing`, `php artisan route:list`, `php artisan test`, and `npm run build` passed.
+
 ### Phase 9: Student result history
 
 Goal:
@@ -446,6 +517,16 @@ Checklist:
 * Student cannot view another user's attempt.
 * Detail shows score and correct/wrong counts.
 
+Status:
+
+* Completed.
+* Added student attempt history and attempt detail routes.
+* Added ownership enforcement for attempt detail.
+* Added attempt list and detail Blade pages.
+* Updated quiz submit flow to redirect to saved attempt result.
+* Added feature tests for own history, own detail, and cross-user denial.
+* `php artisan migrate --env=testing`, `php artisan route:list`, `php artisan test`, and `npm run build` passed.
+
 ### Phase 10: Admin attempt review
 
 Goal:
@@ -459,6 +540,15 @@ Checklist:
 * Admin sees all attempts.
 * Admin sees attempt detail.
 * User, quiz, and score are clear.
+
+Status:
+
+* Completed.
+* Added admin attempt list and detail routes.
+* Added admin attempt review pages with student, quiz, course, score, and answer detail.
+* Added navigation and dashboard links for result review.
+* Added feature tests for admin list, admin detail, and student denial.
+* `php artisan migrate --env=testing`, `php artisan route:list`, `php artisan test`, and `npm run build` passed.
 
 ### Phase 11: UI polish
 
@@ -477,6 +567,13 @@ Checklist:
 * Tables are readable.
 * Back links exist where needed.
 
+Status:
+
+* Completed.
+* Added student dashboard action links for course browsing and attempt history.
+* Verified existing forms, tables, empty states, and back links from prior CRUD/result pages.
+* `php artisan migrate --env=testing`, `php artisan route:list`, `php artisan test`, and `npm run build` passed.
+
 ### Phase 12: Demo seed data
 
 Goal:
@@ -492,6 +589,14 @@ Checklist:
 
 * Seeder runs successfully.
 * Demo data is enough for immediate demo.
+
+Status:
+
+* Completed.
+* Added idempotent demo seed data for admin and student accounts.
+* Added 2 courses with active quizzes, questions, and answers.
+* Verified seeder with `php artisan db:seed --env=testing`.
+* `php artisan migrate --env=testing`, `php artisan db:seed --env=testing`, `php artisan test`, `npm run build`, and `php artisan route:list` passed.
 
 ### Phase 13: Manual testing
 
@@ -509,6 +614,13 @@ Checklist:
 * Logout works.
 * Role middleware works.
 
+Status:
+
+* Completed.
+* Added automated manual demo flow coverage for register, login, logout, admin setup, student quiz taking, scoring, history, admin attempt review, and role middleware.
+* Verified with MySQL testing database `eduquiz_test`.
+* `php artisan migrate --env=testing`, `php artisan test`, `npm run build`, and `php artisan route:list` passed.
+
 ### Phase 14: README and GitHub
 
 README should include:
@@ -523,6 +635,46 @@ README should include:
 * Database setup.
 * Screenshots if available.
 
+Status:
+
+* Completed.
+* Replaced the default Laravel README with EduQuiz-specific documentation.
+* Documented the project description, tech stack, features, install guide, run guide, MySQL setup, demo accounts, main routes, testing commands, and demo flow.
+* Verified with `php artisan route:list`, `php artisan migrate --env=testing`, `php artisan test`, and `npm run build`.
+
+### Phase 14.5: Frontend UI Polish
+
+Goal:
+
+* Replace the default Laravel welcome page with an EduQuiz landing page.
+* Improve admin dashboard visual hierarchy.
+* Improve student dashboard visual hierarchy.
+* Improve navigation and branding.
+* Improve tables, forms, buttons, alerts, and empty states.
+* Improve quiz-taking and result/history pages for demo clarity.
+* Keep UI simple, polished, and Blade-based.
+
+Audit summary:
+
+* Landing page was still the default Laravel welcome screen.
+* Shared layout and navigation were still close to Laravel Breeze defaults.
+* Admin and student dashboards had minimal hierarchy and weak demo framing.
+* Tables, forms, buttons, empty states, quiz pages, and result pages were functional but visually plain.
+
+Status:
+
+* Completed.
+* Added an EduQuiz landing page with branding, demo actions, feature cards, and admin/student flow.
+* Improved shared layout, navigation, buttons, forms, tables, alerts, empty states, dashboards, quiz pages, and result/history pages.
+* Added small dashboard stat queries for demo clarity without changing business behavior.
+* Auth UI polish was completed after frontend polish to align Breeze login, register, password reset, password confirmation, and email verification pages with the EduQuiz visual style.
+* UX states and error pages follow-up was completed after frontend polish to add custom error pages, submit loading states, delete confirmations, stronger empty states, and consistent feedback styling.
+* UI refinement pass was completed after frontend polish to tighten landing, auth, dashboard, navigation, card, table, form, and result page proportions for demo readiness.
+* Full UI redesign pass was completed after frontend polish to unify the Blade/Tailwind visual system across landing, auth, dashboards, CRUD, student, profile, error, and UX states.
+* Reference-based UI redesign was completed using the local login and dashboard reference images, including a sidebar-style app shell, split auth composition, real-data dashboard summary panels, and a global/contextual loading UX system.
+* Used Blade, Tailwind/simple styling, and Laravel Breeze only.
+* Verified with `php artisan route:list`, `php artisan migrate --env=testing`, `php artisan test`, and `npm run build`.
+
 ### Phase 15: Demo video
 
 Demo script:
@@ -536,6 +688,14 @@ Demo script:
 7. Student sees score.
 8. Admin reviews result.
 9. Close with short summary.
+
+Status:
+
+* Completed.
+* Added `docs/video-demo-script.md` with a 3-5 minute recording goal, demo accounts, recording checklist, full demo flow, suggested narration, backup plan, and final submission checklist.
+* Phase 15 was completed before Phase 14.5 Frontend UI Polish.
+* After Phase 14.5, the existing demo script was reviewed and synced to match the polished landing page, dashboards, navigation, quiz-taking pages, and result/history pages.
+* Verified with `php artisan route:list`, `php artisan migrate --env=testing`, `php artisan test`, and `npm run build`.
 
 ## 10. Seven-Day Schedule
 

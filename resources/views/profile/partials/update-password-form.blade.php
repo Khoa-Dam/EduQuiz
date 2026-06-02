@@ -1,15 +1,15 @@
 <section>
     <header>
-        <h2 class="text-lg font-medium text-gray-900">
+        <h2 class="text-lg font-black text-slate-950">
             {{ __('Update Password') }}
         </h2>
 
-        <p class="mt-1 text-sm text-gray-600">
+        <p class="mt-1 text-sm leading-6 text-slate-600">
             {{ __('Ensure your account is using a long, random password to stay secure.') }}
         </p>
     </header>
 
-    <form method="post" action="{{ route('password.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('password.update') }}" class="mt-6 space-y-6" x-data="{ submitting: false }" x-on:submit="submitting = true">
         @csrf
         @method('put')
 
@@ -32,7 +32,10 @@
         </div>
 
         <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
+            <x-primary-button x-bind:disabled="submitting">
+                <span x-show="! submitting">{{ __('Save') }}</span>
+                <span x-cloak x-show="submitting">Saving...</span>
+            </x-primary-button>
 
             @if (session('status') === 'password-updated')
                 <p
@@ -40,7 +43,7 @@
                     x-show="show"
                     x-transition
                     x-init="setTimeout(() => show = false, 2000)"
-                    class="text-sm text-gray-600"
+                    class="text-sm font-semibold text-slate-600"
                 >{{ __('Saved.') }}</p>
             @endif
         </div>
