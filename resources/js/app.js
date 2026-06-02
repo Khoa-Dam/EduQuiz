@@ -1,6 +1,7 @@
 
 
 import Alpine from 'alpinejs';
+import './student-motion';
 
 window.Alpine = Alpine;
 

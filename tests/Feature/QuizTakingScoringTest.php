@@ -33,6 +33,7 @@ class QuizTakingScoringTest extends TestCase
             'score' => 2,
             'total_questions' => 2,
             'correct_answers' => 1,
+            'xp_earned' => 35,
         ]);
 
         $attempt = $student->quizAttempts()->where('quiz_id', $quiz->id)->firstOrFail();
@@ -48,6 +49,28 @@ class QuizTakingScoringTest extends TestCase
             'question_id' => $questionTwo->id,
             'answer_id' => $wrongTwo->id,
             'is_correct' => false,
+        ]);
+    }
+
+    public function test_perfect_score_attempt_gets_bonus_xp(): void
+    {
+        $student = User::factory()->student()->create();
+        [$quiz, $questionOne, $questionTwo, $correctOne,, $correctTwo] = $this->quizWithQuestions();
+
+        $this->actingAs($student)
+            ->post("/quizzes/{$quiz->id}/submit", [
+                'answers' => [
+                    $questionOne->id => $correctOne->id,
+                    $questionTwo->id => $correctTwo->id,
+                ],
+            ]);
+
+        $this->assertDatabaseHas('quiz_attempts', [
+            'user_id' => $student->id,
+            'quiz_id' => $quiz->id,
+            'score' => 5,
+            'correct_answers' => 2,
+            'xp_earned' => 90,
         ]);
     }
 
@@ -125,7 +148,7 @@ class QuizTakingScoringTest extends TestCase
             'answer_text' => 'Wrong one',
             'is_correct' => false,
         ]);
-        Answer::create([
+        $correctTwo = Answer::create([
             'question_id' => $questionTwo->id,
             'answer_text' => 'Correct two',
             'is_correct' => true,
@@ -136,6 +159,6 @@ class QuizTakingScoringTest extends TestCase
             'is_correct' => false,
         ]);
 
-        return [$quiz, $questionOne, $questionTwo, $correctOne, $wrongTwo];
+        return [$quiz, $questionOne, $questionTwo, $correctOne, $wrongTwo, $correctTwo];
     }
 }

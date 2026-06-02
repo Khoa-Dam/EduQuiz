@@ -672,7 +672,8 @@ Status:
 * UI refinement pass was completed after frontend polish to tighten landing, auth, dashboard, navigation, card, table, form, and result page proportions for demo readiness.
 * Full UI redesign pass was completed after frontend polish to unify the Blade/Tailwind visual system across landing, auth, dashboards, CRUD, student, profile, error, and UX states.
 * Reference-based UI redesign was completed using the local login and dashboard reference images, including a sidebar-style app shell, split auth composition, real-data dashboard summary panels, and a global/contextual loading UX system.
-* Used Blade, Tailwind/simple styling, and Laravel Breeze only.
+* Media enhancement follow-up added quiz cover images, question images, profile avatars, image cleanup behavior, and GSAP reveal motion for student pages.
+* Used Laravel Breeze, Blade, Tailwind, Laravel public storage, and GSAP for the targeted student motion layer.
 * Verified with `php artisan route:list`, `php artisan migrate --env=testing`, `php artisan test`, and `npm run build`.
 
 ### Phase 15: Demo video

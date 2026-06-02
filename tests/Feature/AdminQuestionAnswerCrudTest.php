@@ -8,6 +8,8 @@ use App\Models\Question;
 use App\Models\Quiz;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\Testing\File;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class AdminQuestionAnswerCrudTest extends TestCase
@@ -33,6 +35,69 @@ class AdminQuestionAnswerCrudTest extends TestCase
             'question_text' => 'What does MVC stand for?',
             'points' => 2,
         ]);
+    }
+
+    public function test_admin_can_upload_question_image(): void
+    {
+        Storage::fake('public');
+
+        $admin = User::factory()->admin()->create();
+        $quiz = $this->quiz();
+
+        $this->actingAs($admin)->post('/admin/questions', [
+            'quiz_id' => $quiz->id,
+            'question_text' => 'What does MVC stand for?',
+            'question_image' => $this->fakePng('question.png'),
+            'points' => 2,
+        ])->assertRedirect();
+
+        $question = Question::where('question_text', 'What does MVC stand for?')->firstOrFail();
+
+        $this->assertNotNull($question->image_path);
+        Storage::disk('public')->assertExists($question->image_path);
+        $this->assertStringContainsString('/storage/', $question->imageUrl());
+    }
+
+    public function test_admin_can_replace_and_remove_question_image(): void
+    {
+        Storage::fake('public');
+
+        $admin = User::factory()->admin()->create();
+        $quiz = $this->quiz();
+        $oldPath = $this->fakePng('old-question.png')->store('questions', 'public');
+        $question = Question::create([
+            'quiz_id' => $quiz->id,
+            'question_text' => 'Old question',
+            'image_path' => $oldPath,
+            'points' => 1,
+        ]);
+
+        $this->actingAs($admin)
+            ->put("/admin/questions/{$question->id}", [
+                'quiz_id' => $quiz->id,
+                'question_text' => 'Updated question',
+                'question_image' => $this->fakePng('new-question.png'),
+                'points' => 3,
+            ])
+            ->assertRedirect(route('admin.questions.show', $question, absolute: false));
+
+        $question->refresh();
+        Storage::disk('public')->assertMissing($oldPath);
+        Storage::disk('public')->assertExists($question->image_path);
+
+        $pathToRemove = $question->image_path;
+
+        $this->actingAs($admin)
+            ->put("/admin/questions/{$question->id}", [
+                'quiz_id' => $quiz->id,
+                'question_text' => 'Updated question',
+                'remove_question_image' => '1',
+                'points' => 3,
+            ])
+            ->assertRedirect(route('admin.questions.show', $question, absolute: false));
+
+        $this->assertNull($question->refresh()->image_path);
+        Storage::disk('public')->assertMissing($pathToRemove);
     }
 
     public function test_admin_can_update_and_delete_question(): void
@@ -171,5 +236,13 @@ class AdminQuestionAnswerCrudTest extends TestCase
             'question_text' => 'What does MVC stand for?',
             'points' => 1,
         ]);
+    }
+
+    private function fakePng(string $name): File
+    {
+        return File::createWithContent(
+            $name,
+            base64_decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+/p9sAAAAASUVORK5CYII=')
+        );
     }
 }

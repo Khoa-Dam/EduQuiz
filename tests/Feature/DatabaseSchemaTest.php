@@ -19,6 +19,8 @@ class DatabaseSchemaTest extends TestCase
 
     public function test_core_quiz_tables_exist_with_expected_columns(): void
     {
+        $this->assertTrue(Schema::hasColumn('users', 'avatar_path'));
+
         $this->assertTrue(Schema::hasColumns('courses', [
             'id',
             'title',
@@ -33,6 +35,7 @@ class DatabaseSchemaTest extends TestCase
             'course_id',
             'title',
             'description',
+            'cover_image_path',
             'duration_minutes',
             'status',
             'created_at',
@@ -43,6 +46,7 @@ class DatabaseSchemaTest extends TestCase
             'id',
             'quiz_id',
             'question_text',
+            'image_path',
             'points',
             'created_at',
             'updated_at',
@@ -64,6 +68,7 @@ class DatabaseSchemaTest extends TestCase
             'score',
             'total_questions',
             'correct_answers',
+            'xp_earned',
             'started_at',
             'submitted_at',
             'created_at',

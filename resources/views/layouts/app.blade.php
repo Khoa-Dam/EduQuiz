@@ -6,10 +6,11 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>{{ config('app.name', 'EduQuiz') }}</title>
+        <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}?v=eduquiz-1">
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600,700,800&display=swap" rel="stylesheet" />
+        <link href="https://fonts.bunny.net/css?family=outfit:400,500,600,700,800,900&display=swap" rel="stylesheet" />
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -25,7 +26,7 @@
                 <div class="eq-main-shell">
                     <!-- Page Heading -->
                     @isset($header)
-                        <header class="border-b border-white/80 bg-white/75 shadow-sm shadow-slate-200/70 backdrop-blur">
+                        <header class="eq-shell-header">
                             <div class="mx-auto max-w-7xl px-4 py-5 sm:px-6 lg:px-8">
                                 {{ $header }}
                             </div>
@@ -36,6 +37,21 @@
                     <main id="main-content" class="pb-12">
                         {{ $slot }}
                     </main>
+
+                    @auth
+                        <nav class="eq-command-dock" aria-label="Quick command dock">
+                            @if (Auth::user()->isAdmin())
+                                <a href="{{ route('admin.dashboard') }}" aria-current="{{ request()->routeIs('admin.dashboard') ? 'page' : 'false' }}">Command</a>
+                                <a href="{{ route('admin.quiz-builder.create') }}" aria-current="{{ request()->routeIs('admin.quiz-builder.*') ? 'page' : 'false' }}">Studio</a>
+                                <a href="{{ route('admin.quizzes.index') }}" aria-current="{{ request()->routeIs('admin.quizzes.*') ? 'page' : 'false' }}">Library</a>
+                                <a href="{{ route('admin.attempts.index') }}" aria-current="{{ request()->routeIs('admin.attempts.*') ? 'page' : 'false' }}">Results</a>
+                            @else
+                                <a href="{{ route('dashboard') }}" aria-current="{{ request()->routeIs('dashboard') ? 'page' : 'false' }}">Home</a>
+                                <a href="{{ route('courses.index') }}" aria-current="{{ request()->routeIs('courses.*') || request()->routeIs('quizzes.*') ? 'page' : 'false' }}">Missions</a>
+                                <a href="{{ route('attempts.index') }}" aria-current="{{ request()->routeIs('attempts.*') ? 'page' : 'false' }}">Progress</a>
+                            @endif
+                        </nav>
+                    @endauth
                 </div>
             </div>
         </div>

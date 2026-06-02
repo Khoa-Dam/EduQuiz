@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-#[Fillable(['course_id', 'title', 'description', 'duration_minutes', 'status'])]
+#[Fillable(['course_id', 'title', 'description', 'cover_image_path', 'duration_minutes', 'status'])]
 class Quiz extends Model
 {
     use HasFactory;
@@ -33,5 +33,12 @@ class Quiz extends Model
     public function attempts(): HasMany
     {
         return $this->hasMany(QuizAttempt::class);
+    }
+
+    public function coverImageUrl(): ?string
+    {
+        return $this->cover_image_path
+            ? '/storage/'.ltrim($this->cover_image_path, '/')
+            : null;
     }
 }

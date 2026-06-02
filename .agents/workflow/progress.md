@@ -5,7 +5,7 @@ This file is the main source for tracking completed phases, current work, blocke
 ## Current Status
 
 Current Phase:
-- Reference-based UI redesign pass after Phase 14.5
+- User menu popup navigation polish
 
 Overall Status:
 - Complete
@@ -14,7 +14,7 @@ Blocking:
 - No
 
 Next Task:
-- Record the final video demo using the updated polished UI, then submit the GitHub repository link and video link.
+- Commit/push when approved.
 
 ## Phase Progress
 
@@ -36,6 +36,413 @@ Next Task:
 - [x] Phase 15: Demo video
 
 ## Run Log
+
+### Run: User menu popup navigation polish
+
+Current Phase:
+- User menu popup navigation polish
+
+Skills Considered:
+- using-agent-skills
+- frontend-ui-engineering
+- test-driven-development
+- code-review-and-quality
+
+Skills Used:
+- using-agent-skills
+- frontend-ui-engineering
+- test-driven-development
+- code-review-and-quality
+
+Completed:
+- Replaced desktop topbar `P` and `L` controls with one avatar/user-icon menu trigger.
+- Added an Alpine dropdown with user identity, Profile link, and CSRF-backed Log out button.
+- Added inline SVG icons for Profile and Log out in the mobile drawer.
+- Preserved current routes, auth behavior, avatar rendering, and responsive navigation.
+
+Files Changed:
+- `resources/views/layouts/navigation.blade.php`
+- `.agents/workflow/progress.md`
+- `.agents/workflow/test-log.md`
+
+Checks Run:
+- `npm run build` - passed
+- `php artisan test --filter=AuthenticationTest` - passed, 4 tests and 8 assertions
+- `php artisan test --filter=RoleAccessTest` - passed, 4 tests and 10 assertions
+- `php artisan test` - passed, 90 tests and 355 assertions
+- Playwright user-menu smoke against `http://127.0.0.1:8001` - passed with no console/page errors
+- `rg` placeholder scan for `P`/`L` controls - passed
+- `git diff --check` - passed
+
+Result:
+- Passed
+
+Next:
+- Commit/push when approved.
+
+### Run: Mondly-inspired lavender UI redesign pass
+
+Current Phase:
+- Mondly-inspired lavender UI redesign pass
+
+Skills Considered:
+- using-agent-skills
+- design-taste-frontend
+- redesign-existing-projects
+- frontend-ui-engineering
+- test-driven-development
+- code-review-and-quality
+
+Skills Used:
+- using-agent-skills
+- design-taste-frontend
+- redesign-existing-projects
+- frontend-ui-engineering
+- test-driven-development
+- code-review-and-quality
+
+Completed:
+- Reworked the authenticated shell into a Mondly-like light lavender dashboard system with a rounded top nav, white cards, violet primary surfaces, yellow progress accents, and softened shadows.
+- Rethemed student dashboard, admin dashboard, quiz builder, student course/quiz flow, auth shell, mobile navigation, and favicon away from the older dark/emerald visual system.
+- Fixed visible mojibake separators and refreshed contrast where old scoped CSS made primary buttons or launch-console rows too faint.
+- Kept the admin builder publish rules, quiz-taking flow, image/avatar handling, routes, forms, and backend behavior intact.
+
+Files Changed:
+- `resources/css/app.css`
+- `resources/views/layouts/navigation.blade.php`
+- `resources/views/layouts/app.blade.php`
+- `resources/views/layouts/guest.blade.php`
+- `resources/views/dashboard.blade.php`
+- `resources/views/admin/dashboard.blade.php`
+- `resources/views/admin/quiz-builder/*`
+- `resources/views/student/courses/*`
+- `resources/views/student/quizzes/*`
+- `resources/views/auth/login.blade.php`
+- `resources/views/auth/register.blade.php`
+- `resources/views/components/nav-link.blade.php`
+- `resources/views/components/responsive-nav-link.blade.php`
+- `public/favicon.svg`
+- `.agents/workflow/progress.md`
+- `.agents/workflow/test-log.md`
+
+Checks Run:
+- `npm run build` - passed
+- Focused PHPUnit suites - passed after rerunning sequentially because parallel runs collided on shared MySQL test tables
+- `php artisan test` - passed, 90 tests and 355 assertions
+- Playwright screenshot smoke for dashboard, courses, and builder - passed with no console/page errors
+- Playwright full browser smoke for admin publish plus student submit/result XP - passed with no console/page errors
+
+Result:
+- Passed
+
+Next:
+- Commit/push when approved.
+
+### Run: Stronger mission-flow UI redesign pass
+
+Current Phase:
+- Stronger mission-flow UI redesign pass
+
+Skills Considered:
+- using-agent-skills
+- design-taste-frontend
+- redesign-existing-projects
+- gpt-taste
+- frontend-ui-engineering
+- test-driven-development
+- code-review-and-quality
+
+Skills Used:
+- using-agent-skills
+- design-taste-frontend
+- redesign-existing-projects
+- frontend-ui-engineering
+- test-driven-development
+- code-review-and-quality
+
+Completed:
+- Added a floating desktop command dock for fast admin/student navigation.
+- Reworked student quiz-taking into a stronger two-column cockpit flow with mission HUD, XP reward cards, visual media, stage panel, progress console, and question rail.
+- Reworked Quiz Builder into a stronger studio flow with a launch hero, studio signal card, wider builder layout, and dark sticky launch console.
+- Strengthened shared CSS with cockpit, studio, command dock, and builder block primitives.
+- Preserved routes, form names, backend validation, XP scoring, and existing test-visible compatibility copy.
+
+Files Changed:
+- `resources/css/app.css`
+- `resources/views/layouts/app.blade.php`
+- `resources/views/student/quizzes/start.blade.php`
+- `resources/views/admin/quiz-builder/_form.blade.php`
+- `.agents/workflow/progress.md`
+- `.agents/workflow/test-log.md`
+
+Checks Run:
+- `npm run build` - passed
+- `php artisan test` - passed, 90 tests and 355 assertions
+- Playwright browser smoke script - passed with no console warnings or errors
+- Playwright screenshot pass for dashboard, courses, and builder - passed with no console warnings or errors
+- `php artisan route:list` - passed, 67 routes
+- `git diff --check` - passed
+
+Result:
+- Passed
+
+Next:
+- Visually review in browser, then commit/push when approved.
+
+### Run: Large game-like UI redesign pass
+
+Current Phase:
+- Large game-like UI redesign pass
+
+Skills Considered:
+- using-agent-skills
+- redesign-existing-projects
+- frontend-ui-engineering
+- browser-testing-with-devtools
+- test-driven-development
+- code-review-and-quality
+
+Skills Used:
+- using-agent-skills
+- redesign-existing-projects
+- frontend-ui-engineering
+- test-driven-development
+- code-review-and-quality
+
+Completed:
+- Shifted the authenticated app shell to a darker mission-control visual system with grid overlays, glow surfaces, and a glass sidebar.
+- Updated global panels, cards, buttons, stats, answer options, and mission tiles to feel more game-like and less like default CRUD.
+- Reworked student dashboard hero copy and summary cards around XP, streak, level, and reward rules.
+- Reworked course cards into dark mission tiles.
+- Added a mission briefing block to quiz detail with max XP and renamed the CTA while preserving `Start Quiz` compatibility text.
+- Kept routes, database schema, scoring behavior, and auth behavior unchanged in this redesign pass.
+
+Files Changed:
+- `resources/css/app.css`
+- `resources/views/layouts/app.blade.php`
+- `resources/views/layouts/navigation.blade.php`
+- `resources/views/dashboard.blade.php`
+- `resources/views/student/courses/index.blade.php`
+- `resources/views/student/quizzes/show.blade.php`
+- `.agents/workflow/progress.md`
+- `.agents/workflow/test-log.md`
+
+Checks Run:
+- `npm run build` - passed
+- `php artisan test --filter=RoleAccessTest` - passed, 4 tests and 10 assertions
+- `php artisan test --filter=StudentCourseQuizBrowsingTest` - passed, 8 tests and 27 assertions
+- Playwright browser smoke script - passed with no console warnings or errors
+- Playwright screenshot pass for dashboard, courses, and builder - passed with no console warnings or errors
+- `php artisan test` - passed, 90 tests and 355 assertions
+- `php artisan route:list` - passed, 67 routes
+- `git diff --check` - passed
+
+Result:
+- Passed
+
+Next:
+- Review visually in browser, then commit/push when approved.
+
+### Run: Game-like Quiz Studio and XP progress upgrade
+
+Current Phase:
+- Game-like Quiz Studio and XP progress upgrade
+
+Skills Considered:
+- using-agent-skills
+- database-data-modeling
+- backend-api-engineering
+- frontend-ui-engineering
+- test-driven-development
+- code-review-and-quality
+
+Skills Used:
+- using-agent-skills
+- database-data-modeling
+- backend-api-engineering
+- frontend-ui-engineering
+- test-driven-development
+- code-review-and-quality
+
+Completed:
+- Added XP tracking to quiz attempts with submit bonus, per-correct-answer XP, and perfect-score bonus.
+- Added `LearningProgressService` for total XP, level, current streak, and longest streak.
+- Updated student dashboard, attempt history, and result detail to show XP, level, and streak.
+- Reworked student quiz taking into a one-question mission stepper with progress, question rail, and submit gating.
+- Upgraded admin dashboard and Quiz Builder into a live studio with readiness meters, launch score, and question readiness states.
+- Added GSAP score reveal support with reduced-motion fallback behavior preserved.
+- Added tests for XP persistence, perfect-score bonus, progress summary, schema, and history/result rendering.
+
+Files Changed:
+- `database/migrations/2026_06_02_000001_add_xp_to_quiz_attempts_table.php`
+- `app/Services/LearningProgressService.php`
+- student quiz/dashboard/attempt views
+- admin dashboard and Quiz Builder views
+- scoring/history/dashboard controllers
+- XP/progress feature tests
+
+Checks Run:
+- `php artisan migrate` - passed
+- `php artisan test --filter=LearningProgressServiceTest` - passed, 1 test and 5 assertions
+- `php artisan test --filter=QuizTakingScoringTest` - passed, 5 tests and 11 assertions
+- `php artisan test --filter=StudentAttemptHistoryTest` - passed, 4 tests and 16 assertions
+- `php artisan test --filter=DatabaseSchemaTest` - passed, 3 tests and 18 assertions
+- `php artisan test --filter=AdminQuizBuilderTest` - passed, 10 tests and 32 assertions
+- `php artisan test` - passed, 90 tests and 355 assertions
+- `npm run build` - passed
+- `php artisan route:list` - passed, 67 routes
+- Playwright browser smoke script - passed with no console warnings or errors
+- `git diff --check` - passed
+
+Result:
+- Passed
+
+Next:
+- Commit/push when approved.
+
+### Run: Browser-verified Admin Quiz Builder hardening
+
+Current Phase:
+- Browser-verified Admin Quiz Builder hardening
+
+Skills Considered:
+- using-agent-skills
+- frontend-ui-engineering
+- backend-api-engineering
+- debugging-and-error-recovery
+- test-driven-development
+- code-review-and-quality
+
+Skills Used:
+- using-agent-skills
+- frontend-ui-engineering
+- backend-api-engineering
+- debugging-and-error-recovery
+- test-driven-development
+- code-review-and-quality
+
+Completed:
+- Browser-tested the real admin Quiz Builder flow through Playwright against the local Laravel server.
+- Fixed the builder submit buttons so selecting an intent no longer disables the clicked submit button before native form submission.
+- Replaced the invalid Alpine `@js` expression in the button handler with a plain quoted intent value.
+- Guarded GSAP animations so missing optional page targets no longer produce browser console warnings.
+- Verified admin can create and publish a complete quiz from one builder screen.
+- Verified student course list and profile page still load after the builder changes.
+
+Files Changed:
+- `resources/views/admin/quiz-builder/_form.blade.php`
+- `resources/js/student-motion.js`
+- `public/build/*`
+- `.agents/workflow/progress.md`
+- `.agents/workflow/test-log.md`
+
+Checks Run:
+- Playwright browser smoke script - passed with no console warnings or errors
+- `php artisan test` - passed, 88 tests and 346 assertions
+- `npm run build` - passed
+- `php artisan route:list` - passed, 67 routes
+
+Result:
+- Passed
+
+Next:
+- Commit/push when approved.
+
+### Run: Admin Quiz Builder refactor
+
+Current Phase:
+- Admin Quiz Builder refactor after Phase 14.5
+
+Skills Considered:
+- using-agent-skills
+- backend-api-engineering
+- frontend-ui-engineering
+- spec-driven-development
+- planning-and-task-breakdown
+- test-driven-development
+- code-review-and-quality
+
+Skills Used:
+- using-agent-skills
+- backend-api-engineering
+- frontend-ui-engineering
+- spec-driven-development
+- planning-and-task-breakdown
+- test-driven-development
+
+Completed:
+- Added a Quiz Builder flow for creating/editing quiz, course, questions, answers, and media from one admin screen.
+- Added server-side quiz readiness checks for publish rules.
+- Allowed drafts to remain inactive while blocking incomplete quizzes from being published.
+- Added publish/unpublish routes and updated admin dashboard, navigation, quiz library, and quiz detail to prefer the builder.
+- Updated student quiz visibility and submission guards so incomplete active records are not visible or takeable.
+- Updated manual demo flow and feature coverage for builder, publish validation, legacy active blocking, and student readiness filtering.
+
+Files Changed:
+- `app/Http/Controllers/Admin/QuizBuilderController.php`
+- `app/Http/Controllers/Admin/QuizPublishController.php`
+- `app/Services/QuizReadinessService.php`
+- `routes/web.php`
+- `resources/views/admin/quiz-builder/*`
+- admin dashboard/navigation/quiz views
+- student course/quiz controllers
+- admin/student feature tests
+
+Checks Run:
+- `php artisan route:list` - passed, 67 routes
+- `php artisan test --filter=AdminQuizBuilderTest` - passed, 7 tests and 22 assertions
+- `php artisan test --filter=StudentCourseQuizBrowsingTest` - passed, 7 tests and 24 assertions
+- `php artisan test --filter=AdminQuizCrudTest` - passed, 9 tests and 32 assertions
+- `php artisan test` - passed, 84 tests and 333 assertions
+- `npm run build` - passed
+
+Result:
+- Passed
+
+Next:
+- Manually review the admin Quiz Builder in the browser, then commit/push when approved.
+
+### Run: Quiz Builder hardening follow-up
+
+Current Phase:
+- Admin Quiz Builder hardening after refactor
+
+Skills Considered:
+- using-agent-skills
+- code-review-and-quality
+- backend-api-engineering
+- frontend-ui-engineering
+- test-driven-development
+
+Skills Used:
+- using-agent-skills
+- code-review-and-quality
+- backend-api-engineering
+- frontend-ui-engineering
+- test-driven-development
+
+Completed:
+- Extracted quiz builder persistence into `QuizBuilderService`.
+- Made builder file handling transaction-safe by cleaning new uploads on failure and deleting replaced files only after DB commit succeeds.
+- Added `save`, `draft`, and `publish` intents so active quizzes keep active status on normal saves and only move to draft through an explicit action.
+- Removed direct readiness service lookup from quiz index Blade.
+- Cleaned admin dashboard CTAs so the main content flow points to Quiz Builder.
+- Filtered student course list to courses with at least one active ready quiz.
+- Added regression coverage for failed upload cleanup, old image preservation, active save behavior, move-to-draft behavior, and student course filtering.
+
+Checks Run:
+- `php artisan route:list` - passed, 67 routes
+- `php artisan test --filter=AdminQuizBuilderTest` - passed, 10 tests and 32 assertions
+- `php artisan test --filter=StudentCourseQuizBrowsingTest` - passed, 8 tests and 27 assertions
+- `php artisan test --filter=AdminQuizCrudTest` - passed, 9 tests and 32 assertions
+- `php artisan test --stop-on-failure` - passed, 88 tests and 346 assertions
+- `npm run build` - passed
+
+Result:
+- Passed
+
+Next:
+- Browser-check the admin Quiz Builder manually, then commit/push when approved.
 
 ### Run: Not started yet
 
@@ -611,7 +1018,7 @@ Next:
 ### Run: Reference-based UI redesign pass after Phase 14.5
 
 Current Phase:
-- Reference-based UI redesign pass after Phase 14.5
+- Reference-based UI/media enhancement pass after Phase 14.5
 
 Skills Considered:
 - redesign-existing-projects
@@ -624,7 +1031,7 @@ Skills Used:
 - gpt-taste as a static visual critique checklist only
 
 Reason:
-- The task was a reference-based redesign of the existing Laravel Blade UI while preserving routes, auth behavior, schema, tests, and business logic.
+- The task was a reference-based redesign of the existing Laravel Blade UI, then a media enhancement follow-up for quiz covers, question images, profile avatars, and student motion while preserving existing routes, auth behavior, and business logic.
 
 Audit Summary:
 - The local login reference used a high-contrast split auth composition with a compact white form panel.
@@ -641,14 +1048,33 @@ Completed:
 - Reworked the authenticated app shell into a desktop sidebar layout with mobile fallback navigation.
 - Redesigned student and admin dashboards with reference-inspired hero cards and right summary panels using real data only.
 - Added small dashboard controller data only for real featured course and recent attempt summaries.
-- Kept the redesign Blade/Tailwind-only with no new packages, GSAP, animation libraries, React, Vue, Inertia, route changes, schema changes, or auth behavior changes.
+- Added quiz cover image upload/remove support with public-disk cleanup on replace and delete.
+- Added question image upload/remove support with public-disk cleanup on replace and delete.
+- Added profile avatar upload/remove support with public-disk cleanup on replace and account deletion.
+- Added image rendering across admin detail pages, student course/quiz/start pages, attempt history/detail pages, profile, and navigation.
+- Added GSAP-based student page reveal motion with reduced-motion handling.
+- Added focused feature tests for schema columns, image upload/replace/remove cleanup, avatar cleanup, and student image rendering.
+- Fixed image rendering URLs to use relative `/storage/...` paths instead of `APP_URL`-derived absolute URLs.
+- Kept routes, auth behavior, scoring behavior, and core quiz business logic unchanged.
 
 Files Changed:
 - `app/Http/Controllers/Admin/DashboardController.php`
 - `app/Http/Controllers/DashboardController.php`
+- `app/Http/Controllers/Admin/QuizController.php`
+- `app/Http/Controllers/Admin/QuestionController.php`
+- `app/Http/Controllers/ProfileController.php`
+- `app/Http/Requests/ProfileUpdateRequest.php`
+- `app/Models/Quiz.php`
+- `app/Models/Question.php`
+- `app/Models/User.php`
+- `database/migrations/2026_06_01_000001_add_images_to_quizzes_and_questions_table.php`
+- `database/migrations/2026_06_01_000002_add_avatar_to_users_table.php`
 - `lang/en/auth.php`
+- `package.json`
+- `package-lock.json`
 - `resources/css/app.css`
 - `resources/js/app.js`
+- `resources/js/student-motion.js`
 - `resources/views/components/loading-overlay.blade.php`
 - `resources/views/components/error-page.blade.php`
 - `resources/views/layouts/app.blade.php`
@@ -657,13 +1083,19 @@ Files Changed:
 - `resources/views/welcome.blade.php`
 - `resources/views/dashboard.blade.php`
 - `resources/views/admin/dashboard.blade.php`
+- admin quiz/question forms and detail pages
+- student course, quiz, quiz-taking, and attempt pages
+- profile information form
+- image/avatar feature tests
 - `.agents/workflow/progress.md`
 - `.agents/workflow/test-log.md`
 
 Checks Run:
 - `php artisan route:list` - passed, 61 routes
 - `php artisan migrate --env=testing` - passed
-- `php artisan test` - passed, 66 tests and 254 assertions
+- `php artisan migrate:fresh --env=testing` - passed
+- `php artisan test --filter=AdminQuizCrudTest` - passed, 8 tests and 29 assertions
+- `php artisan test` - passed, 75 tests and 311 assertions
 - `npm run build` - passed
 - `rg` scan for common mojibake patterns - passed
 
@@ -681,7 +1113,7 @@ Result:
 - Passed
 
 Next:
-- Commit and push the reference-based UI redesign branch, then record the final demo video.
+- Commit and push the reference UI/media enhancement branch when approved, then record the final demo video.
 
 ### Run: Phase 1 project setup
 

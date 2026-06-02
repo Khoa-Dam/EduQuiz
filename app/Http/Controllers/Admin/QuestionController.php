@@ -7,6 +7,7 @@ use App\Models\Question;
 use App\Models\Quiz;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class QuestionController extends Controller
@@ -36,7 +37,13 @@ class QuestionController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
-        $question = Question::create($this->validatedData($request));
+        $data = $this->validatedData($request);
+
+        if ($request->hasFile('question_image')) {
+            $data['image_path'] = $request->file('question_image')->store('questions', 'public');
+        }
+
+        $question = Question::create($data);
 
         return redirect()
             ->route('admin.questions.show', $question)
@@ -60,7 +67,22 @@ class QuestionController extends Controller
 
     public function update(Request $request, Question $question): RedirectResponse
     {
-        $question->update($this->validatedData($request));
+        $data = $this->validatedData($request);
+
+        if ($request->boolean('remove_question_image') && $question->image_path) {
+            Storage::disk('public')->delete($question->image_path);
+            $data['image_path'] = null;
+        }
+
+        if ($request->hasFile('question_image')) {
+            if ($question->image_path) {
+                Storage::disk('public')->delete($question->image_path);
+            }
+
+            $data['image_path'] = $request->file('question_image')->store('questions', 'public');
+        }
+
+        $question->update($data);
 
         return redirect()
             ->route('admin.questions.show', $question)
@@ -69,6 +91,10 @@ class QuestionController extends Controller
 
     public function destroy(Question $question): RedirectResponse
     {
+        if ($question->image_path) {
+            Storage::disk('public')->delete($question->image_path);
+        }
+
         $question->delete();
 
         return redirect()
@@ -81,10 +107,16 @@ class QuestionController extends Controller
      */
     private function validatedData(Request $request): array
     {
-        return $request->validate([
+        $data = $request->validate([
             'quiz_id' => ['required', 'integer', 'exists:quizzes,id'],
             'question_text' => ['required', 'string'],
+            'question_image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
+            'remove_question_image' => ['nullable', 'boolean'],
             'points' => ['required', 'integer', 'min:1', 'max:100'],
         ]);
+
+        unset($data['question_image'], $data['remove_question_image']);
+
+        return $data;
     }
 }

@@ -8,7 +8,7 @@
     }
 
     body {
-        @apply bg-[#f4f7f3] text-slate-900;
+        @apply bg-[#d9d8e8] text-slate-950;
     }
 
     [x-cloak] {
@@ -18,19 +18,29 @@
 
 @layer components {
     .eq-app-shell {
-        @apply min-h-screen bg-[radial-gradient(circle_at_top_left,_rgba(16,185,129,0.13),_transparent_28%),radial-gradient(circle_at_bottom_right,_rgba(124,58,237,0.08),_transparent_24%),linear-gradient(180deg,_#f8fafc_0%,_#eef4ed_100%)];
+        @apply relative min-h-screen overflow-hidden bg-[#d9d8e8];
+    }
+
+    .eq-app-shell::before {
+        content: "";
+        @apply pointer-events-none fixed inset-0 z-0 bg-[radial-gradient(circle_at_12%_8%,_rgba(255,255,255,0.55),_transparent_28%),radial-gradient(circle_at_88%_0%,_rgba(109,50,245,0.10),_transparent_25%)] opacity-80;
+    }
+
+    .eq-app-shell::after {
+        content: "";
+        @apply hidden;
     }
 
     .eq-sidebar-shell {
-        @apply min-h-screen lg:grid lg:grid-cols-[18rem_minmax(0,1fr)];
+        @apply relative z-10 min-h-screen;
     }
 
     .eq-sidebar {
-        @apply sticky top-0 hidden h-screen border-r border-white/80 bg-white/90 px-5 py-6 shadow-xl shadow-slate-200/70 backdrop-blur lg:flex lg:flex-col;
+        @apply sticky top-0 z-40 hidden px-4 py-5 lg:block;
     }
 
     .eq-main-shell {
-        @apply min-w-0;
+        @apply min-w-0 text-slate-950;
     }
 
     .eq-page {
@@ -42,7 +52,7 @@
     }
 
     .eq-panel {
-        @apply overflow-hidden rounded-3xl border border-white/80 bg-white/95 shadow-xl shadow-slate-200/70 backdrop-blur;
+        @apply overflow-hidden rounded-[1.35rem] border border-white/80 bg-white text-slate-950 shadow-xl shadow-slate-400/25;
     }
 
     .eq-panel-body {
@@ -50,23 +60,235 @@
     }
 
     .eq-hero-panel {
-        @apply overflow-hidden rounded-3xl border border-white/80 bg-white/95 p-5 shadow-xl shadow-slate-200/80 backdrop-blur sm:p-6;
+        @apply overflow-hidden rounded-[1.35rem] border border-white/80 bg-white p-5 text-slate-950 shadow-xl shadow-slate-400/25 sm:p-6;
     }
 
     .eq-card {
-        @apply rounded-3xl border border-white/80 bg-white/95 p-5 shadow-lg shadow-slate-200/70 transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:shadow-xl hover:shadow-emerald-100 active:translate-y-0;
+        @apply rounded-[1.35rem] border border-white/80 bg-white p-5 text-slate-950 shadow-lg shadow-slate-400/20 transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-500/25 active:translate-y-0;
+    }
+
+    .eq-student-hero {
+        @apply relative isolate overflow-hidden rounded-[1.35rem] border border-white/80 bg-white text-slate-950 shadow-xl shadow-slate-400/25;
+    }
+
+    .eq-student-hero::before {
+        content: "";
+        @apply absolute inset-0 -z-10 bg-[radial-gradient(circle_at_85%_5%,_rgba(109,50,245,0.12),_transparent_26%),linear-gradient(135deg,_#ffffff,_#f7f7fb)];
+    }
+
+    .eq-game-hero {
+        @apply relative overflow-hidden border-white/80 bg-white shadow-xl shadow-slate-400/25;
+    }
+
+    .eq-result-hero::after,
+    .eq-game-hero::after {
+        content: "";
+        @apply hidden;
+    }
+
+    .eq-game-chip {
+        @apply rounded-[1rem] border border-slate-100 bg-slate-50 p-3 shadow-sm;
+    }
+
+    .eq-game-chip span {
+        @apply block text-xs font-black uppercase tracking-[0.10em] text-slate-500;
+    }
+
+    .eq-game-chip strong {
+        @apply mt-1 block text-2xl font-black tabular-nums text-slate-950;
+    }
+
+    .eq-game-mini {
+        @apply rounded-[1rem] border border-violet-100 bg-violet-50 p-3 text-center;
+    }
+
+    .eq-game-mini span {
+        @apply block text-[0.68rem] font-black uppercase tracking-[0.10em] text-violet-700;
+    }
+
+    .eq-game-mini strong {
+        @apply mt-1 block text-lg font-black tabular-nums text-slate-950;
+    }
+
+    .eq-level-card {
+        @apply rounded-[1.35rem] bg-white p-5 text-slate-950 shadow-lg shadow-slate-400/20;
+    }
+
+    .eq-mission-console {
+        @apply sticky top-4 z-10 flex flex-col gap-4 rounded-[1.25rem] border border-violet-100 bg-white p-4 shadow-lg shadow-slate-400/20 lg:flex-row lg:items-center;
+    }
+
+    .eq-command-dock {
+        @apply hidden;
+    }
+
+    .eq-command-dock a {
+        @apply rounded-full px-4 py-2 text-xs font-black uppercase tracking-[0.12em] text-slate-300 transition duration-200 hover:bg-violet-100 hover:text-slate-950 focus:outline-none focus:ring-2 focus:ring-violet-500;
+    }
+
+    .eq-command-dock a[aria-current="page"] {
+        @apply bg-violet-600 text-white shadow-lg shadow-violet-300/40;
+    }
+
+    .eq-cockpit-shell {
+        @apply mx-auto grid max-w-7xl gap-5 px-4 sm:px-6 lg:grid-cols-[20rem_minmax(0,1fr)] lg:px-8;
+    }
+
+    .eq-cockpit-hud {
+        @apply relative isolate overflow-hidden rounded-[1.35rem] border border-white/80 bg-white p-5 text-slate-950 shadow-xl shadow-slate-400/25 lg:sticky lg:top-6 lg:h-fit;
+    }
+
+    .eq-cockpit-hud::before {
+        content: "";
+        @apply absolute inset-0 -z-10 bg-[radial-gradient(circle_at_82%_8%,_rgba(109,50,245,0.12),_transparent_28%),linear-gradient(135deg,_#ffffff,_#f7f7fb)];
+    }
+
+    .eq-cockpit-hud::after {
+        content: "";
+        @apply hidden;
+    }
+
+    .eq-cockpit-stage {
+        @apply overflow-hidden rounded-[1.35rem] border border-white/80 bg-white p-4 text-slate-950 shadow-xl shadow-slate-400/25 sm:p-6;
+    }
+
+    .eq-cockpit-rail {
+        @apply grid grid-cols-5 gap-2 sm:grid-cols-8 lg:grid-cols-5;
+    }
+
+    .eq-builder-shell {
+        @apply grid gap-6 xl:grid-cols-[minmax(0,1fr)_22rem];
+    }
+
+    .eq-studio-panel {
+        @apply relative isolate overflow-hidden rounded-[1.35rem] border border-white/80 bg-white p-5 text-slate-950 shadow-xl shadow-slate-400/25;
+    }
+
+    .eq-studio-panel::before {
+        content: "";
+        @apply absolute inset-0 -z-10 bg-[radial-gradient(circle_at_88%_10%,_rgba(109,50,245,0.12),_transparent_30%),linear-gradient(135deg,_#ffffff,_#f8f8fc)];
+    }
+
+    .eq-builder-block {
+        @apply rounded-[1.25rem] border border-slate-100 bg-white p-4 shadow-lg shadow-slate-400/15 transition duration-300;
+    }
+
+    .eq-question-dot {
+        @apply flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white text-sm font-black text-slate-600 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-violet-300 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2;
+    }
+
+    .eq-question-dot-active {
+        @apply border-violet-600 bg-violet-600 text-white;
+    }
+
+    .eq-question-dot-complete {
+        @apply border-violet-200 bg-violet-50 text-violet-800;
+    }
+
+    .eq-question-dot-active.eq-question-dot-complete {
+        @apply bg-violet-600 text-white;
+    }
+
+    .eq-xp-pill {
+        @apply inline-flex w-fit items-center rounded-xl bg-yellow-100 px-3 py-1 text-xs font-black text-slate-950 ring-1 ring-yellow-200;
+    }
+
+    .eq-studio-dot {
+        @apply inline-flex items-center rounded-xl border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-black text-slate-600;
+    }
+
+    .eq-studio-dot-ready {
+        @apply border-violet-600 bg-violet-600 text-white;
+    }
+
+    .eq-student-hero-body {
+        @apply relative grid gap-7 p-6 sm:p-8 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-center lg:p-10;
+    }
+
+    .eq-media-frame {
+        @apply relative overflow-hidden rounded-[1.15rem] border border-slate-100 bg-slate-100 shadow-lg shadow-slate-400/20;
+    }
+
+    .eq-media-frame img {
+        @apply h-full w-full object-cover;
+    }
+
+    .eq-media-fallback {
+        @apply flex min-h-56 items-center justify-center bg-[radial-gradient(circle_at_30%_20%,_rgba(109,50,245,0.22),_transparent_32%),linear-gradient(135deg,_#f6f6fb,_#ebe9ff_58%,_#ffe56a)];
+    }
+
+    .eq-media-fallback-mark {
+        @apply rounded-2xl border border-white/70 bg-white/80 px-4 py-3 text-3xl font-black tracking-tight text-slate-950 shadow-lg shadow-slate-400/20 backdrop-blur;
+    }
+
+    .eq-quiz-tile {
+        @apply overflow-hidden rounded-[1.25rem] border border-white/80 bg-white shadow-lg shadow-slate-400/20 transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-500/25 active:translate-y-0;
+    }
+
+    .eq-mission-tile {
+        @apply relative isolate overflow-hidden rounded-[1.25rem] border border-white/80 bg-white p-5 shadow-lg shadow-slate-400/20 transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-500/25 active:translate-y-0;
+    }
+
+    .eq-mission-tile::before {
+        content: "";
+        @apply absolute inset-0 -z-10 bg-[radial-gradient(circle_at_84%_10%,_rgba(109,50,245,0.14),_transparent_30%),linear-gradient(135deg,_#ffffff,_#f8f8fc)];
+    }
+
+    .eq-mission-tile::after {
+        content: "";
+        @apply hidden;
+    }
+
+    .eq-quiz-tile-media {
+        @apply relative h-44 overflow-hidden bg-slate-900;
+    }
+
+    .eq-quiz-tile-media img {
+        @apply h-full w-full object-cover transition duration-700 group-hover:scale-105;
+    }
+
+    .eq-quiz-tile-body {
+        @apply p-5;
+    }
+
+    .eq-metric-strip {
+        @apply grid gap-3 sm:grid-cols-3;
+    }
+
+    .eq-metric {
+        @apply rounded-[1rem] border border-slate-100 bg-white p-4 shadow-sm shadow-slate-300/30;
+    }
+
+    .eq-question-card {
+        @apply overflow-hidden rounded-[1.25rem] border border-slate-100 bg-white shadow-lg shadow-slate-400/20;
+    }
+
+    .eq-question-media {
+        @apply overflow-hidden border-b border-slate-100 bg-slate-950;
+    }
+
+    .eq-question-media img {
+        @apply max-h-[28rem] w-full object-cover;
+    }
+
+    .eq-answer-option {
+        @apply flex cursor-pointer items-start gap-3 rounded-[1rem] border border-slate-200 bg-white p-4 text-sm font-semibold text-slate-700 shadow-sm shadow-slate-100 transition duration-200 hover:-translate-y-0.5 hover:border-violet-300 hover:bg-violet-50 hover:shadow-lg hover:shadow-violet-100;
+    }
+
+    .eq-result-row {
+        @apply overflow-hidden rounded-[1.5rem] border border-slate-200 bg-white shadow-sm shadow-slate-200/70;
     }
 
     .eq-stat-card {
-        @apply rounded-3xl border border-white/80 bg-white/95 p-4 shadow-lg shadow-slate-200/70;
+        @apply rounded-[1.25rem] border border-white/80 bg-white p-4 text-slate-950 shadow-lg shadow-slate-400/20;
     }
 
     .eq-stat-marker {
-        @apply flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-100 text-sm font-black text-emerald-800 ring-1 ring-emerald-200;
+        @apply flex h-10 w-10 items-center justify-center rounded-xl bg-violet-600 text-sm font-black text-white ring-1 ring-violet-200;
     }
 
     .eq-feature-card {
-        @apply rounded-3xl border border-slate-200/70 bg-slate-50/80 p-5 transition duration-200 hover:-translate-y-0.5 hover:bg-white hover:shadow-lg hover:shadow-slate-200/70;
+        @apply rounded-[1.25rem] border border-slate-100 bg-slate-50 p-5 transition duration-200 hover:-translate-y-0.5 hover:bg-white hover:shadow-lg hover:shadow-slate-300/40;
     }
 
     .eq-section-title {
@@ -78,19 +300,19 @@
     }
 
     .eq-badge {
-        @apply inline-flex items-center rounded-xl bg-emerald-50 px-2.5 py-1 text-xs font-bold text-emerald-800 ring-1 ring-inset ring-emerald-200;
+        @apply inline-flex items-center rounded-lg bg-violet-50 px-2.5 py-1 text-xs font-black text-violet-800 ring-1 ring-inset ring-violet-100;
     }
 
     .eq-status-badge {
-        @apply inline-flex items-center rounded-xl bg-slate-100 px-2.5 py-1 text-xs font-bold text-slate-700 ring-1 ring-inset ring-slate-200;
+        @apply inline-flex items-center rounded-lg bg-slate-100 px-2.5 py-1 text-xs font-bold text-slate-700 ring-1 ring-inset ring-slate-200;
     }
 
     .eq-btn-primary {
-        @apply inline-flex items-center justify-center rounded-2xl bg-slate-950 px-4 py-2.5 text-sm font-bold text-white shadow-lg shadow-slate-300/60 transition duration-200 hover:-translate-y-0.5 hover:bg-emerald-950 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 active:translate-y-0 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-60;
+        @apply inline-flex items-center justify-center rounded-xl bg-slate-950 px-4 py-2.5 text-sm font-black text-white shadow-lg shadow-slate-400/40 transition duration-200 hover:-translate-y-0.5 hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2 active:translate-y-0 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-60;
     }
 
     .eq-btn-secondary {
-        @apply inline-flex items-center justify-center rounded-2xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-bold text-slate-700 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-emerald-300 hover:text-slate-950 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 active:translate-y-0 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-60;
+        @apply inline-flex items-center justify-center rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-black text-slate-700 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-violet-300 hover:bg-violet-50 hover:text-slate-950 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2 active:translate-y-0 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-60;
     }
 
     .eq-btn-danger {
@@ -98,11 +320,11 @@
     }
 
     .eq-btn-ghost {
-        @apply inline-flex items-center justify-center rounded-2xl px-3 py-2 text-sm font-bold text-slate-600 transition duration-200 hover:bg-slate-100 hover:text-slate-950 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2;
+        @apply inline-flex items-center justify-center rounded-2xl px-3 py-2 text-sm font-bold text-slate-600 transition duration-200 hover:bg-violet-50 hover:text-slate-950 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2;
     }
 
     .eq-side-link {
-        @apply flex items-center gap-3 rounded-2xl px-3 py-2.5 text-sm font-black text-slate-600 transition duration-200 hover:bg-emerald-50 hover:text-emerald-950 focus:outline-none focus:ring-2 focus:ring-emerald-500;
+        @apply flex items-center gap-3 rounded-xl border border-transparent px-3 py-2.5 text-sm font-black text-slate-600 transition duration-200 hover:bg-violet-50 hover:text-violet-900 focus:outline-none focus:ring-2 focus:ring-violet-500;
     }
 
     .eq-side-link-active {
@@ -110,15 +332,15 @@
     }
 
     .eq-side-icon {
-        @apply flex h-8 w-8 items-center justify-center rounded-xl bg-slate-100 text-xs font-black text-slate-700;
+        @apply flex h-8 w-8 items-center justify-center rounded-lg bg-slate-100 text-xs font-black text-slate-700;
     }
 
     .eq-side-link-active .eq-side-icon {
-        @apply bg-emerald-400 text-slate-950;
+        @apply bg-violet-600 text-white;
     }
 
     .eq-alert-success {
-        @apply rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-900 shadow-sm shadow-emerald-100;
+        @apply rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-sm font-semibold text-green-900 shadow-sm shadow-green-100;
     }
 
     .eq-alert-error {
@@ -126,7 +348,7 @@
     }
 
     .eq-empty {
-        @apply rounded-3xl border border-dashed border-emerald-200 bg-emerald-50/50 p-8 text-center;
+        @apply rounded-[1.25rem] border border-dashed border-violet-200 bg-violet-50/60 p-8 text-center;
     }
 
     .eq-empty-title {
@@ -142,7 +364,7 @@
     }
 
     .eq-link {
-        @apply text-sm font-bold text-emerald-700 transition hover:text-emerald-900 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2;
+        @apply text-sm font-bold text-violet-700 transition hover:text-violet-900 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2;
     }
 
     .eq-delete-link {
@@ -150,7 +372,7 @@
     }
 
     .eq-table-wrap {
-        @apply overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm shadow-slate-200/70;
+        @apply overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl shadow-black/10;
     }
 
     .eq-form-grid {
@@ -159,6 +381,18 @@
 
     .eq-page-heading {
         @apply flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between;
+    }
+
+    .eq-topbar {
+        @apply mx-auto flex max-w-7xl items-center justify-between gap-4 rounded-2xl border border-white/80 bg-white/90 px-4 py-2 shadow-xl shadow-slate-400/25 backdrop-blur;
+    }
+
+    .eq-top-link {
+        @apply rounded-full px-4 py-2 text-xs font-black text-slate-700 transition duration-200 hover:bg-white hover:text-slate-950;
+    }
+
+    .eq-top-link-active {
+        @apply bg-slate-950 text-white shadow-md shadow-slate-300 hover:bg-slate-950 hover:text-white;
     }
 
     main table {
@@ -178,7 +412,7 @@
     }
 
     main tbody tr {
-        @apply transition duration-150 hover:bg-emerald-50/40;
+        @apply transition duration-150 hover:bg-violet-50/60;
     }
 
     main td {
@@ -186,7 +420,7 @@
     }
 
     main table a {
-        @apply font-semibold text-emerald-700 transition hover:text-emerald-900;
+        @apply font-semibold text-violet-700 transition hover:text-violet-900;
     }
 
     main table button {
@@ -199,18 +433,129 @@
     main input[type="number"],
     main select,
     main textarea {
-        @apply rounded-xl border-slate-300 bg-white shadow-sm focus:border-emerald-500 focus:ring-emerald-500;
+        @apply rounded-xl border-slate-200 bg-white shadow-sm focus:border-violet-500 focus:ring-violet-500;
     }
 
     main input[type="radio"],
     main input[type="checkbox"] {
-        @apply border-slate-300 text-emerald-600 focus:ring-emerald-500;
+        @apply border-slate-300 text-violet-600 focus:ring-violet-500;
     }
 
     .eq-loader-dot {
-        @apply inline-flex h-3 w-3 rounded-full bg-emerald-500;
+        @apply inline-flex h-3 w-3 rounded-full bg-violet-600;
         animation: eq-pulse 900ms ease-in-out infinite;
     }
+}
+
+.eq-answer-option:has(input:checked) {
+    border-color: rgb(16 185 129);
+    background: rgb(236 253 245);
+    box-shadow: 0 0 0 2px rgb(167 243 208);
+}
+
+.eq-shell-header {
+    border-bottom: 1px solid rgb(255 255 255 / 0.55);
+    background: rgb(217 216 232 / 0.72);
+    box-shadow: 0 12px 34px rgb(100 99 130 / 0.12);
+    backdrop-filter: blur(18px);
+}
+
+.eq-shell-header h1,
+.eq-shell-header h2,
+.eq-shell-header h3 {
+    color: rgb(15 23 42) !important;
+}
+
+.eq-shell-header p {
+    color: rgb(109 50 245) !important;
+}
+
+.eq-game-hero .text-white,
+.eq-student-hero .text-white,
+.eq-cockpit-hud .text-white,
+.eq-studio-panel .text-white {
+    color: rgb(15 23 42) !important;
+}
+
+.eq-game-hero .text-slate-300,
+.eq-student-hero .text-slate-300,
+.eq-cockpit-hud .text-slate-300,
+.eq-studio-panel .text-slate-300,
+.eq-game-hero .text-emerald-50\/85,
+.eq-student-hero .text-emerald-50\/85,
+.eq-cockpit-hud .text-emerald-50\/85,
+.eq-studio-panel .text-emerald-50\/85 {
+    color: rgb(100 116 139) !important;
+}
+
+.eq-game-hero .text-emerald-200,
+.eq-game-hero .text-emerald-300,
+.eq-student-hero .text-emerald-200,
+.eq-student-hero .text-emerald-300,
+.eq-cockpit-hud .text-emerald-200,
+.eq-cockpit-hud .text-emerald-300,
+.eq-studio-panel .text-emerald-200,
+.eq-studio-panel .text-emerald-300 {
+    color: rgb(109 50 245) !important;
+}
+
+.eq-game-hero .bg-white\/10,
+.eq-student-hero .bg-white\/10,
+.eq-cockpit-hud .bg-white\/10,
+.eq-studio-panel .bg-white\/10 {
+    background-color: rgb(248 248 252) !important;
+}
+
+.eq-mission-tile .text-white {
+    color: rgb(15 23 42) !important;
+}
+
+.eq-mission-tile .text-slate-300 {
+    color: rgb(100 116 139) !important;
+}
+
+.eq-mission-tile .text-emerald-200 {
+    color: rgb(109 50 245) !important;
+}
+
+.eq-mission-tile .bg-white\/10 {
+    background-color: rgb(248 248 252) !important;
+}
+
+.eq-game-hero .bg-violet-600,
+.eq-game-hero .bg-violet-600.text-white,
+.eq-student-hero .bg-violet-600,
+.eq-student-hero .bg-violet-600.text-white,
+.eq-cockpit-hud .bg-violet-600,
+.eq-cockpit-hud .bg-violet-600.text-white,
+.eq-studio-panel .bg-violet-600,
+.eq-studio-panel .bg-violet-600.text-white {
+    color: rgb(255 255 255) !important;
+}
+
+.eq-game-hero .bg-violet-600 .text-white,
+.eq-student-hero .bg-violet-600 .text-white,
+.eq-cockpit-hud .bg-violet-600 .text-white,
+.eq-studio-panel .bg-violet-600 .text-white {
+    color: rgb(255 255 255) !important;
+}
+
+.eq-game-hero .bg-violet-600 .text-slate-300,
+.eq-student-hero .bg-violet-600 .text-slate-300,
+.eq-cockpit-hud .bg-violet-600 .text-slate-300,
+.eq-studio-panel .bg-violet-600 .text-slate-300 {
+    color: rgb(237 233 254) !important;
+}
+
+.eq-game-hero .eq-btn-primary,
+.eq-student-hero .eq-btn-primary,
+.eq-cockpit-hud .eq-btn-primary,
+.eq-studio-panel .eq-btn-primary,
+.eq-game-hero .bg-slate-950.text-white,
+.eq-student-hero .bg-slate-950.text-white,
+.eq-cockpit-hud .bg-slate-950.text-white,
+.eq-studio-panel .bg-slate-950.text-white {
+    color: rgb(255 255 255) !important;
 }
 
 @keyframes eq-pulse {

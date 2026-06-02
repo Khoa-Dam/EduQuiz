@@ -62,44 +62,30 @@ class ManualDemoFlowTest extends TestCase
             ->assertOk()
             ->assertSee('Admin Dashboard');
 
-        $this->post('/admin/courses', [
-            'title' => 'Manual Demo Course',
-            'description' => 'Course created during manual flow coverage.',
-            'status' => 'active',
-        ])->assertRedirect();
-
-        $course = Course::where('title', 'Manual Demo Course')->firstOrFail();
-
-        $this->post('/admin/quizzes', [
-            'course_id' => $course->id,
+        $this->post('/admin/quiz-builder', [
+            'intent' => 'publish',
+            'course_mode' => 'new',
+            'course_title' => 'Manual Demo Course',
+            'course_description' => 'Course created during manual flow coverage.',
             'title' => 'Manual Demo Quiz',
             'description' => 'Quiz created during manual flow coverage.',
             'duration_minutes' => 15,
-            'status' => 'active',
+            'questions' => [
+                [
+                    'question_text' => 'Which framework is EduQuiz built with?',
+                    'points' => 2,
+                    'answers' => [
+                        ['answer_text' => 'Laravel', 'is_correct' => '1'],
+                        ['answer_text' => 'Django'],
+                    ],
+                ],
+            ],
         ])->assertRedirect();
 
+        $course = Course::where('title', 'Manual Demo Course')->firstOrFail();
         $quiz = Quiz::where('title', 'Manual Demo Quiz')->firstOrFail();
-
-        $this->post('/admin/questions', [
-            'quiz_id' => $quiz->id,
-            'question_text' => 'Which framework is EduQuiz built with?',
-            'points' => 2,
-        ])->assertRedirect();
-
         $question = Question::where('question_text', 'Which framework is EduQuiz built with?')->firstOrFail();
-
-        $this->post('/admin/answers', [
-            'question_id' => $question->id,
-            'answer_text' => 'Laravel',
-            'is_correct' => '1',
-        ])->assertRedirect(route('admin.questions.show', $question, absolute: false));
-
         $correctAnswer = Answer::where('answer_text', 'Laravel')->firstOrFail();
-
-        $this->post('/admin/answers', [
-            'question_id' => $question->id,
-            'answer_text' => 'Django',
-        ])->assertRedirect(route('admin.questions.show', $question, absolute: false));
 
         $this->assertDatabaseHas('answers', [
             'question_id' => $question->id,
